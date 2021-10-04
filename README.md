@@ -22,11 +22,11 @@
   購入を迷っている参考書に関する投稿がないか確認したり、その参考書が今の自分の理解度に適した難易度なのか過去の使用者のレベルと比較して判断するために用いる
 
 ## 設計書
-  * ER図<br>
-  https://drive.google.com/file/d/1-mY3frdWfiIqg3KVIdcK4EeUaftejXKs/view?usp=sharing
-  * テーブル定義書
+* ER図<br>
+https://drive.google.com/file/d/1-mY3frdWfiIqg3KVIdcK4EeUaftejXKs/view?usp=sharing
+* テーブル定義書
 
-  * アプリケーション詳細設計を作成予定
+* アプリケーション詳細設計を作成予定
 
 ## チャレンジ要素一覧
 
