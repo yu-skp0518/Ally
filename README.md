@@ -1,5 +1,4 @@
 # Ally（ for learners ）
-<img width="216" alt="スクリーンショット 2021-10-05 1 12 17" src="https://user-images.githubusercontent.com/86953982/135886649-d1fe65c7-5a04-42ee-b6ec-6f4fe8180ac0.png">
 ## サイト概要
 * ### Allyとは？
 
