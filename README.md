@@ -1,4 +1,5 @@
 # Ally（ for learners ）
+![qktwKnEXOUuNS2h1633363594](https://user-images.githubusercontent.com/86953982/135885731-6a7517e5-abf5-4408-bfa6-90e6475587e6.png)
 
 ## サイト概要
 * ### Allyとは？
