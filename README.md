@@ -26,7 +26,7 @@
 https://drive.google.com/file/d/1-mY3frdWfiIqg3KVIdcK4EeUaftejXKs/view?usp=sharing
 * テーブル定義書
 
-* アプリケーション詳細設計を作成予定
+* アプリケーション詳細設計
 
 ## チャレンジ要素一覧
 
