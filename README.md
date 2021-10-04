@@ -1,4 +1,4 @@
-# Ally（for learners）
+# Ally（ for learners ）
 
 ## サイト概要
 
