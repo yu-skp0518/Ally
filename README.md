@@ -1,5 +1,5 @@
 # Ally（ for learners ）
-![524AA39B-E05B-4228-805F-9442FF674C31_4_5005_c](https://user-images.githubusercontent.com/86953982/135886248-064f7213-34e4-41b6-93ca-dd34f256857e.jpeg)
+<img width="216" alt="スクリーンショット 2021-10-05 1 12 17" src="https://user-images.githubusercontent.com/86953982/135886649-d1fe65c7-5a04-42ee-b6ec-6f4fe8180ac0.png">
 ## サイト概要
 * ### Allyとは？
 
