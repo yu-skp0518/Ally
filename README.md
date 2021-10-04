@@ -1,4 +1,5 @@
-# Ally
+# Ally(for learners)
+![Ally-logo](https://user-images.githubusercontent.com/86953982/135854023-510fc6d4-53e7-4e7f-b28c-353ff4a176f3.png)
 
 ## サイト概要
 
