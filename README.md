@@ -38,6 +38,9 @@ https://drive.google.com/file/d/1-mY3frdWfiIqg3KVIdcK4EeUaftejXKs/view?usp=shari
 * ### ワイヤーフレーム（ユーザー側）<br>
 https://drive.google.com/file/d/1uSR6fVYDKDGtxsu3IEiIpyEjmwY00OJC/view?usp=sharing
 
+* ### ワイヤーフレーム(管理側)<br>
+https://drive.google.com/file/d/10xogGfUjLxt0F3uacCarzWFrDVBtqIUj/view?usp=sharing
+
 ## チャレンジ要素一覧
 
 <https://docs.google.com/spreadsheets/d/1BcqmQg_izvXIq4fJAR6payEZeXPJNW-Z8Yu48-nPhHQ/edit?usp=sharing>
