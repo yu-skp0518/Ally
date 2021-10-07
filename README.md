@@ -36,7 +36,7 @@ https://drive.google.com/file/d/1-mY3frdWfiIqg3KVIdcK4EeUaftejXKs/view?usp=shari
 * ### アプリケーション詳細設計<br>
 
 * ### ワイヤーフレーム（ユーザー側）<br>
-https://drive.google.com/file/d/1z3xTYvelPd1nddlAH5pJOB996I2HPGf5/view?usp=sharing
+https://drive.google.com/file/d/1uSR6fVYDKDGtxsu3IEiIpyEjmwY00OJC/view?usp=sharing
 
 ## チャレンジ要素一覧
 
