@@ -39,7 +39,7 @@ https://drive.google.com/file/d/1-mY3frdWfiIqg3KVIdcK4EeUaftejXKs/view?usp=shari
 https://drive.google.com/file/d/1uSR6fVYDKDGtxsu3IEiIpyEjmwY00OJC/view?usp=sharing
 
 * ### ワイヤーフレーム(管理側)<br>
-https://drive.google.com/file/d/10xogGfUjLxt0F3uacCarzWFrDVBtqIUj/view?usp=sharing
+https://drive.google.com/file/d/1-6s0mc0gQZSB13r1f0XC331_F9L5u6YG/view?usp=sharing
 
 ## チャレンジ要素一覧
 
