@@ -31,9 +31,9 @@
 * ### ER図<br>
 https://drive.google.com/file/d/1-mY3frdWfiIqg3KVIdcK4EeUaftejXKs/view?usp=sharing
 
-* ### テーブル定義書（未作成）<br>
+* ### テーブル定義書 - 未作成<br>
 
-* ### アプリケーション詳細設計（未作成）<br>
+* ### アプリケーション詳細設計 - 未作成<br>
 
 * ### ワイヤーフレーム（ユーザー側）<br>
 https://drive.google.com/file/d/1uSR6fVYDKDGtxsu3IEiIpyEjmwY00OJC/view?usp=sharing
