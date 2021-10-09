@@ -44,9 +44,6 @@ https://drive.google.com/file/d/1-6s0mc0gQZSB13r1f0XC331_F9L5u6YG/view?usp=shari
 ## チャレンジ要素一覧
 <https://docs.google.com/spreadsheets/d/1BcqmQg_izvXIq4fJAR6payEZeXPJNW-Z8Yu48-nPhHQ/edit?usp=sharing>
 
-## WBS
-https://docs.google.com/spreadsheets/d/1PbkEissNDgKukmiUZ7aAR3S73WDEFm8zHyZx77WJ3VM/edit?usp=sharing
-
 ## 開発環境
 
 - OS：macOS(Big Sur)
