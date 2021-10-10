@@ -31,7 +31,8 @@
 * ### ER図<br>
 https://drive.google.com/file/d/1-mY3frdWfiIqg3KVIdcK4EeUaftejXKs/view?usp=sharing
 
-* ### テーブル定義書 - 未作成<br>
+* ### テーブル定義書<br>
+https://docs.google.com/spreadsheets/d/1tkH_mm-Czp1CWytj-mV_B5Dz_8z0GRqupqVROP3jNpo/edit?usp=sharing
 
 * ### アプリケーション詳細設計 - 未作成<br>
 
