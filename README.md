@@ -34,7 +34,8 @@ https://drive.google.com/file/d/1-JQwXXG4zGj1NPtD6dcvCM5yKxzE0RDp/view?usp=shari
 * ### テーブル定義書<br>
 https://docs.google.com/spreadsheets/d/1tkH_mm-Czp1CWytj-mV_B5Dz_8z0GRqupqVROP3jNpo/edit?usp=sharing
 
-* ### アプリケーション詳細設計 - 未作成<br>
+* ### アプリケーション詳細設計<br>
+https://docs.google.com/spreadsheets/d/1iaDAS5NCPhuKMTVT356PCW1QgBw5reveC9rrVc5Wes8/edit?usp=sharing
 
 * ### ワイヤーフレーム（ユーザー側）<br>
 https://drive.google.com/file/d/1uSR6fVYDKDGtxsu3IEiIpyEjmwY00OJC/view?usp=sharing
