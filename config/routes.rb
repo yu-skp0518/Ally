@@ -1,33 +1,29 @@
 Rails.application.routes.draw do
 
+  # ユーザー側のデバイス
   devise_for :user, controllers: {
     sessions: 'public/sessions',
     passwords: 'public/passwords',
     registrations: 'public/registrations'
   }
 
+  # 管理側のデバイス
   devise_for :admin, controllers: {
     sessions: 'admin/sessions',
     passwords: 'admin/passwords',
     registrations: 'admin/registrations'
   }
 
-  root to: 'public/books#top'
-
-    get 'books/top'
+  # ユーザー側
+  scope module: :public do
+    root to: 'books#top'
+    resources :books
     get 'books/search'
-    get 'books/create'
-    get 'books/new'
-    get 'books/create'
-    get 'books/index'
-    get 'books/show'
-    get 'books/edit'
-    get 'books/upddate'
+  end
 
+  # 管理側
   namespace :admin do
-    get 'books/index'
-    get 'books/show'
-    get 'books/update'
+    resources :books, only: [:index, :show, :update]
   end
 
 end

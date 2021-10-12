@@ -23,6 +23,6 @@ class Public::BooksController < ApplicationController
   def edit
   end
 
-  def upddate
+  def update
   end
 end
