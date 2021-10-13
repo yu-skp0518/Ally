@@ -15,15 +15,15 @@ class ApplicationController < ActionController::Base
   end
 
   # ログイン後のリダイレクト先
-  # def after_sign_in_path_for(resource)
-  #   if current_user
-  #     flash[:notice_log_in] = "ログインに成功しました"
-  #     users_path
-  #   else
-  #     flash[:notice_log_in] = "ログインに成功しました"
-  #     admin_products_path
-  #   end
-  # end
+  def after_sign_in_path_for(resource)
+    if current_user
+      flash[:notice_log_in] = "ログインに成功しました"
+      user_path(current_user)
+    else
+      flash[:notice_log_in] = "ログインに成功しました"
+      admin_genres_path
+    end
+  end
 
 
 
