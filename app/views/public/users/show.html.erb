@@ -1,2 +1,70 @@
-<h1>Public::Users#show</h1>
-<p>Find me in app/views/public/users/show.html.erb</p>
+<div class="container">
+
+  <div class="row justify-content-center">
+      <% if current_user.id == @user.id %>
+        <h2>マイページ</h2>
+      <% else %>
+        <h2>詳細画面</h2>
+      <% end %>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+        <table>
+          <tbody>
+            <tr>
+              <td><strong>プロフィール画像</strong></td>
+              <td><%= attachment_image_tag @user, :profile_image, :size =>'80x80' %></td>
+            </tr>
+            <tr>
+  						<td><strong>アカウント名</strong></td>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <td><strong>表示名</strong></td>
+              <td><%= @user.nick_name %></td>
+            </tr>
+            <tr>
+              <td><strong>プロフィール</strong></td>
+              <td><%= @user.profile %></td>
+            </tr>
+            <tr>
+              <td><strong>フォロー：<%= link_to "#{@user.reverse_of_relationships.count}", user_relationships_followings_path(@user.id) %></strong>
+            </tr>
+            <tr>
+              <td><strong>フォロワー：<%= link_to "#{@user.relationships.count}", user_relationships_followers_path(@user.id) %></strong>
+            </td>
+            </tr>
+          </tbody>
+        </table>
+
+      <% if current_user.id == @user.id %>
+        <%= link_to "編集", edit_user_path %>
+      <% end %>
+
+    </div>
+
+    <div class="col-6">
+      <%= link_to "新規投稿", new_book_path %>
+
+      <h4>最新の投稿</h4>
+      <% @books.each do |book| %>
+      <p>タイトル</p>
+        <%= book.title %>
+      <p>著者</p>
+        <%= book.author %>
+      <p>商品説明</p>
+        <%= book.itemCaption %>
+      <p>楽天ブックスURL</p>
+        <a><%= book.itemUrl %></a>
+      <p>出版社名</p>
+        <%= book.publisherName %>
+      <p>商品価格</p>
+        <%= book.itemPrice %>
+      <p>商品イメージ</p>
+        <%= book.smallImageUrl %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

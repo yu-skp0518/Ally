@@ -11,31 +11,134 @@
 
   <body>
     <header>
-      <!--ユーザーがログインしている場合-->
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "ユーザーログアウト", destroy_user_session_path, method: :delete %>
-        </li>
+      <nav class="navbar navbar-expend-lg navbar-light">
+        <div class="container">
 
-      <!--管理者がログインしている場合-->
-      <% elsif admin_signed_in? %>
+            <div class="navbar-brand">
+              <%= link_to root_path, class:"nav-link" do %>
+                <%= image_tag "Ally-logo.png", :size =>'100x100' %>
+              <% end %>
+            </div>
 
-        <li>
-          <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete %>
-        </li>
+            <ul class="list-group-horizontal navbar-nav ml-auto">
 
-      <!--いずれもログインしていない場合  -->
-      <% else %>
 
-        <li>
-          <%= link_to "ユーザー新規登録", new_user_registration_path %>
-        </li>
+            <!--ユーザーがログインしている場合-->
+            <% if user_signed_in? %>
 
-        <li>
-          <%= link_to "ユーザーログイン", new_user_session_path %>
-        </li>
+              <nav-item>
+                <%= link_to user_path(current_user) do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>マイページ</strong>
+                    </i>
+                <% end %>
+              </nav-item>
 
-      <% end %>
+             <nav-item>
+                <%= link_to genres_path do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>ジャンル一覧</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to subjects_path do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>科目一覧</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to new_book_path do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>新規投稿</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>Log out</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+            <!--管理者がログインしている場合-->
+            <% elsif admin_signed_in? %>
+
+              <nav-item>
+                <%= link_to admin_users_path do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>ユーザー一覧</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+              
+             <nav-item>
+                <%= link_to admin_genres_path do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>ジャンル一覧</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to admin_subjects_path do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>科目一覧</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to destroy_admin_session_path, method: :delete do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>管理者ログアウト</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+            <!--いずれもログインしていない場合  -->
+            <% else %>
+
+             <nav-item>
+                <%= link_to genres_path do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>ジャンル一覧</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to subjects_path do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>科目一覧</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+              <nav-item>
+                <%= link_to new_user_registration_path do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>ユーザー新規登録</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to new_user_session_path do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong>ユーザーログイン</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+            <% end %>
+        </div>
+      </nav>
     </header>
 
     <%= yield %>
