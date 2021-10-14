@@ -14,7 +14,7 @@
           <tbody>
             <tr>
               <td><strong>プロフィール画像</strong></td>
-              <td><%= attachment_image_tag @user, :profile_image, :size =>'80x80' %></td>
+              <td><%= attachment_image_tag @user, :profile_image, :size =>'80x80', fallback: "no-image.jpg" %></td>
             </tr>
             <tr>
   						<td><strong>アカウント名</strong></td>
