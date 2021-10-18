@@ -1,39 +1,44 @@
 <div class="container">
 
   <div class="row justify-content-center">
-      <% if current_user.id == @user.id %>
-        <h2>マイページ</h2>
-      <% else %>
-        <h2>詳細画面</h2>
-      <% end %>
+    <% if current_user.id == @user.id %>
+      <h2 class="title">マイページ</h2>
+    <% else %>
+      <h2 class="title">詳細画面</h2>
+    <% end %>
   </div>
 
   <div class="row">
-    <div class="col-6">
+    <div class="col-5">
+      <div class="col-5 info-frame">
         <table>
           <tbody>
             <tr>
-              <td><strong>プロフィール画像</strong></td>
-              <td><%= attachment_image_tag @user, :profile_image, :size =>'80x80', fallback: "no-image.jpg" %></td>
+              <td><%= attachment_image_tag @user, :profile_image_id, :size =>'90x90', fallback: "no-image.jpg", class:"profile-image" %></td>
             </tr>
+
+          <div class="profile-group">
             <tr>
-  						<td><strong>アカウント名</strong></td>
+              <td><strong>アカウント名</strong></td>
               <td><%= @user.name %></td>
             </tr>
+
             <tr>
               <td><strong>表示名</strong></td>
               <td><%= @user.nick_name %></td>
             </tr>
+
             <tr>
               <td><strong>プロフィール</strong></td>
               <td><%= @user.profile %></td>
             </tr>
+
             <tr>
               <td><strong>フォロー：<%= link_to "#{@user.reverse_of_relationships.count}", user_relationships_followings_path(@user.id) %></strong>
             </tr>
+
             <tr>
-              <td><strong>フォロワー：<%= link_to "#{@user.relationships.count}", user_relationships_followers_path(@user.id) %></strong>
-            </td>
+              <td><strong>フォロワー：<%= link_to "#{@user.relationships.count}", user_relationships_followers_path(@user.id) %></strong></td>
             </tr>
           </tbody>
         </table>
@@ -42,29 +47,45 @@
         <%= link_to "編集", edit_user_path %>
       <% end %>
 
+      </div>
     </div>
 
-    <div class="col-6">
-      <%= link_to "新規投稿", new_book_path %>
+      <div class="col-5">
+        <div class="row">
+          <%= link_to "新規投稿", books_search_path %>
+          <h4>最新の投稿</h4>
+        </div>
 
-      <h4>最新の投稿</h4>
-      <% @books.each do |book| %>
-      <p>タイトル</p>
-        <%= book.title %>
-      <p>著者</p>
-        <%= book.author %>
-      <p>商品説明</p>
-        <%= book.itemCaption %>
-      <p>楽天ブックスURL</p>
-        <a><%= book.itemUrl %></a>
-      <p>出版社名</p>
-        <%= book.publisherName %>
-      <p>商品価格</p>
-        <%= book.itemPrice %>
-      <p>商品イメージ</p>
-        <%= book.smallImageUrl %>
-      <% end %>
+        <div class="row book-list">
+          <thead>
+            <tr>
+              <div class="col-2">
+              </div>
 
-    </div>
+              <div class="col-2">
+                <th>タイトル</th>
+              </div>
+
+              <div class="col-2">
+                <th>著者</th>
+              </div>
+            </tr>
+          </thead>
+
+          <table>
+            <tbody class="book-list">
+              <% @books.each do |book| %>
+                <tr>
+                  <td><%= link_to (image_tag(book.small_image_url)), book.item_url, target: :_blank, rel: "noopener noreferrer" %></td>
+                  <td><%= link_to book.title, book_path(book.id) %></td>
+                  <td><%= book.author %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
   </div>
 </div>
