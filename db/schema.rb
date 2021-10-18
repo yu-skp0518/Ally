@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_13_165456) do
+ActiveRecord::Schema.define(version: 2021_10_12_172615) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -38,14 +38,15 @@ ActiveRecord::Schema.define(version: 2021_10_13_165456) do
     t.bigint "isbn", null: false
     t.string "title", null: false
     t.string "author", null: false
-    t.text "itemCaption", null: false
-    t.string "itemUrl", null: false
-    t.string "publisherName", null: false
-    t.integer "itemPrice", null: false
-    t.string "mediumImageUrl", null: false
-    t.string "smallImageUrl", null: false
-    t.text "story", null: false
-    t.float "rate", null: false
+    t.text "item_caption", null: false
+    t.string "item_url", null: false
+    t.string "publisher_name", null: false
+    t.integer "item_price", null: false
+    t.string "large_image_url", null: false
+    t.string "medium_image_url", null: false
+    t.string "small_image_url", null: false
+    t.text "story"
+    t.float "rate"
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

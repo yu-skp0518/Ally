@@ -1,4 +1,6 @@
 class Public::InquiriesController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :update]
+  
   def new
   end
 

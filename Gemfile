@@ -72,3 +72,5 @@ gem 'font-awesome-sass', '~> 5.13'
 
 # 楽天API利用のため
 gem 'rakuten_web_service'
+# 環境変数を利用するため
+gem 'dotenv-rails'

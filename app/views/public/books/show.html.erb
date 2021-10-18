@@ -1,2 +1,12 @@
-<h1>Public::Books#show</h1>
-<p>Find me in app/views/public/books/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-6 content-block ">
+        <%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer" %>
+        <%= @book.title %>
+        <%= @book.author %>
+        <%= @book.item_caption %>
+        <%= @book.item_price %>
+        <%= @book.publisher_name %>
+    </div>
+  </div>
+</div>
