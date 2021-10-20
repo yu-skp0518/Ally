@@ -30,33 +30,36 @@
             </tr>
 
             <tr>
-              <td><strong>フォロー：</strong><%= link_to "#{@user.reverse_of_relationships.count}", user_relationships_followings_path(@user.id) %></td>
+              <td><strong>フォロー：</strong><%= link_to link_to @user.followings.count, user_followings_path(@user) %></td>
             </tr>
 
             <tr>
-              <td><strong>フォロワー：</strong><%= link_to "#{@user.relationships.count}", user_relationships_followers_path(@user.id) %></td>
+              <td><strong>フォロワー：</strong><%= link_to link_to @user.followers.count, user_followers_path(@user) %></td>
             </tr>
-
-          <%#= if current_user.id == @user.id %>
-          <%# else %>
-          <%# if current_user.followings?(@user) %>
-          <%#= link_to "フォロー外す", user_relationships_path(@user.id), method: :delete, class: "btn btn-primary" %>
-          <%# else %>
-          <%#= link_to "フォローする", user_relationships_path(@user.id), method: :post, class: "btn btn-success" %>
-          <%# end %>
-          <%# end %>
-          <%# end %>
 
             <tr>
               <td><%= link_to "Bookmark一覧", book_bookmarks_path(@book.id) %></td>
             </tr>
 
+            <tr>
+              <td><%= link_to "いいねしたコメント一覧", user_likes_path(@user.id) %></td>
+            </tr>
+
+            <tr>
+              <% if current_user != @user %>
+                <% if current_user.following?(@user) %>
+                  <td><%= link_to "unfollow", user_relationship_path(@user.id), method: :delete, class: "btn btn-info" %></td>
+                <% else %>
+                  <td><%= link_to "follow", user_relationships_path(@user.id), method: :post, class: "btn btn-success" %></td>
+                <% end %>
+              <% else %>
+                <td><%= link_to "編集", edit_user_path(@user.id) %></td>
+              <% end %>
+            </tr>
+
           </tbody>
         </table>
 
-        <% if current_user.id == @user.id %>
-        <%= link_to "編集", edit_user_path %>
-        <% end %>
 
     </div>
 

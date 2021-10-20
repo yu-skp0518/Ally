@@ -23,8 +23,8 @@ Rails.application.routes.draw do
     # お問い合わせ用
     get 'inquiries/new'
 
-    resources :genres, only: [:index, :update]
-    resources :subjects, only: [:index, :update]
+    resources :genres, only: [:index, :update, :show]
+    resources :subjects, only: [:index, :update, :show]
 
     resources :books do
       resources :bookmarks, only: [:create, :destroy, :index]
@@ -38,10 +38,11 @@ Rails.application.routes.draw do
         patch 'users/quit'
 
       resources :relationships, only: [:create, :destroy]
-        get 'relationships/followings'
-        get 'relationships/followers'
+        get 'relationships/followings', as: 'followings'
+        get 'relationships/followers', as: 'followers'
 
       resources :inquiries, only: [:create, :update]
+      resources :likes, only: [:index]
     end
 
   end

@@ -4,6 +4,8 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @book = Book.find(params[:id])
+    @comment = Comment.find(params[:id])
+    @likes = @comment.likes.where(user_id: current_user.id, comment_id: params[:comment_id])
     @books = Book.where(user_id: @user.id)
   end
 

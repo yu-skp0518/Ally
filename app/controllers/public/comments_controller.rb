@@ -1,9 +1,6 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-  end
-
   def create
     @book = Book.find(params[:book_id])
     @comment = Comment.new(comment_params)
@@ -17,6 +14,11 @@ class Public::CommentsController < ApplicationController
   end
 
   def destroy
+    @comment = Comment.find(params[:id])
+    if @comment.destroy(comment_params)
+      redirect_to request.referer
+    else
+      render 'public/book#show'
   end
 
   private

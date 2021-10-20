@@ -1,2 +1,10 @@
-<h1>Public::Subjects#index</h1>
-<p>Find me in app/views/public/subjects/index.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <h2><strong>科目一覧</strong></h2>
+  </div>
+  <div class="row justify-content-center">
+    <% @subjects.each do |subject| %>
+      <h4 class="col"><%=  link_to subject.name, subject_path(subject.id) %></h4>
+    <% end %>
+  </div>
+</div>
