@@ -19,5 +19,23 @@ class User < ApplicationRecord
   has_many :followings, through: :relationships, source: :following
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  # すでにいいねしているか確認
+  def already_liked?(comment)
+    self.likes.exists?(comment_id: comment.id)
+  end
 
+  # ユーザーがブックマーク登録している投稿
+  has_many :bookmarked_books, through: :bookmarks, source: :book
+
+  def follow(user_id)
+    relationships.create(following_id: user_id)
+  end
+
+  def unfollow(user_id)
+    relationships.find_by(following_id: user_id).destroy
+  end
+
+  def following?(user)
+    followings.include?(user)
+  end
 end

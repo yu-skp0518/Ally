@@ -4,12 +4,14 @@ class Public::BooksController < ApplicationController
   def top
   end
 
+  # 楽天ブックス検索
   def search
     if params[:keyword]
       @books = RakutenWebService::Books::Book.search(title: params[:keyword])
     end
   end
 
+  # 検索後に結果選択の画面
   def new
     book = RakutenWebService::Books::Book.search(isbn: params[:isbn]).first
     @book = Book.new(
@@ -29,7 +31,7 @@ class Public::BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-    
+
     # 以下の2つは取り急ぎseedsに保存したデータで応急処置
     @book.genre_id = Genre.first.id
     @book.subject_id = Subject.first.id
@@ -38,7 +40,7 @@ class Public::BooksController < ApplicationController
       flash[:notice] = "新規投稿を作成しました！"
       redirect_to book_path(@book.id)
     else
-      book = RakutenWebService::Books::Book.search(isbn: @book.isbn).first
+      @book = RakutenWebService::Books::Book.search(isbn: @book.isbn).first
       render :new
     end
   end
@@ -48,6 +50,7 @@ class Public::BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @comment = Comment.new
   end
 
   def edit
@@ -58,6 +61,6 @@ class Public::BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:isbn, :title, :author, :item_caption, :item_url, :publisher_name, :item_price, :large_image_url, :medium_image_url, :small_image_url, :story, :rate,)
+    params.require(:book).permit(:isbn, :title, :author, :item_caption, :item_url, :publisher_name, :item_price, :large_image_url, :medium_image_url, :small_image_url, :story, :rate)
   end
 end

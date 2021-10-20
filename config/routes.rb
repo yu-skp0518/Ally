@@ -20,13 +20,17 @@ Rails.application.routes.draw do
     root to: 'books#top'
     # 楽天APIでの蔵書検索用
     get 'books/search'
+    # お問い合わせ用
     get 'inquiries/new'
 
     resources :genres, only: [:index, :update]
     resources :subjects, only: [:index, :update]
 
     resources :books do
-      resources :comments, only: [:index, :create, :destroy]
+      resources :bookmarks, only: [:create, :destroy, :index]
+      resources :comments, only: [:index, :create, :destroy] do
+        resources :likes, only: [:create, :destroy]
+      end
     end
 
     resources :users, only: [:show, :edit, :update] do
@@ -37,8 +41,6 @@ Rails.application.routes.draw do
         get 'relationships/followings'
         get 'relationships/followers'
 
-      resources :bookmarks, only: [:create, :destroy]
-      resources :likes, only: [:create, :destroy]
       resources :inquiries, only: [:create, :update]
     end
 

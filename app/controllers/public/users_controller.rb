@@ -3,6 +3,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @book = Book.find(params[:id])
     @books = Book.where(user_id: @user.id)
   end
 

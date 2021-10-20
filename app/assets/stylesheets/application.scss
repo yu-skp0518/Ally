@@ -71,8 +71,8 @@ header {
 
 
 body {
-  background-color: #005500;
-  color: #005500;
+  // background-color: #005500;
+  // color: #005500;
 }
 
 .container {
@@ -153,21 +153,42 @@ footer {
   background-color: white;
   color: #005500;
   border-radius: 20px;
+  padding-bottom: 20px;
+  border: solid;
+}
+
+.book-list-item {
+  padding-top: 20px;
+  padding-right: 20px;
   padding-bottom: 30px;
-  border-bottom: solid;
+  border-bottom: 3px dashed;
+}
+
+.book-list-picture {
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 // 各ページ随所の白文字になってほしい部分
 .title {
-  color: #FFFFEE;
+  // color: #FFFFEE;
 }
 
 // マイページの自己紹介写真の調整
 .profile-image {
   border-radius: 50%;
   position: absolute;
-  left: 5px;
-  top: 15px;
+  left: 10px;
+  bottom: 270px;
+}
+
+.profile-group {
+  margin-top: 80px;
+  // background-color: white;
+  // color: #005500;
+  border-radius: 20px;
+  padding-bottom: 20px;
+  border: solid;
 }
 
 .info-frame {
@@ -180,4 +201,26 @@ footer {
 .content-block {
   background-color: white;
   border-radius: 20px;
+}
+
+.comment-box {
+  background-color: white;
+  margin-top: 10px;
+  padding: 5px;
+  border: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.book-info {
+  margin-top: 30px;
+}
+
+.book-info-picture {
+
+}
+
+.bookmark-item {
+  margin-right: 40px;
 }
