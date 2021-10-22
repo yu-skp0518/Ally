@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-5 search_result">
+      <p><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer" %></p>
+      <span>タイトル：<%= @book.title %></span><br>
+      <span>著者：<%= @book.author %></span><br>
+      <span>商品説明：<%= @book.item_caption %></span><br>
+      <span>出版社：<%= @book.publisher_name %></span><br>
+      <span>価格：<%= @book.item_price %>円</span><br>
+    </div>
+
+    <%= form_with model: @book, url:books_path, local:true, method: :post do |f| %>
+
+      <!--上記のeach文で表示させている楽天APIの検索結果をBookモデルに保存するためのhidden_field-->
+      <%= f.hidden_field :isbn %>
+      <%= f.hidden_field :small_image_url %>
+      <%= f.hidden_field :medium_image_url %>
+      <%= f.hidden_field :large_image_url %>
+      <%= f.hidden_field :title %>
+      <%= f.hidden_field :author %>
+      <%= f.hidden_field :item_caption %>
+      <%= f.hidden_field :publisher_name %>
+      <%= f.hidden_field :item_price %>
+      <%= f.hidden_field :item_url %>
+      <!--ここまで-->
+
+      <span>購入した背景</span>
+      <%= f.text_field :story %>
+
+      <%= f.submit "新規投稿" %>
+    <% end %>
+
+  </div>
+</div>

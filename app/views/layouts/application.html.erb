@@ -6,10 +6,168 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="wrapper">
+    <header>
+      <nav class="navbar navbar-expend-lg navbar-light">
+
+
+            <div class="navbar-brand">
+              <%= link_to root_path do %>
+                <%= image_tag "Ally-logo.png", :size =>'130x130', class: "logo" %>
+              <% end %>
+
+              <% if admin_signed_in? %>
+                <nav-item>
+                    <li class="nav-link">
+                      <strong class="text-success mb-0 log-in-status">管理者ログイン中</strong>
+                    </li>
+                </nav-item>
+              <% end %>
+            </div>
+
+            <ul class="list-group-horizontal navbar-nav ml-auto">
+
+
+            <!--ユーザーがログインしている場合-->
+            <% if user_signed_in? %>
+            <div class="link-group">
+              <nav-item>
+                <%= link_to user_path(current_user) do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong class="menu-icon">My page</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to genres_path do %>
+                    <i class="fas fa-list-ul nav-link text-black">
+                      <strong class="menu-icon">Genres</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to subjects_path do %>
+                    <i class="fas fa-pen-fancy nav-link text-black">
+                      <strong class="menu-icon">Subjects</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to books_search_path do %>
+                    <i class="fas fa-book-medical nav-link text-black">
+                      <strong class="menu-icon">New post</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                    <i class="fas fa-sign-out-alt nav-link text-black">
+                      <strong class="menu-icon">Log out</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+            </div>
+            <!--管理者がログインしている場合-->
+            <% elsif admin_signed_in? %>
+
+            <div class="link-group">
+              <nav-item>
+                <%= link_to admin_users_path do %>
+                    <i class="far fa-address-book nav-link text-black">
+                      <strong class="menu-icon">Users</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to admin_genres_path do %>
+                    <i class="fas fa-list-ul nav-link text-black">
+                      <strong class="menu-icon">Genres</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to admin_subjects_path do %>
+                    <i class="fas fa-pen-fancy nav-link text-black">
+                      <strong class="menu-icon">Subjects</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to destroy_admin_session_path, method: :delete do %>
+                    <i class="fas fa-sign-out-alt nav-link text-black">
+                      <strong class="menu-icon">Log out</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+            </div>
+
+            <!--いずれもログインしていない場合  -->
+            <% else %>
+
+            <div class="link-group">
+             <nav-item>
+                <%= link_to genres_path do %>
+                    <i class="fas fa-list-ul nav-link text-black">
+                      <strong class="menu-icon">Genres</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to subjects_path do %>
+                    <i class="fas fa-pen-fancy nav-link text-black">
+                      <strong class="menu-icon">Subjects</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+              <nav-item>
+                <%= link_to new_user_registration_path do %>
+                    <i class="fas fa-user-plus nav-link text-black">
+                      <strong class="menu-icon">Sign up</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to new_user_session_path do %>
+                    <i class="fas fa-sign-in-alt  nav-link text-black">
+                      <strong class="menu-icon">Log in</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+            </div>
+
+            <% end %>
+
+      </nav>
+    </header>
+
     <%= yield %>
+    <footer>
+          <strong>© All rights reserved by Ally for leaners</strong>
+          <div class="justify-content-center align-items-center social-items">
+            <i class="fab fa-facebook-square fa-2x text-black social-item"></i>
+            <i class="fab fa-twitter-square fa-2x text-black social-item"></i>
+            <i class="fab fa-instagram fa-2x text-black social-item"></i>
+          <%= link_to inquiries_new_path do %>
+            <i class="fas fa-question-circle fa-2x text-black social-item"></i>
+          <% end %>
+          <%= link_to new_admin_session_path do %>
+            <i class="fas fa-lock fa-2x text-black social-item" size: "50x50"></i>
+          <% end %>
+          </div>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,52 @@
+<div class="container">
+
+  <div class="row justify-content-center">
+    <h2><p class="page-title">新規投稿</p></h2>
+  </div>
+  <div class="row justify-content-center">
+    <h2><p class="page-title">書籍検索(楽天Books)</p></h2>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="search-box">
+
+      <%= form_with url: books_search_path, method: :get, local: true do |f| %>
+        <div class="form-group">
+          <%= f.text_field :keyword, class: "form-control", :size => "30x20" %>
+          <%= f.submit '本の題名を検索', class: "form-control btn btn-success" %>
+
+        <% if @books.present? %>
+          <strong>※画像をクリックすると楽天ブックスに移動します。</strong>
+        <% end %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+
+
+    <% if @books.present? %>
+      <div class="row justify-content-center">
+            <% @books.each do |book| %>
+            <div class="col-3 search_result">
+              <p><%= link_to (image_tag(book.medium_image_url)), book.item_url, target: :_blank, rel: "noopener noreferrer" %></p>
+              <span>タイトル：</span>
+                <span><%= book.title %></span><br>
+              <span>著者：</span>
+                <span><%= book.author %></span><br>
+              <span>出版社：</span>
+                <span><%= book.publisher_name %></span><br>
+              <span>価格：</span>
+                <span><%= book.item_price %>円</span><br>
+                <span><%= link_to "その他入力に進む", new_book_path(isbn: book.isbn ,keyword: book.title), class: "btn btn-secondary" %></span><br>
+            </div>
+            <% end %>
+
+
+    </div>
+  </div>
+    <% end %>
+
+
+
+</div>

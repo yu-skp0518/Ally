@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <h2 class="title"><strong>Follow一覧</strong></h2>
+  </div>
+  <div class="row justify-content-center">
+
+    <table>
+      <% @users.each do |following| %>
+      <tr>
+        <td class="col-lg-4"><%= attachment_image_tag following, :profile_image, :fill, 50, 50, fallback: "no-image.jpeg", size: "40x40" %></td>
+        <td class="col-lg-4"><%= following.name %></td>
+        <td class="col-lg-4"><%= link_to following.nick_name, user_path(following.id) %></td>
+      </tr>
+      <% end %>
+    </table>
+
+  </div>
+</div>
