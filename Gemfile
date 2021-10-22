@@ -74,3 +74,8 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'rakuten_web_service'
 # 環境変数を利用するため
 gem 'dotenv-rails'
+
+# 本番環境ではMySQLを使用するため
+group :production do
+  gem 'mysql2'
+end
