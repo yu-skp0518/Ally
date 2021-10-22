@@ -14,11 +14,13 @@ class Public::CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    if @comment.destroy(comment_params)
+    @book = Book.find(params[:book_id])
+    @comment = Comment.find_by(book_id: @book.id, id: params[:id])
+    if @comment.destroy
       redirect_to request.referer
     else
       render 'public/book#show'
+    end
   end
 
   private

@@ -16,6 +16,6 @@ class Public::LikesController < ApplicationController
   end
 
   def index
-    @comments = Comment.where(user_id: current_user.id)
+    @comments = Comment.joins(:likes).where(likes: {user_id: params[:user_id]})
   end
 end

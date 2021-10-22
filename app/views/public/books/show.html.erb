@@ -64,7 +64,7 @@
           <% end %>
 
           <!--削除ボタン-->
-          <%= link_to "削除", book_comment_path(@book.id, comment.id) %>
+          <%= link_to "削除", book_comment_path(comment.book, comment), method: :delete %>
         </div>
       <% end %>
 

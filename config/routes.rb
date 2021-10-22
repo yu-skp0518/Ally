@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   scope module: :public do
     # ルートパス
     root to: 'books#top'
-    # 楽天APIでの蔵書検索用
+    # アプリ内での投稿検索用
     get 'books/search'
     # お問い合わせ用
     get 'inquiries/new'
@@ -34,8 +34,8 @@ Rails.application.routes.draw do
     end
 
     resources :users, only: [:show, :edit, :update] do
-        get 'users/confirm'
-        patch 'users/quit'
+        get 'confirm'
+        patch 'quit'
 
       resources :relationships, only: [:create, :destroy]
         get 'relationships/followings', as: 'followings'
