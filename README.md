@@ -28,23 +28,17 @@
 
 ## 設計書
 
-* ### ER図<br>
-https://drive.google.com/file/d/1-JQwXXG4zGj1NPtD6dcvCM5yKxzE0RDp/view?usp=sharing
+* ### [ER図](https://drive.google.com/file/d/1-JQwXXG4zGj1NPtD6dcvCM5yKxzE0RDp/view?usp=sharing)
 
-* ### テーブル定義書<br>
-https://docs.google.com/spreadsheets/d/1tkH_mm-Czp1CWytj-mV_B5Dz_8z0GRqupqVROP3jNpo/edit?usp=sharing
+* ### [テーブル定義書](https://docs.google.com/spreadsheets/d/1tkH_mm-Czp1CWytj-mV_B5Dz_8z0GRqupqVROP3jNpo/edit?usp=sharing)
 
-* ### アプリケーション詳細設計<br>
-https://docs.google.com/spreadsheets/d/1iaDAS5NCPhuKMTVT356PCW1QgBw5reveC9rrVc5Wes8/edit?usp=sharing
+* ### [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/1iaDAS5NCPhuKMTVT356PCW1QgBw5reveC9rrVc5Wes8/edit?usp=sharing)
 
-* ### ワイヤーフレーム（ユーザー側）<br>
-https://drive.google.com/file/d/1uSR6fVYDKDGtxsu3IEiIpyEjmwY00OJC/view?usp=sharing
+* ### [ワイヤーフレーム（ユーザー側）](https://drive.google.com/file/d/1uSR6fVYDKDGtxsu3IEiIpyEjmwY00OJC/view?usp=sharing)
 
-* ### ワイヤーフレーム（管理側）<br>
-https://drive.google.com/file/d/1-6s0mc0gQZSB13r1f0XC331_F9L5u6YG/view?usp=sharing
+* ### [ワイヤーフレーム（管理側）](https://drive.google.com/file/d/1-6s0mc0gQZSB13r1f0XC331_F9L5u6YG/view?usp=sharing)
 
-## チャレンジ要素一覧
-<https://docs.google.com/spreadsheets/d/1BcqmQg_izvXIq4fJAR6payEZeXPJNW-Z8Yu48-nPhHQ/edit?usp=sharing>
+## [チャレンジ要素一覧](https://docs.google.com/spreadsheets/d/1BcqmQg_izvXIq4fJAR6payEZeXPJNW-Z8Yu48-nPhHQ/edit?usp=sharing)
 
 ## 開発環境
 
