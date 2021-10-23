@@ -172,14 +172,12 @@ footer {
 // 各ページ随所の白文字になってほしい部分
 .title {
   // color: #FFFFEE;
+  margin-top: 20px;
 }
 
 // マイページの自己紹介写真の調整
 .profile-image {
-  border-radius: 50%;
-  position: absolute;
-  left: 10px;
-  bottom: 270px;
+  border-radius: 25%;
 }
 
 .profile-group {
@@ -223,4 +221,9 @@ footer {
 
 .bookmark-item {
   margin-right: 40px;
+}
+
+// 新規登録画面
+.form-for-resistration {
+  margin-bottom: 15px;
 }

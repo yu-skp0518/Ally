@@ -10,18 +10,18 @@ class Admin::SubjectsController < ApplicationController
     @subjects = Subject.all
     @subject = Subject.new(subject_params)
     if @subject.save
-      @subjects = Subject.all
+       @subjects = Subject.all
+       redirect_to admin_subjects_path
     else
-      @subjects = Subject.all
-      render 'admin/subject#index'
+       @subjects = Subject.all
+       render 'admin/subject#index'
     end
   end
 
   def show
-    @subjects = Subject.all
     @subject = Subject.find(params[:id])
-    @books = @subject.book.page(params[:page]).per(20)
-    @amount = @subject.items.count
+    @books = @subject.books.all
+    @amount = @subject.books.count
   end
 
 

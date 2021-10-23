@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :subjects, only: [:index, :update, :show]
 
     resources :books do
-      resources :bookmarks, only: [:create, :destroy, :index]
+      resources :bookmarks, only: [:create, :destroy]
       resources :comments, only: [:index, :create, :destroy] do
         resources :likes, only: [:create, :destroy]
       end
@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 
       resources :inquiries, only: [:create, :update]
       resources :likes, only: [:index]
+      resources :bookmarks, only: [:index]
     end
 
   end
@@ -50,8 +51,8 @@ Rails.application.routes.draw do
   # 管理側
   namespace :admin do
 
-    resources :genres, except: [:new, :show, :destroy]
-    resources :subjects, except: [:new, :show]
+    resources :genres, except: [:new]
+    resources :subjects, except: [:new]
 
     resources :books, only: [:index, :show, :update] do
       resources :comments, only: [:index, :destroy]

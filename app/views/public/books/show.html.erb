@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col content-block ">
 
-      <div class="book-info-picture col">
+      <div class="book-info-picture">
         <%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer", class:"book-image" %>
       </div>
 
@@ -34,6 +34,8 @@
         <% else %>
           <%= link_to "bookmarkに追加", book_bookmarks_path(@book), method: :post %><br>
         <% end %>
+
+        <%= link_to "投稿内容を編集する", edit_book_path(@book) %>
       </div>
 
     </div>

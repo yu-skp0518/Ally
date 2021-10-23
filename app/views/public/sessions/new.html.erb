@@ -1,26 +1,62 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row">
+    <h2>ログイン</h2>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <div class="row form-for-resistration">
+    <h4>会員の方はこちらからログイン</h4>
   </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class='login-flash-message'>
+      <h5><font color="green"><%= flash[:alert] %></font></h5>
     </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <div class="row form-for-resistration">
+      <div class="col-3">
+        <%= f.label :email,"メールアドレス" %>
+      </div>
+
+      <div class="col-3">
+        <%= f.email_field :email, placeholder: "メールアドレス", autofocus: true, autocomplete: "email" %>
+      </div>
+    </div>
+
+    <div class="row form-for-resistration">
+      <div class="col-3">
+        <%= f.label :password,"パスワード" %>
+      </div>
+
+      <div class="col-3">
+        <%= f.password_field :password, placeholder: "パスワード", autofocus: true, autocomplete: "password" %>
+      </div>
+    </div>
+
+    <!--発表段階で消すかも-->
+    <div class="row">
+      <div class="col-4">
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <p><%= f.check_box :remember_me %>
+            <%= f.label :remember_me,"ログイン状態を保持する" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-4">
+        <div class="row form-for-resistration actions">
+          <%= f.submit "ログイン",class:"btn btn-outline-primary" %>
+        </div>
+      </div>
+    </div>
+
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+    <div class="row form-for-resistration">
+      <h4>会員登録がお済みでない方</h4>
+    </div>
 
-<%= render "public/shared/links" %>
+    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+      <p><%= link_to "こちら", new_registration_path(resource_name) %><span>から新規会員登録を行ってください。</span></p>
+    <% end %>
+
+</div>

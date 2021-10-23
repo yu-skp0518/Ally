@@ -13,7 +13,7 @@
 
         <table>
           <tbody>
-            <td><%= attachment_image_tag @user, :profile_image_id, :size =>'90x90', fallback: "no-image.jpg", class:"profile-image" %></td>
+            <td><%= attachment_image_tag @user, :profile_image, :size =>'80x80', fallback: "reading.jpg", class:"profile-image" %></td>
             <tr>
               <td><strong>アカウント名：</strong></td>
               <td><%= @user.name %></td>
@@ -38,11 +38,11 @@
             </tr>
 
             <tr>
-              <td><%= link_to "Bookmark一覧", book_bookmarks_path(@book.id) %></td>
+              <td><%= link_to "Bookmark一覧", user_bookmarks_path(@user) %></td>
             </tr>
 
             <tr>
-              <td><%= link_to "いいねしたコメント一覧", user_likes_path(@user.id) %></td>
+              <td><%= link_to "いいねしたコメント一覧", user_likes_path(@user) %></td>
             </tr>
 
             <tr>
@@ -66,8 +66,8 @@
     <div class="col">
       <div class="row justify-content-center">
         <h4 class="title"><strong>最新の投稿</strong></h4>
-        <%= link_to "新規投稿", books_search_path, class:"btn btn-secondary" %>
       </div>
+      <%= link_to "新規投稿", books_search_path, class:"btn btn-secondary" %>
 
       <div class="row book-list">
         <table>

@@ -3,14 +3,14 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @book = Book.find(params[:id])
     @books = Book.where(user_id: @user.id)
   end
 
-  def confirm
-  end
-
   def quit
+    @user = current_user
+    @user.update(is_valid: false)
+    reset_session
+    redirect_to root_path
   end
 
   def edit

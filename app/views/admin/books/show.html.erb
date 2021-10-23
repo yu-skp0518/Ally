@@ -1,2 +1,54 @@
-<h1>Admin::Books#show</h1>
-<p>Find me in app/views/admin/books/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h2>投稿詳細</h2>
+  </div>
+
+  <div class="row">
+    <div class="col content-block ">
+
+      <div class="book-info-picture">
+        <%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer", class:"book-image" %>
+      </div>
+
+      <div class="book-info col">
+
+        <table>
+          <tbody>
+            <tr>
+              <span>投稿者：<%= link_to @book.user.name, admin_user_path(@book.user.id) %></span><br>
+              <span>タイトル：<%= @book.title %></span><br>
+              <span>著者：<%= @book.author %></span><br>
+              <span>商品説明：<%= @book.item_caption %></span><br>
+              <span>商品価格：<%= @book.item_price %></span><br>
+              <span>出版社名：<%= @book.publisher_name %></span><br>
+              <span>ジャンル：<%= link_to @book.genre.name, admin_genre_path(@book.genre.id) %></span><br>
+              <span>科目：<%= link_to @book.subject.name, admin_subject_path(@book.subject.id)%></span><br>
+              <span>購入した背景：<%= @book.story %></span>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>
+    <div class="col content-block ">
+
+      <!--コメント一覧-->
+      <% @book.comments.each do |comment| %>
+        <div class="comment-box">
+          <%= link_to admin_user_path(comment.user_id) do %>
+            <%= attachment_image_tag comment.user, :profile_image, :fill, 50, 50, fallback: "no-image.jpeg", size: "40x40" %>
+            <%= comment.user.name %>
+          <% end %>
+
+          ><%= comment.body %><br>
+          <%= comment.created_at.to_s(:datetime) %>
+
+          <!--削除ボタン-->
+          <%= link_to "削除", admin_book_comment_path(comment.book, comment), method: :delete %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

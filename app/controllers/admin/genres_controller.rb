@@ -10,7 +10,8 @@ class Admin::GenresController < ApplicationController
     @genres = Genre.all
     @genre = Genre.new(genre_params)
     if @genre.save
-      @genres = Genre.all
+       @genres = Genre.all
+       redirect_to admin_genres_path
     else
       @genres = Genre.all
       render 'admin/genre#index'
@@ -18,10 +19,9 @@ class Admin::GenresController < ApplicationController
   end
 
   def show
-    @genres = Genre.all
     @genre = Genre.find(params[:id])
-    @books = @genre.book.page(params[:page]).per(20)
-    @amount = @genre.items.count
+    @books = @genre.books.all
+    @amount = @genre.books.count
   end
 
   def edit

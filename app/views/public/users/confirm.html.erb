@@ -1,2 +1,15 @@
-<h1>Public::Users#confirm</h1>
-<p>Find me in app/views/public/users/confirm.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h2><strong>本当に退会しますか？</strong></h2>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <p>退会するとこれまでの投稿やお気に入り、コメントなども削除されます。</p>
+      <p>それでもよろしいですか？</p>
+    </div>
+  </div>
+  <div class="row">
+    <%= link_to "戻る", :back %>
+    <%= link_to "退会する", user_quit_path(current_user), class: "", method: :patch, data: {confirm: "本当に退会しますか？"} %>
+  </div>
+</div>

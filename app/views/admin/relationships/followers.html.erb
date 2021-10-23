@@ -1,2 +1,18 @@
-<h1>Admin::Relationships#followers</h1>
-<p>Find me in app/views/admin/relationships/followers.html.erb</p>
+<div class="container">
+  <div class="row justify-content-center">
+    <h2 class="title"><strong>Follower一覧</strong></h2>
+  </div>
+  <div class="row justify-content-center">
+
+    <table>
+      <% @users.each do |follower| %>
+      <tr>
+        <td class="col-lg-4"><%= attachment_image_tag follower, :profile_image, :fill, 50, 50, fallback: "no-image.jpeg", size: "40x40" %></td>
+        <td class="col-lg-4"><%= follower.name %></td>
+        <td class="col-lg-4"><%= link_to follower.nick_name, user_path(follower.id) %></td>
+      </tr>
+      <% end %>
+    </table>
+
+  </div>
+</div>
