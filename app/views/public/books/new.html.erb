@@ -13,20 +13,25 @@
     <%= form_with model: @book, url:books_path, local:true, method: :post do |f| %>
 
       <!--上記のeach文で表示させている楽天APIの検索結果をBookモデルに保存するためのhidden_field-->
-      <%= f.hidden_field :isbn %>
-      <%= f.hidden_field :small_image_url %>
-      <%= f.hidden_field :medium_image_url %>
-      <%= f.hidden_field :large_image_url %>
-      <%= f.hidden_field :title %>
-      <%= f.hidden_field :author %>
-      <%= f.hidden_field :item_caption %>
-      <%= f.hidden_field :publisher_name %>
-      <%= f.hidden_field :item_price %>
-      <%= f.hidden_field :item_url %>
+        <%= f.hidden_field :isbn %>
+        <%= f.hidden_field :small_image_url %>
+        <%= f.hidden_field :medium_image_url %>
+        <%= f.hidden_field :large_image_url %>
+        <%= f.hidden_field :title %>
+        <%= f.hidden_field :author %>
+        <%= f.hidden_field :item_caption %>
+        <%= f.hidden_field :publisher_name %>
+        <%= f.hidden_field :item_price %>
+        <%= f.hidden_field :item_url %>
       <!--ここまで-->
 
       <span>購入した背景</span>
       <%= f.text_field :story %>
+
+      <span>ジャンル</span>
+      <%= f.collection_select :genre_id, Genre.all, :id, :name, :include_blank => "ジャンルを選択" %>
+      <span>科目</span>
+      <%= f.collection_select :subject_id, Subject.all, :id, :name, :include_blank => "科目を選択" %>
 
       <%= f.submit "新規投稿" %>
     <% end %>

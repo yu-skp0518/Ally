@@ -31,11 +31,6 @@ class Public::BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
-
-    # 以下の2つは取り急ぎseedsに保存したデータで応急処置
-    @book.genre_id = Genre.first.id
-    @book.subject_id = Subject.first.id
-
     if @book.save(book_params)
       flash[:notice] = "新規投稿を作成しました！"
       redirect_to book_path(@book.id)
@@ -69,6 +64,6 @@ class Public::BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:isbn, :title, :author, :item_caption, :item_url, :publisher_name, :item_price, :large_image_url, :medium_image_url, :small_image_url, :story, :rate)
+    params.require(:book).permit(:isbn, :title, :author, :item_caption, :item_url, :publisher_name, :item_price, :large_image_url, :medium_image_url, :small_image_url, :story, :rate, :subject_id, :genre_id)
   end
 end

@@ -33,9 +33,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :users, only: [:show, :edit, :update] do
+    resources :users, only: [:show, :edit, :update, :destroy] do
         get 'confirm'
         patch 'quit'
+        patch 'unban'
 
       resources :relationships, only: [:create, :destroy]
         get 'relationships/followings', as: 'followings'

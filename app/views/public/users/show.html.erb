@@ -1,5 +1,16 @@
+<% if @user.is_valid == false %>
+  <div class="row justify-content-center">
+    <div class="col-4 message-for-unsubscribed-user text-center">
+      <p><strong><%= @user.name %>様は以前に退会されています。</strong></p>
+      <p><strong>アカウントを復帰させますか？</strong></p>
+      <p>
+        <%= link_to "アカウントを復帰させる", user_unban_path(@user), method: :patch, params: {is_valid: true} %>
+        ｜<%= link_to "新しくアカウントを作成する", user_path(@user), method: :delete %>
+      </p>
+    </div>
+  </div>
+<% end %>
 <div class="container">
-
   <div class="row justify-content-center">
     <% if current_user.id == @user.id %>
       <h2 class="title"><strong>マイページ</strong></h2>
@@ -30,11 +41,11 @@
             </tr>
 
             <tr>
-              <td><strong>フォロー：</strong><%= link_to link_to @user.followings.count, user_followings_path(@user) %></td>
+              <td><strong>フォロー：</strong><%= link_to @user.followings.count, user_followings_path(@user) %></td>
             </tr>
 
             <tr>
-              <td><strong>フォロワー：</strong><%= link_to link_to @user.followers.count, user_followers_path(@user) %></td>
+              <td><strong>フォロワー：</strong><%= link_to @user.followers.count, user_followers_path(@user) %></td>
             </tr>
 
             <tr>

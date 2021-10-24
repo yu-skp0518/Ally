@@ -1,4 +1,22 @@
 <div class="container justify-content-center">
+<% if flash.present? %>
+  <div class="alert alert-danger alert-dismissible fade in" role='alert'>
+    <button class="close" type='button' data-dismiss='alert'>
+      <span aria-hidden='true'>
+        | ×
+      </span>
+    <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => 'flash_#{ name }' if msg.is_a?(String) %>
+
+      <p>
+        <a href='#' data-dismiss='alert'>
+          | 閉じる
+        </a>
+      </p>
+    <% end %>
+  </div>
+<% end %>
+
   <div class="row">
     <h2>管理者ログイン</h2>
   </div>
