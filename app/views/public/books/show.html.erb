@@ -4,43 +4,63 @@
 <div class="books-show">
 
     <div class="books-show__books-info">
-      <div class="books-show__books-image">
-        <%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer" %>
-      </div>
+
       <div class="books-show__books-info-items">
-        <table>
-          <tbody>
-            <tr>
-              <span>・タイトル</span><br>
-              <span><%= @book.title %></span><br>
 
-              <span>・著者</span><br>
-              <span><%= @book.author %></span><br>
-              <span>・商品説明</span><br>
-              <span><%= @book.item_caption %></span><br>
-              <span>・価格</span><br>
-              <span>￥<%= @book.item_price %></span><br>
-              <span>・出版社</span><br>
-              <span><%= @book.publisher_name %></span><br>
+        <table class="books-show__base-info">
+        <td><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer" %></td>
 
-              <span>・ジャンル</span><br><span><%= link_to @book.genre.name, genre_path(@book.genre.id) %></span><br>
-              <span>・科目</span><br><span><%= link_to @book.subject.name, subject_path(@book.subject.id)%></span><br>
-              <span>・投稿者<br><%= link_to @book.user.name, user_path(@book.user.id) %></span><br>
-              <span>・購入した背景<br><%= @book.story %></span>
-            </tr>
-          </tbody>
-        </table>
+          <!--ブックマークボタン-->
+          <% if @book.bookmarked_by?(current_user) %>
+            <td><%= link_to "bookmarkから削除", book_bookmark_path(@book), method: :delete, class:"btn btn-danger" %>
+          <% else %>
+            <td><%= link_to "bookmarkに追加", book_bookmarks_path(@book), method: :post, class:"btn btn-info" %>
+          <% end %>
 
-        <!--ブックマークボタン-->
-        <% if @book.bookmarked_by?(current_user) %>
-          <%= link_to "bookmarkから削除", book_bookmark_path(@book), method: :delete %><br>
-        <% else %>
-          <%= link_to "bookmarkに追加", book_bookmarks_path(@book), method: :post %><br>
-        <% end %>
+          <% if current_user == @book.user %>
+            <%= link_to "編集", edit_book_path(@book), class:"btn btn-secondary" %></td>
+          <% end %>
 
-        <% if current_user == @book.user %>
-          <%= link_to "編集", edit_book_path(@book), class:"btn btn-secondary" %>
-        <% end %>
+        <tbody>
+          <tr>
+            <th class="books-show__base-info-theme">タイトル</th>
+            <td class="books-show__base-info-data"><%= @book.title %></td>
+          </tr>
+          <tr>
+            <th class="books-show__base-info-theme">著者</th>
+            <td class="books-show__base-info-data"><%= @book.author %></td>
+          </tr>
+          <tr>
+            <th class="books-show__base-info-theme">商品説明</th>
+            <td class="books-show__base-info-data"><%= @book.item_caption %></td>
+          </tr>
+          <tr>
+            <th class="books-show__base-info-theme">価格</th>
+            <td class="books-show__base-info-data">￥<%= @book.item_price %></td>
+          </tr>
+          <tr>
+            <th class="books-show__base-info-theme">出版社</th>
+            <td class="books-show__base-info-data"><%= @book.publisher_name %></td>
+          </tr>
+          <tr>
+            <th class="books-show__base-info-theme">ジャンル</th>
+            <td class="books-show__base-info-data"><%= link_to @book.genre.name, genre_path(@book.genre.id) %></td>
+          </tr>
+          <tr>
+            <th class="books-show__base-info-theme">科目</th>
+            <td class="books-show__base-info-data"><%= link_to @book.subject.name, subject_path(@book.subject.id)%></td>
+          </tr>
+          <tr>
+            <th class="books-show__base-info-theme">投稿者</th>
+            <td class="books-show__base-info-data"><%= link_to @book.user.name, user_path(@book.user.id) %></td>
+          </tr>
+          <tr>
+            <th class="books-show__base-info-theme">購入した背景</th>
+            <td class="books-show__base-info-data"><%= @book.story %></td>
+          </tr>
+        </tbody>
+      </table>
+
       </div>
 
     </div>
@@ -84,7 +104,7 @@
             </div>
           <% end %>
           <% else %>
-            <h4 class="text-center">No comment</h4>
+            <h4 class="text-center">No comment exists</h4>
           <% end %>
 
 

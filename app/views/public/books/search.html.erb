@@ -1,52 +1,81 @@
-<div class="container">
+<div class="page-title">
+  <h2>
+    <strong>
+      新規書籍投稿<br>
+      書籍検索(楽天Books)
+    </strong>
+  </h2>
+</div>
 
-  <div class="row justify-content-center">
-    <h2><p class="page-title">新規投稿</p></h2>
+<div class="books-search">
+
+  <!--検索フォーム-->
+  <div class="books-search__form">
+    <%= form_with url: books_search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :keyword, class: "", placeholder: "キーワードを入力", autofocus: true %>
+      <%= f.submit '本の題名を検索', class: "btn btn-success", rows:"1", cols:"40" %>
+    <% end %>
+  <% if @books.present? %>
+    <p class="books-search__notice"><strong>※画像をクリックすると楽天ブックスに移動します。</strong></p>
+  <% end %>
   </div>
-  <div class="row justify-content-center">
-    <h2><p class="page-title">書籍検索(楽天Books)</p></h2>
-  </div>
 
-  <div class="row justify-content-center">
-    <div class="search-box">
+  <% if @books.present? %>
 
-      <%= form_with url: books_search_path, method: :get, local: true do |f| %>
-        <div class="form-group">
-          <%= f.text_field :keyword, class: "form-control", :size => "30x20" %>
-          <%= f.submit '本の題名を検索', class: "form-control btn btn-success" %>
+    <!--検索結果-->
+    <div class="books-search__result-wrapper">
 
-        <% if @books.present? %>
-          <strong>※画像をクリックすると楽天ブックスに移動します。</strong>
-        <% end %>
+      <% @books.each do |book| %>
+        <div class="books-search__result">
+
+          <table class="books-search__base-info">
+            <td><%= link_to (image_tag(book.medium_image_url)), book.item_url, target: :_blank, rel: "noopener noreferrer", class:"book-image" %></td>
+
+            <tbody>
+              <tr>
+                <th class="books-search__base-info-theme">タイトル</th>
+                <td class="books-search__base-info-data"><%= book.title %></td>
+              </tr>
+              <tr>
+                <th class="books-search__base-info-theme">著者</th>
+                <td class="books-search__base-info-data"><%= book.author %></td>
+              </tr>
+              <tr>
+                <th class="books-search__base-info-theme">出版社名</th>
+                <td class="books-search__base-info-data"><%= book.publisher_name %></td>
+              </tr>
+            </tbody>
+          </table>
+
+        <%= link_to "その他入力に進む", new_book_path(isbn: book.isbn ,keyword: book.title), class: "btn btn-secondary books-search__next-button" %>
+
         </div>
       <% end %>
-
     </div>
-  </div>
 
+  <% else %>
+      <div class="books-search__method-description">
+        <strong>
+          <h3 class="text-center"><strong>How to use</strong></h3><br>
+          <p>
+            上部の検索窓より
+            楽天ブックスで該当の書籍を検索ください。
+          </p>
+          <p>
+            該当の書籍がございましたら
+            【その他入力に進む】を押下し、<br>
+          </p>
+          <p>
+            次の画面で書籍のジャンルと科目を選択したのち、<br>
+            購入に至った経緯・使用した感想等を自由にご記入ください。
+          </p>
 
-    <% if @books.present? %>
-      <div class="row justify-content-center">
-            <% @books.each do |book| %>
-            <div class="col-3 search_result">
-              <p><%= link_to (image_tag(book.medium_image_url)), book.item_url, target: :_blank, rel: "noopener noreferrer" %></p>
-              <span>タイトル：</span>
-                <span><%= book.title %></span><br>
-              <span>著者：</span>
-                <span><%= book.author %></span><br>
-              <span>出版社：</span>
-                <span><%= book.publisher_name %></span><br>
-              <span>価格：</span>
-                <span><%= book.item_price %>円</span><br>
-                <span><%= link_to "その他入力に進む", new_book_path(isbn: book.isbn ,keyword: book.title), class: "btn btn-secondary" %></span><br>
-            </div>
-            <% end %>
-
-
-    </div>
-  </div>
-    <% end %>
-
-
+          <p>
+            ユーザーによって投稿された書籍は<%= link_to "マイページ", user_path(current_user) %>及び、<br>
+            他ユーザーの詳細ページにて確認いただけきます。
+          </p>
+        </strong>
+      </div>
+  <% end %>
 
 </div>

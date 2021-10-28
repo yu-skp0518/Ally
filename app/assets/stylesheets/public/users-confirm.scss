@@ -1,0 +1,57 @@
+// Place all the styles related to the public/users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.page-title {
+  background-color: #005500;
+  display: block;
+  height: 80px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 30px;
+  color: white;
+}
+
+.users-confirm {
+  width: auto;
+  height: auto;
+  margin: auto;
+  background-color: #005500;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 30px;
+  position: relative;
+  align-items: center;
+
+  &__body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFEE;
+    border-radius: 40px;
+    table-layout: fixed;
+    height: 400px;
+    width: 700px;
+    padding: 0px 40px 40px 40px;
+    text-align: center;
+  }
+
+  &__options {
+    position: absolute;
+    bottom: 60px;
+  }
+
+  &__back-button {
+    margin-right: 15px;
+  }
+
+  &__quit-button {
+    margin-left: 15px;
+  }
+
+  &__notice {
+    color: red;
+  }
+
+}

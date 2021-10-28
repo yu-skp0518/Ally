@@ -1,29 +1,60 @@
-<div class="container">
-  <div class="row justify-content-center">
+  <div class="page-title">
     <h2><strong>投稿内容を編集</strong></h2>
   </div>
 
-  <div class="row">
-    <div class="col justify-content-center">
+  <div class="books-edit">
+    <div class="books-edit__contents">
+      <div class="books-edit__contents-info">
       <h3 class="text-center">書籍情報</h3>
-      <%= link_to (image_tag(@book.medium_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer", class:"book-image" %>
-      <p><%= @book.title %></p>
-      <p><%= @book.author %></p>
-      <p><%= @book.publisher_name %></p>
-      <p><%= @book.item_price %></p>
+
+      <table class="books-edit__base-info">
+        <td><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer", class:"book-image" %></td>
+
+        <tbody>
+          <tr>
+            <th class="books-edit__base-info-theme">タイトル</th>
+            <td class="books-edit__base-info-data"><%= @book.title %></td>
+          </tr>
+          <tr>
+            <th class="books-edit__base-info-theme">著者</th>
+            <td class="books-edit__base-info-data"><%= @book.author %></td>
+          </tr>
+          <tr>
+            <th class="books-edit__base-info-theme">出版社名</th>
+            <td class="books-edit__base-info-data"><%= @book.publisher_name %></td>
+          </tr>
+          <tr>
+            <th class="books-edit__base-info-theme">価格</th>
+            <td class="books-edit__base-info-data">￥<%= @book.item_price %></td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
 
-    <div class="col justify-content-center text-center">
-      <h3>編集</h3>
-        <div class="form-group col-12">
-          <%= form_with model: @book, url:book_path(@book), local:true, method: :patch do |f| %>
+    <div class="books-edit__contents-edit">
+      <h3 class="text-center">内容編集</h3>
+        <%= form_with model: @book, url:book_path(@book), local:true, method: :patch do |f| %>
 
-            <%= f.label :"購入した背景", class: "col-sm-3" %>
-            <%= f.text_area :story, placeholder: "背景を記入", autofocus: true, class: "col-sm-2" %>
+            <table class="books-edit__base-info">
+              <tbody>
+                <tr>
+                  <th class="books-edit__base-info-theme">ジャンル</th>
+                  <td class="books-edit__base-info-data"><%= f.collection_select :genre_id, Genre.all, :id, :name, :include_blank => "ジャンルを選択" %></td>
+                </tr>
+                <tr>
+                  <th class="books-edit__base-info-theme">科目</th>
+                  <td class="books-edit__base-info-data"><%= f.collection_select :subject_id, Subject.all, :id, :name, :include_blank => "科目を選択" %></td>
+                </tr>
+                <tr>
+                  <th class="books-edit__base-info-theme"><%= f.label :"購入した背景" %></th>
+                  <td class="books-edit__base-info-data"><%= f.text_area :story, placeholder: "背景を記入", autofocus: true, rows:"4", cols:"40", class:"books-edit__background-story" %></td>
+                </tr>
+              </tbody>
+            </table>
 
-            <%= f.submit "編集内容を保存する", class: "btn btn-outline-primary" %>
-          <% end %>
-        </div>
+          <%= f.submit "編集内容を保存する", class: "btn btn-primary books-edit__submit-button" %>
+        <% end %>
     </div>
 
   </div>

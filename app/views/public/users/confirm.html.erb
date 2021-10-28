@@ -1,15 +1,22 @@
-<div class="container">
-  <div class="row">
-    <h2><strong>本当に退会しますか？</strong></h2>
+<div class="page-title">
+  <h2><strong>退会確認</strong></h2>
+</div>
+<div class="users-confirm">
+
+  <div class="users-confirm__body">
+
+      <span>
+        <h4 class="users-confirm__notice">※まだ退会は完了していません。</h4><br>
+        <strong>退会すると再度ログインすることは可能ですが、<br>
+        その後も長期間に渡って利用がない場合、<br>
+        これまでの投稿やお気に入り、コメントなど<br>
+        全て削除される可能性がございます。<br>
+        それでもよろしいですか？</strong></span><br>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <p>退会するとこれまでの投稿やお気に入り、コメントなども削除されます。</p>
-      <p>それでもよろしいですか？</p>
-    </div>
+
+  <div class="users-confirm__options">
+    <%= link_to "戻る", :back, class:"btn btn-primary users-confirm__back-button" %>
+    <%= link_to "退会する", user_quit_path(current_user), class: "btn btn-danger users-confirm__quit-button", method: :patch, data: {confirm: "本当に退会しますか？"} %>
   </div>
-  <div class="row">
-    <%= link_to "戻る", :back %>
-    <%= link_to "退会する", user_quit_path(current_user), class: "", method: :patch, data: {confirm: "本当に退会しますか？"} %>
-  </div>
+
 </div>

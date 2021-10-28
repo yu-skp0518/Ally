@@ -26,7 +26,7 @@
       <table class="users-show__base-info">
         <td><%= attachment_image_tag @user, :profile_image, :size =>'80x80', fallback: "reading.jpg", class:"profile-image" %></td>
             <% if current_user == @user %>
-              <td><%= link_to "編集", edit_user_path(@user.id) %></td>
+              <td><%= link_to "編集", edit_user_path(@user.id), class:"btn btn-secondary" %></td>
             <% end %>
             <tr>
               <% if current_user != @user %>
@@ -60,7 +60,7 @@
           </tr>
           <tr>
             <th class="users-show__base-info-theme">いいねしたコメント</th>
-            <td class="users-show__base-info-data"><%= link_to "一覧に移動", user_likes_path(@user) %></td>
+            <td class="users-show__base-info-data"><%= link_to @comments.count, user_likes_path(@user) %> 件</td>
           </tr>
           <tr>
             <th class="users-show__base-info-theme">プロフィール</th>
@@ -75,12 +75,13 @@
 
   <div class="users-show__book-list">
     <div class="users-show__page-subtitle">
-      <h4><strong>最新の投稿</strong></h4>
-    </div>
-    <!--新規投稿ボタン-->
+      <h4><strong><%= @user.nick_name %>の投稿（全<%= @user.books.count %>件）</strong></h4>
+          <!--新規投稿ボタン-->
     <% if current_user == @user %>
-      <%= link_to "新規投稿", books_search_path, class:"btn btn-secondary" %>
+      <%= link_to "新規投稿", books_search_path, class:"btn btn-success users-show__posting-button" %>
     <% end %>
+    </div>
+
 
     <div class="users-show__books-info">
 

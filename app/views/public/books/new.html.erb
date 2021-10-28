@@ -1,40 +1,79 @@
-<div class="container">
-  <div class="row">
 
-    <div class="col-5 search_result">
-      <p><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer" %></p>
-      <span>タイトル：<%= @book.title %></span><br>
-      <span>著者：<%= @book.author %></span><br>
-      <span>商品説明：<%= @book.item_caption %></span><br>
-      <span>出版社：<%= @book.publisher_name %></span><br>
-      <span>価格：<%= @book.item_price %>円</span><br>
+  <div class="page-title">
+    <h2><strong>新規書籍投稿</strong></h2>
+  </div>
+
+  <div class="books-new">
+    <div class="books-new__contents">
+      <div class="books-new__contents-info">
+      <h3 class="text-center">書籍情報</h3>
+
+      <table class="books-new__base-info">
+        <td><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer", class:"book-image" %></td>
+
+        <tbody>
+          <tr>
+            <th class="books-new__base-info-theme">タイトル</th>
+            <td class="books-new__base-info-data"><%= @book.title %></td>
+          </tr>
+          <tr>
+            <th class="books-new__base-info-theme">著者</th>
+            <td class="books-new__base-info-data"><%= @book.author %></td>
+          </tr>
+          <tr>
+            <th class="books-new__base-info-theme">出版社名</th>
+            <td class="books-new__base-info-data"><%= @book.publisher_name %></td>
+          </tr>
+          <tr>
+            <th class="books-new__base-info-theme">価格</th>
+            <td class="books-new__base-info-data">￥<%= @book.item_price %></td>
+          </tr>
+          <tr>
+            <th class="books-new__base-info-theme">商品説明</th>
+            <td class="books-new__base-info-data"><%= @book.item_caption %></td>
+          </tr>
+        </tbody>
+      </table>
+
     </div>
 
-    <%= form_with model: @book, url:books_path, local:true, method: :post do |f| %>
+    <div class="books-new__contents-edit">
+      <h3 class="text-center">ユーザー入力</h3>
+        <%= form_with model: @book, url:books_path, local:true, method: :post do |f| %>
 
-      <!--上記のeach文で表示させている楽天APIの検索結果をBookモデルに保存するためのhidden_field-->
-        <%= f.hidden_field :isbn %>
-        <%= f.hidden_field :small_image_url %>
-        <%= f.hidden_field :medium_image_url %>
-        <%= f.hidden_field :large_image_url %>
-        <%= f.hidden_field :title %>
-        <%= f.hidden_field :author %>
-        <%= f.hidden_field :item_caption %>
-        <%= f.hidden_field :publisher_name %>
-        <%= f.hidden_field :item_price %>
-        <%= f.hidden_field :item_url %>
-      <!--ここまで-->
+          <!--上記のeach文で表示させている楽天APIの検索結果をBookモデルに保存するためのhidden_field-->
+            <%= f.hidden_field :isbn %>
+            <%= f.hidden_field :small_image_url %>
+            <%= f.hidden_field :medium_image_url %>
+            <%= f.hidden_field :large_image_url %>
+            <%= f.hidden_field :title %>
+            <%= f.hidden_field :author %>
+            <%= f.hidden_field :item_caption %>
+            <%= f.hidden_field :publisher_name %>
+            <%= f.hidden_field :item_price %>
+            <%= f.hidden_field :item_url %>
+          <!--ここまで-->
 
-      <span>購入した背景</span>
-      <%= f.text_field :story %>
+          <table class="books-new__base-info">
+            <tbody>
+              <tr>
+                <th class="books-new__base-info-theme">ジャンル</th>
+                <td class="books-new__base-info-data"><%= f.collection_select :genre_id, Genre.all, :id, :name, :include_blank => "ジャンルを選択" %></td>
+              </tr>
+              <tr>
+                <th class="books-new__base-info-theme">科目</th>
+                <td class="books-new__base-info-data"><%= f.collection_select :subject_id, Subject.all, :id, :name, :include_blank => "科目を選択" %></td>
+              </tr>
+              <tr>
+                <th class="books-new__base-info-theme"><%= f.label :"購入した背景" %></th>
+                <td class="books-new__base-info-data"><%= f.text_area :story, placeholder: "背景を記入", autofocus: true, rows:"4", cols:"40", class:"books-edit__background-story" %></td>
+              </tr>
+            </tbody>
+          </table>
 
-      <span>ジャンル</span>
-      <%= f.collection_select :genre_id, Genre.all, :id, :name, :include_blank => "ジャンルを選択" %>
-      <span>科目</span>
-      <%= f.collection_select :subject_id, Subject.all, :id, :name, :include_blank => "科目を選択" %>
-
-      <%= f.submit "新規投稿" %>
-    <% end %>
+          <%= f.submit "新規投稿", class: "btn btn-primary books-new__submit-button" %>
+        <% end %>
+    </div>
 
   </div>
 </div>

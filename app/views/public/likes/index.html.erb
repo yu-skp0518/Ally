@@ -1,10 +1,19 @@
 <div class="container">
-  <div class="row">
-    <h3><strong>いいねした投稿一覧</strong></h3>
+  <div class="row justify-content-center">
+    <h3><strong>いいねしたコメント一覧</strong></h3>
   </div>
-  <div class="row">
-    <% @comments.each do |comment| %>
-      <%= comment.body %>
-    <% end %>
+  <div class="row justify-content-center">
+    <div class="col justify-content-center">
+      <% @comments.each do |comment| %>
+        <ul>
+          <li>
+            <%= link_to (image_tag(comment.book.small_image_url)), comment.book.item_url, target: :_blank, rel: "noopener noreferrer" %>
+            <%= comment.book.title %>
+            <%= comment.book.user.nick_name %>
+            <%= comment.body %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
   </div>
 </div>

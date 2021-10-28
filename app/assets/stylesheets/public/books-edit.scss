@@ -1,0 +1,80 @@
+// Place all the styles related to the public/books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.page-title {
+  background-color: #005500;
+  display: block;
+  height: 80px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 30px;
+  color: white;
+}
+
+.books-edit {
+  width: auto;
+  height: auto;
+  margin: auto;
+  display: flex;
+  background-color: #005500;
+  justify-content: center;
+  margin-bottom: 30px;
+
+    &__contents {
+      background-color: #FFFFEE;
+      display: flex;
+      padding: 30px;
+      border-radius: 40px;
+    }
+
+    &__contents-info {
+      border-right: dotted 3px orange;
+      padding-right: 5px;
+      width: 500px;
+    }
+
+    &__contents-edit {
+      margin-left: 5px;
+      padding-left: 10px;
+      width: 500px;
+      position: relative;
+    }
+
+    &__base-info-theme {
+      width: 150px;
+      border-bottom: #005500 2px solid;
+      text-align: left;
+      padding: 2px;
+    }
+
+    &__base-info-data {
+      width: 300px;
+      height: auto;
+      border-bottom: 1px solid #ccc;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      min-width: 0;
+      text-align: left;
+      padding: 10px;
+    }
+
+    &__base-info {
+      height: 290px;
+      overflow-wrap: break-word;
+      width: auto;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    &__background-story {
+      resize: none;
+    }
+
+    &__submit-button {
+      position: absolute;
+      bottom: 20px;
+      right: 145px;
+    }
+}

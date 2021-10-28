@@ -19,16 +19,19 @@
   margin: auto;
   display: flex;
   background-color: #005500;
-  justify-content: space-around;
+  justify-content: center;
+  margin-bottom: 30px;
+
 
   &__profile-group {
-      background-color: #FFFFEE;
-      padding: 20px;
-      display: flex;
-      border-radius: 40px;
-      height: 490px;
-      width: 520px;
-      padding-left: 20px;
+    background-color: #FFFFEE;
+    padding: 20px;
+    display: flex;
+    border-radius: 40px;
+    height: 490px;
+    width: 520px;
+    padding-left: 20px;
+    margin-right: 15px;
   }
 
   &__info-wrapper {
@@ -46,15 +49,14 @@
   }
 
   &__base-info-theme {
-    width: 300px;
+    width: 200px;
     border-bottom: #005500 2px solid;
     text-align: left;
     padding: 2px;
-    // font-weight: normal;
   }
 
   &__base-info-data {
-    // width: 400px;
+    width: 400px;
     height: auto;
     border-bottom: 1px solid #ccc;
     overflow-wrap: break-word;
@@ -72,10 +74,16 @@
   &__book-list {
       background-color: #FFFFEE;
       border-radius: 40px;
-      // position: absolute;
-      // right: 90px;
       padding: 20px;
       width: 520px;
+      margin-left: 15px;
+  }
+
+  &__posting-button {
+    position: absolute;
+    right: 10px;
+    bottom: 25px;
+
   }
 
   &__page-subtitle {
@@ -85,6 +93,7 @@
       padding-top: 20px;
       font-size: 30px;
       color: #005500;
+      position: relative;
   }
 
   &__books-info {

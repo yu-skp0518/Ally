@@ -1,60 +1,57 @@
-<div class="container">
-  <div class="row subtitle">
-    <h2 class="col-12">会員情報編集</h2>
+<div class="page-title">
+  <h2 class="col-12">会員情報編集</h2>
+</div>
+  <% if @user.errors.any? %>
+  <div class="error_messages">
+    <strong><font color="red"><%= @user.errors.count %>件のエラーが発生しました。<br></font></strong>
+    <% @user.errors.full_messages.each do |message| %>
+      <font color="black">・<%= message %>。<br></font>
+    <% end %>
   </div>
+  <% end %>
 
-      <% if @user.errors.any? %>
-      <div class="row error_messages">
-        <strong><font color="red"><%= @user.errors.count %>件のエラーが発生しました。<br></font></strong>
-        <% @user.errors.full_messages.each do |message| %>
-          <font color="black">・<%= message %>。<br></font>
-        <% end %>
+    <div class="users-edit">
+      <div class="users-edit__form-group text-center">
+
+        <table class="users-edit__base-info">
+          <tbody>
+          <%= form_with model: @user, url:user_path(@user), local:true, method: :patch do |f| %>
+
+            <tr>
+              <th class="users-edit__base-info-theme"><%= f.label :"プロフィール画像" %></th>
+              <td class="users-edit__base-info-data"><%= f.attachment_field :profile_image %></td>
+            </tr>
+
+            <tr>
+              <th class="users-edit__base-info-theme"><strong><%= f.label :"アカウント名" %></strong></th>
+              <td class="users-edit__base-info-data"><%= f.text_field :nick_name, placeholder: "アカウント名を入力", autofocus: true, style: "border: none" %></td>
+            </tr>
+
+            <tr>
+              <th class="users-edit__base-info-theme"><strong><%= f.label :"表示名" %></strong></th>
+              <td class="users-edit__base-info-data"><%= f.text_field :name, placeholder: "表示名を入力", autofocus: true, style: "border: none" %></td>
+            </tr>
+
+            <tr>
+              <th class="users-edit__base-info-theme"><strong><%= f.label :"メールアドレス" %></strong></th>
+              <td class="users-edit__base-info-data"><%= f.text_field :email, placeholder: "メールアドレスを入力", autofocus: true, autocomplete: "email", style: "border: none" %></td>
+            </tr>
+
+            <tr>
+              <th class="users-edit__base-info-theme"><strong><%= f.label :"プロフィール" %></strong></th>
+              <td class="users-edit__base-info-data"><%= f.text_area :profile, placeholder: "プロフィールを入力", autofocus: true, rows:"4", cols:"40", style: "border: none", class:"profile" %></td>
+            </tr>
+
+          </tbody>
+        </table>
+
+            <div class="users-edit__buttons">
+              <td><%= f.submit "編集内容を保存する", class: "btn btn-success users-edit__edit-button" %></td>
+              <td><%= link_to "退会希望はこちら", user_confirm_path(current_user), class: "btn btn-danger users-edit__quit-button" %></td>
+            </div>
+
+          <% end %>
+
       </div>
-      <% end %>
-
-      <%= form_with model: @user, url:user_path(@user), local:true, method: :patch do |f| %>
-
-        <div class="row justify-content-center">
-          <div class="form-group col-12">
-              <%= f.label :"プロフィール画像", class: "col-3" %>
-              <%= f.attachment_field :profile_image %>
-          </div>
-        </div>
-
-        <div class="row justify-content-center">
-          <div class="form-group col-12">
-            <%= f.label :"表示名", class: "col-sm-3" %>
-            <%= f.text_field :name, placeholder: "表示名", autofocus: true, class: "col-sm-2" %>
-          </div>
-        </div>
-
-        <div class="row justify-content-center">
-          <div class="form-group col-12">
-              <%= f.label :"アカウント名", class: "col-3" %>
-              <%= f.text_field :nick_name, placeholder: "アカウント名", autofocus: true, class: "col-2" %>
-          </div>
-        </div>
-
-        <div class="row justify-content-center">
-          <div class="form-group col-12">
-              <%= f.label :"メールアドレス", class: "col-3" %>
-              <%= f.text_field :email, placeholder: "メールアドレス", autofocus: true, autocomplete: "email", class: "col-2" %>
-          </div>
-        </div>
-
-        <div class="row justify-content-center">
-          <div class="form-group col-12">
-              <%= f.label :"プロフィール", class: "col-3" %>
-              <%= f.text_area :profile, placeholder: "プロフィール", autofocus: true, class: "col-4" %>
-          </div>
-        </div>
-
-        <div class="row">
-            <div class="col-3"></div>
-            <%= f.submit "編集内容を保存する", class: "btn btn-outline-primary" %>
-            <%= link_to "退会する", user_confirm_path(current_user), class: "btn btn-outline-danger" %>
-        </div>
-
-      <% end %>
-
+    </div>
   </div>
