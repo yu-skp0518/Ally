@@ -1,0 +1,97 @@
+// Place all the styles related to the public/books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// .top {
+//   background-image: url('150669.png');
+//   background-size: cover;
+//   background-position: center;
+// }
+
+// public
+
+.page-title {
+  background-color: #005500;
+  display: block;
+  height: 80px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 30px;
+  color: white;
+}
+
+.books-show {
+  width: auto;
+  height: auto;
+  margin: auto;
+  display: flex;
+  background-color: #005500;
+  // position: relative;
+  justify-content: space-around;
+
+    &__books-info {
+      background-color: #FFFFEE;
+      // position: absolute;
+      // left: 170px;
+      padding: 20px;
+      display: flex;
+      border-radius: 40px;
+      height: auto;
+      width: 500px;
+    }
+
+    &__books-info-items {
+      overflow-wrap: break-word;
+    	overflow-x: hidden;
+    	overflow-y: scroll;
+    	height: 460px;
+    }
+
+    &__books-info-item {
+      // margin-bottom: 20px;
+    }
+
+
+    &__books-comments-form {
+      background-color: #FFFFEE;
+      border-radius: 40px;
+      // position: absolute;
+      // right: 90px;
+      padding: 20px;
+    }
+
+    &__books-comments {
+      // background-color: blue;
+    	overflow-x: hidden;
+    	overflow-y: scroll;
+    	height: 280px;
+    }
+
+    &__books-comments-items {
+      background-color: white;
+      padding: 15px;
+      border-radius: 40px;
+      display: flex;
+      margin-bottom: 10px;
+    	border: solid 2px;
+    }
+
+    &__books-user-info {
+      // background-color: blue;
+      margin-right: 60px;
+      margin-top: auto;
+      margin-bottom: auto;
+
+    }
+
+    &__books-comments-body {
+      // background-color: red;
+      overflow-wrap: break-word;
+      width: 300px;
+      height: auto;
+    }
+
+    &__books-info-story {
+      display: block;
+    }
+}

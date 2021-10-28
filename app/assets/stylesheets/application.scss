@@ -20,6 +20,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Alata&family=Caveat:wght@600&display=swap');
 
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.page-title {
+  background-color: #005500;
+  display: block;
+  height: 80px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 30px;
+  color: white;
+}
+
 // 楽天ブックスの検索結果(簡易的なもの)
 .search_result {
   border: solid;
@@ -71,7 +87,7 @@ header {
 
 
 body {
-  // background-color: #005500;
+  background-color: #005500;
   // color: #005500;
 }
 

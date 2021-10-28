@@ -46,6 +46,9 @@ class Public::BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @comment = Comment.new
+    @comments = @book.comments.all.order(created_at: :desc).page(params[:page])
+    @amount = @comments.count
+    @amounts = @book.comments.all.count
   end
 
   def edit
