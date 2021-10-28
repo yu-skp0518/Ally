@@ -1,5 +1,5 @@
 # Ally（ for learners ）
-![qktwKnEXOUuNS2h1633363594_1633364077](http://ally-for-learners.jp/)
+![qktwKnEXOUuNS2h1633363594_1633364077](https://user-images.githubusercontent.com/86953982/135886991-cd55bd9b-716e-480c-871a-bf070b3fecee.png)
 ## サイト概要
 * ### Allyとは？
 
