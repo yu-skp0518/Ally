@@ -31,7 +31,6 @@
 
             <ul class="list-group-horizontal navbar-nav ml-auto">
 
-
             <!--ユーザーがログインしている場合-->
             <% if user_signed_in? %>
             <div class="link-group">
@@ -43,7 +42,7 @@
                 <% end %>
               </nav-item>
 
-            <% if current_user.is_valid == true %>
+            <% unless current_user.is_valid == false %>
 
                <nav-item>
                   <%= link_to genres_path do %>
