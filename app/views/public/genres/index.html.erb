@@ -1,10 +1,30 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <h2><strong>ジャンル一覧</strong></h2>
-  </div>
-  <div class="row justify-content-center">
-    <% @genres.each do |genre| %>
-      <h4 class="col"><%=  link_to genre.name, genre_path(genre.id) %></h4>
-    <% end %>
-  </div>
+<div class="page-title">
+  <h2><strong>Genres</strong></h2>
+  <h2>全<%= @genres.count %>件のジャンル</h2>
+</div>
+
+<div class="genres-index">
+
+    <div class="genres-index__result-wrapper">
+      <div class="genres-index__result-wrapper-inner">
+
+        <% @genres.each do |genre| %>
+          <div class="genres-index__result">
+
+            <table class="genres-index__base-info">
+              <tbody>
+                <tr>
+                  <th class="genres-index__base-info-theme"><%= link_to genre.name, genre_path(genre.id), class:"link" %></th>
+                </tr>
+                <tr>
+                  <td class="genres-index__base-info-data">該当の書籍<%= genre.books.count %>件</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+
 </div>

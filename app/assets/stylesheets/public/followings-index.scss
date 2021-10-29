@@ -1,0 +1,95 @@
+// Place all the styles related to the public/books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.page-title {
+  background-color: #005500;
+  display: block;
+  height: 80px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 30px;
+  color: white;
+}
+
+.followings-index {
+  width: auto;
+  height: auto;
+  margin: auto;
+  background-color: #005500;
+  justify-content: center;
+  margin-bottom: 30px;
+
+    &__result-wrapper {
+      background-color: #FFD700;
+      margin: 40px auto;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      height: 450px;
+      width: 600px;
+      display: flex;
+      flex-wrap : wrap;
+      justify-content: center;
+      border-radius: 40px;
+    }
+
+    &__result-wrapper-inner {
+      overflow-x: hidden;
+      overflow-y: scroll;
+      margin: 15px;
+      width: 580px;
+      height: 390px;
+    }
+
+    &__notice {
+      position: absolute;
+      left: 530px;
+      top: 45px;
+    }
+
+    &__result {
+      padding: 20px;
+      border-radius: 10px;
+      width: 500px;
+      height: auto;
+      background-color: #FFFFEE;
+      margin: 30px;
+    }
+
+    &__base-info-theme {
+      width: 200px;
+      border-bottom: #005500 2px solid;
+      text-align: left;
+      padding: 2px;
+    }
+
+    &__base-info-data {
+      width: 200px;
+      height: auto;
+      border-bottom: 1px solid #ccc;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      min-width: 0;
+      text-align: left;
+      padding: 10px;
+    }
+
+
+    &__method-description {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 100px auto;
+      background-color: #FFFFEE;
+      padding: 30px;
+      border-radius: 40px;
+      height: 200px;
+      width: 600px;
+    }
+
+    &__subtitle {
+      margin-bottom: 20px;
+    }
+
+}

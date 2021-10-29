@@ -1,19 +1,67 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <h3><strong>いいねしたコメント一覧</strong></h3>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col justify-content-center">
-      <% @comments.each do |comment| %>
-        <ul>
-          <li>
-            <%= link_to (image_tag(comment.book.small_image_url)), comment.book.item_url, target: :_blank, rel: "noopener noreferrer" %>
-            <%= comment.book.title %>
-            <%= comment.book.user.nick_name %>
-            <%= comment.body %>
-          </li>
-        </ul>
-      <% end %>
+<div class="page-title">
+  <h2><strong>Liked comments</strong></h2>
+  <h2>全<%= @comments.count %>件</h2>
+</div>
+
+<div class="liked-comments-index">
+
+
+  <% if @comments.present? %>
+
+    <!--検索結果-->
+    <div class="liked-comments-index__result-wrapper">
+      <div class="liked-comments-index__result-wrapper-inner">
+
+        <% @comments.each do |comment| %>
+          <div class="liked-comments-index__result">
+
+            <table class="liked-comments-index__base-info">
+
+              <tbody>
+                <tr>
+                  <th class="liked-comments-index__base-info-theme">投稿書籍</th>
+                  <th class="liked-comments-index__base-info-theme">タイトル</th>
+                  <th class="liked-comments-index__base-info-theme">投稿したユーザー</th>
+                  <th class="liked-comments-index__base-info-theme">投稿日</th>
+                </tr>
+                <tr>
+                  <td class="liked-comments-index__base-info-data">
+                    <%= link_to (image_tag(comment.book.small_image_url)), comment.book.item_url, target: :_blank, rel: "noopener noreferrer" %>&nbsp;&nbsp;
+                    <span class="badge bg-success"><%= link_to comment.book.genre.name, genre_path(comment.book.genre.id), class:"link" %></span>&nbsp;&nbsp;
+                    <span class="badge bg-primary"><%= link_to comment.book.subject.name, subject_path(comment.book.subject.id), class:"link" %></span>
+                  </td>
+                  <td class="liked-comments-index__base-info-data"><%= link_to comment.book.title, book_path(comment.book.id), class:"link" %></td>
+                  <td class="liked-comments-index__base-info-data"><%= link_to comment.book.user.nick_name, user_path(comment.book.user.id), class:"link" %></td>
+                  <td class="liked-comments-index__base-info-data"><%= comment.book.created_at.to_s(:datetime) %></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <table>
+              <tbody>
+                <tr>
+                  <th></th>
+                  <th class="liked-comments-index__base-info-theme-second-line">コメント</th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="liked-comments-index__base-info-data-second-line"><%= comment.body %></td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
+
+  <% else %>
+      <div class="liked-comments-index__method-description">
+        <strong>
+          <h3 class="text-center"><strong>まだコメントにいいねしていません。</strong></h3>
+          <p></p>
+        </strong>
+      </div>
+  <% end %>
+
 </div>

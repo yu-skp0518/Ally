@@ -1,6 +1,6 @@
 class Public::LikesController < ApplicationController
   before_action :authenticate_user!
-  
+
 
   def create
     @comment = Comment.find(params[:comment_id])
@@ -17,6 +17,6 @@ class Public::LikesController < ApplicationController
   end
 
   def index
-    @comments = Comment.joins(:likes).where(likes: {user_id: params[:user_id]})
+    @comments = Comment.joins(:likes).where(likes: {user_id: params[:user_id]}).order(created_at: :desc)
   end
 end

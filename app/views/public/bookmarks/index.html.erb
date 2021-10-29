@@ -1,39 +1,53 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <h3>Bookmark一覧</h3>
-  </div>
-  <div class="row justify-content-center">
-    <table>
-      <thead>
-        <tr>
-          <th><strong>タイトル</strong></th>
-          <th><strong>投稿者</strong></th>
-          <th><strong>投稿日</strong></th>
-        </tr>
-      </thead>
+<div class="page-title">
+  <h2><strong>Bookmarks</strong></h2>
+  <h2>全<%= @bookmarks.count %>件</h2>
+</div>
 
-      <tbody>
-      <% @bookmarks.each do |bookmark| %>
-        <tr>
-          <td>
-            <div class="col bookmark-item">
-              <%= link_to bookmark.book.title, book_path(bookmark.book.id) %>
-            </div>
-          </td>
-          <td>
-            <div class="col bookmark-item">
-              <%= link_to bookmark.book.user.nick_name, user_path(bookmark.book.user.id) %>
-            </div>
-          </td>
-          <td>
-            <div class="col bookmark-item">
-              <%= bookmark.book.created_at.to_s(:datetime) %>
-            </div>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
+<div class="bookmarks-index">
 
-    </table>
-  </div>
+
+  <% if @bookmarks.present? %>
+
+    <div class="bookmarks-index__result-wrapper">
+      <div class="bookmarks-index__result-wrapper-inner">
+
+        <% @bookmarks.each do |bookmark| %>
+          <div class="bookmarks-index__result">
+
+            <table class="bookmarks-index__base-info">
+
+              <tbody>
+                <tr>
+                  <th class="bookmarks-index__base-info-theme"></th>
+                  <th class="bookmarks-index__base-info-theme">タイトル</th>
+                  <th class="bookmarks-index__base-info-theme">投稿したユーザー</th>
+                  <th class="bookmarks-index__base-info-theme">投稿日</th>
+                </tr>
+
+                  <td class="bookmarks-index__base-info-data">
+                    <%= link_to (image_tag(bookmark.book.small_image_url)), bookmark.book.item_url, target: :_blank, rel: "noopener noreferrer" %>&nbsp;&nbsp;
+                    <span class="badge bg-success"><%= link_to bookmark.book.genre.name, genre_path(bookmark.book.genre.id), class:"link" %></span>&nbsp;&nbsp;
+                    <span class="badge bg-primary"><%= link_to bookmark.book.subject.name, subject_path(bookmark.book.subject.id), class:"link" %></span>
+                  </td>
+                  <td class="bookmarks-index__base-info-data"><%= link_to bookmark.book.title, book_path(bookmark.book.id), class:"link" %></td>
+                  <td class="bookmarks-index__base-info-data"><%= link_to bookmark.book.user.nick_name, user_path(bookmark.book.user.id), class:"link" %></td>
+                  <td class="bookmarks-index__base-info-data"><%= bookmark.book.created_at.to_s(:datetime) %></td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  <% else %>
+      <div class="bookmarks-index__method-description">
+        <strong>
+          <h3 class="text-center"><strong>まだブックマークはありません。</strong></h3>
+          <p></p>
+        </strong>
+      </div>
+  <% end %>
+
 </div>

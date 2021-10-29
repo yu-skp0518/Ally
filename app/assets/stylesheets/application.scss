@@ -36,6 +36,23 @@
   color: white;
 }
 
+.page-title-baned {
+  background-color: #005500;
+  display: block;
+  height: 80px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 30px;
+  color: white;
+  margin-top: 200px;
+}
+
+// 色を消したいリンクに➞を追記 , class:"link"
+.link {
+  text-decoration: none;
+  color: black;
+}
+
 // 楽天ブックスの検索結果(簡易的なもの)
 .search_result {
   border: solid;

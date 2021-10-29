@@ -1,10 +1,30 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <h2><strong>科目一覧</strong></h2>
-  </div>
-  <div class="row justify-content-center">
-    <% @subjects.each do |subject| %>
-      <h4 class="col"><%=  link_to subject.name, subject_path(subject.id) %></h4>
-    <% end %>
-  </div>
+<div class="page-title">
+  <h2><strong>Subjects</strong></h2>
+  <h2>全<%= @subjects.count %>件の科目</h2>
+</div>
+
+<div class="subjects-index">
+
+    <div class="subjects-index__result-wrapper">
+      <div class="subjects-index__result-wrapper-inner">
+
+        <% @subjects.each do |subject| %>
+          <div class="subjects-index__result">
+
+            <table class="subjects-index__base-info">
+              <tbody>
+                <tr>
+                  <th class="subjects-index__base-info-theme"><%= link_to subject.name, subject_path(subject.id), class:"link" %></th>
+                </tr>
+                <tr>
+                  <td class="subjects-index__base-info-data">該当の書籍<%= subject.books.count %>件</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+
 </div>
