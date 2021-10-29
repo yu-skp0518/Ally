@@ -79,7 +79,7 @@
             <div class="books-show__books-comments-items">
               <div class="books-show__books-user-info">
                 <%= link_to user_path(comment.user_id) do %>
-                  <%= attachment_image_tag comment.user, :profile_image, :fill, 50, 50, fallback: "no-image.jpeg", size: "40x40" %>
+                  <%= attachment_image_tag comment.user, :profile_image, :fill, 50, 50, fallback: "no-image.jpg", size: "40x40" %>
                   <%= comment.user.nick_name %>
                 <% end %>
               </div>
