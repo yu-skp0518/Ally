@@ -1,0 +1,106 @@
+// Place all the styles related to the public/books controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.page-title {
+  background-color: #005500;
+  display: block;
+  height: 80px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 30px;
+  color: white;
+}
+
+.admin-books-show {
+  width: auto;
+  height: auto;
+  margin: auto;
+  display: flex;
+  background-color: #005500;
+  justify-content: center;
+  margin-bottom: 30px;
+
+    &__base-info-theme {
+      width: 200px;
+      border-bottom: #005500 2px solid;
+      text-align: left;
+      padding: 2px;
+    }
+
+    &__base-info-data {
+      width: 400px;
+      height: auto;
+      border-bottom: 1px solid #ccc;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+      min-width: 0;
+      text-align: left;
+      padding: 10px;
+    }
+
+    &__base-info {
+      height: 290px;
+      overflow-wrap: break-word;
+      width: auto;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    &__books-info {
+      background-color: #FFFFEE;
+      margin-right: 15px;
+      padding: 20px;
+      display: flex;
+      border-radius: 40px;
+      height: auto;
+      width: 560px;
+    }
+
+    &__books-info-items {
+      overflow-wrap: break-word;
+    	overflow-x: hidden;
+    	overflow-y: scroll;
+    	height: 460px;
+    }
+
+    &__books-comments-form {
+      background-color: #FFFFEE;
+      border-radius: 40px;
+      padding: 20px;
+      margin-left: 15px;
+    }
+
+    &__books-comments {
+    	overflow-x: hidden;
+    	overflow-y: scroll;
+    	height: 400px;
+    }
+
+    &__books-comments-items {
+      background-color: white;
+      padding: 15px;
+      border-radius: 10px;
+      display: flex;
+      margin-bottom: 10px;
+    	border: solid 2px;
+    }
+
+    &__books-user-info {
+      margin-right: 60px;
+      margin-top: auto;
+      margin-bottom: auto;
+
+    }
+
+    &__books-comments-body {
+      overflow-wrap: break-word;
+      width: 300px;
+      height: auto;
+    }
+
+    &__books-info-story {
+      display: block;
+    }
+}

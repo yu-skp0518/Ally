@@ -7,6 +7,9 @@ class Admin::BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @comments = @book.comments.all.order(created_at: :desc).page(params[:page])
+    @amount = @comments.count
+    @amounts = @book.comments.all.count
   end
 
   def update

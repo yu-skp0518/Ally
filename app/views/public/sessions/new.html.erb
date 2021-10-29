@@ -1,62 +1,61 @@
-<div class="container">
-  <div class="row">
-    <h2>ログイン</h2>
+<div class="page-title">
+  <h2 class="col-12">ログイン</h2>
+</div>
+  <% if @user.errors.any? %>
+  <div class="error_messages">
+    <strong><font color="red"><%= @user.errors.count %>件のエラーが発生しました。<br></font></strong>
+    <% @user.errors.full_messages.each do |message| %>
+      <font color="black">・<%= message %>。<br></font>
+    <% end %>
   </div>
-
-  <div class="row form-for-resistration">
-    <h4>会員の方はこちらからログイン</h4>
-  </div>
-
-    <div class='login-flash-message'>
-      <h5><font color="green"><%= flash[:alert] %></font></h5>
-    </div>
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-    <div class="row form-for-resistration">
-      <div class="col-3">
-        <%= f.label :email,"メールアドレス" %>
-      </div>
-
-      <div class="col-3">
-        <%= f.email_field :email, placeholder: "メールアドレス", autofocus: true, autocomplete: "email" %>
-      </div>
-    </div>
-
-    <div class="row form-for-resistration">
-      <div class="col-3">
-        <%= f.label :password,"パスワード" %>
-      </div>
-
-      <div class="col-3">
-        <%= f.password_field :password, placeholder: "パスワード", autofocus: true, autocomplete: "password" %>
-      </div>
-    </div>
-
-    <!--発表段階で消すかも-->
-    <div class="row">
-      <div class="col-4">
-        <% if devise_mapping.rememberable? %>
-          <div class="field">
-            <p><%= f.check_box :remember_me %>
-            <%= f.label :remember_me,"ログイン状態を保持する" %>
-          </div>
-        <% end %>
-      </div>
-      <div class="col-4">
-        <div class="row form-for-resistration actions">
-          <%= f.submit "ログイン",class:"btn btn-outline-primary" %>
-        </div>
-      </div>
-    </div>
-
   <% end %>
 
-    <div class="row form-for-resistration">
-      <h4>会員登録がお済みでない方</h4>
+    <div class="sessions-new">
+      <div class="sessions-new__form-group text-center">
+
+        <table class="sessions-new__base-info">
+          <tbody>
+
+          <div class='login-flash-message'>
+            <h5><font color="green"><%= flash[:alert] %></font></h5>
+          </div>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+            <tr>
+              <th class="sessions-new__base-info-theme"><strong><%= f.label :email,"メールアドレス" %></strong></th>
+              <td class="sessions-new__base-info-data"><%= f.email_field :email, placeholder: "メールアドレス", autofocus: true, autocomplete: "email", style: "border: none" %></td>
+            </tr>
+
+            <tr>
+              <th class="sessions-new__base-info-theme"><strong><%= f.label :password,"パスワード" %></strong></th>
+              <td class="sessions-new__base-info-data"><%= f.password_field :password, placeholder: "パスワード", autofocus: true, autocomplete: "password", style: "border: none", class:"profile" %></td>
+            </tr>
+
+          </tbody>
+        </table>
+
+            <div class="sessions-new__buttons">
+
+              <% if devise_mapping.rememberable? %>
+                <div class="field">
+                  <p><%= f.check_box :remember_me %>
+                  <%= f.label :remember_me,"ログイン状態を保持する" %>
+                </div>
+              <% end %>
+
+              <td><%= f.submit "ログイン", class: "btn btn-success sessions-new__edit-button" %></td>
+
+              <td>
+                <h4 class="sessions-new__not-yet">会員登録がお済みでない方</h4>
+
+                <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+                  <p><%= link_to "こちら", new_registration_path(resource_name) %><span>から新規会員登録を行ってください。</span></p>
+                <% end %>
+              </td>
+            </div>
+
+          <% end %>
+
+      </div>
     </div>
-
-    <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-      <p><%= link_to "こちら", new_registration_path(resource_name) %><span>から新規会員登録を行ってください。</span></p>
-    <% end %>
-
-</div>
+  </div>

@@ -1,102 +1,101 @@
-<div class="container">
-
-  <div class="row justify-content-center">
-      <h2 class="title"><strong>ユーザー詳細画面</strong></h2>
+<div class="page-title">
+      <span><strong>User details</strong></span>
   </div>
 
-  <div class="row">
-    <div class="col profile-group">
-      <div class="col profile-group">  
+  <div class="admin-users-show">
+    <div class="admin-users-show__profile-group text-left">
 
-        <table>
-          <tbody>
-            <td><%= attachment_image_tag @user, :profile_image, :size =>'80x80', fallback: "reading.jpg", class:"profile-image" %></td>
-            <tr>
-              <td><strong>アカウント名：</strong></td>
-              <td><%= @user.name %></td>
-            </tr>
+    <div class="admin-users-show__info-wrapper">
+      <table class="admin-users-show__base-info">
+        <td><%= attachment_image_tag @user, :profile_image, :size =>'80x80', fallback: "reading.jpg", class:"profile-image" %></td>
 
-            <tr>
-              <td><strong>表示名：</strong></td>
-              <td><%= @user.nick_name %></td>
-            </tr>
-
-            <tr>
-              <td><strong>プロフィール：</strong></td>
-              <td><%= @user.profile %></td>
-            </tr>
-
-            <tr>
-              <td><strong>フォロー：</strong><%= link_to link_to @user.followings.count, admin_user_relationships_followings_path(@user) %></td>
-            </tr>
-
-            <tr>
-              <td><strong>フォロワー：</strong><%= link_to link_to @user.followers.count, admin_user_relationships_followers_path(@user) %></td>
-            </tr>
-
-            <tr>
-              <td><%= link_to "Bookmark一覧", user_bookmarks_path(@user) %></td>
-            </tr>
-
-            <tr>
-              <td><%= link_to "いいねしたコメント一覧", user_likes_path(@user) %></td>
-            </tr>
-
-            <tr>
-              <td>会員ステータス</td>
+        <tbody>
+          <tr>
+            <th class="admin-users-show__base-info-theme">ユーザー名</th>
+            <td class="admin-users-show__base-info-data"><%= @user.name %></td>
+          </tr>
+          <tr>
+            <th class="admin-users-show__base-info-theme">表示名</th>
+            <td class="admin-users-show__base-info-data"><%= @user.nick_name %></td>
+          </tr>
+          <tr>
+            <th class="admin-users-show__base-info-theme">フォロー</th>
+            <td class="admin-users-show__base-info-data"><%= link_to @user.followings.count, admin_user_relationships_followings_path(@user) %> 人</td>
+          </tr>
+          <tr>
+            <th class="admin-users-show__base-info-theme">フォロワー</th>
+            <td class="admin-users-show__base-info-data"><%= link_to @user.followers.count, admin_user_relationships_followers_path(@user) %> 人</td>
+          </tr>
+          <tr>
+            <th class="admin-users-show__base-info-theme">現在の会員ステータス</th>
+            <td class="admin-users-show__base-info-data">
               <% if @user.is_valid == false %>
-                <td><strong class="text-danger">退会済み</strong></td>
+                <strong class="text-danger">退会済み</strong>
               <% else %>
-                <td><strong class="text-secondary">有効</strong></td>
+                <strong class="text-secondary">有効</strong>
               <% end %>
-            </tr>
-
-            <tr>
+            </td>
+          </tr>
+          <tr>
+            <th class="admin-users-show__base-info-theme">会員ステータス更新</th>
             <%= form_with model: @user, url: admin_user_path(@user.id), local: true do |f| %>
-            　<td><%= f.radio_button :is_valid, true %>
+          　<td>
+            　<%= f.radio_button :is_valid, true %>
             　<%= f.label :is_valid, "有効", {value: :true, style: "display: inline-block;"} %>
             　<%= f.radio_button :is_valid, false %>
-            　<%= f.label :is_valid, "退会", {value: :false, style: "display: inline-block;"} %></td>
-              <td><%= f.submit '変更を保存' ,class: "btn btn-secondary" %></td>
-          　<% end %>
-            </tr>
-
-
-          </tbody>
-        </table>
-
-
-    </div>
-
-    <div class="col">
-      <div class="row justify-content-center">
-        <h4 class="title"><strong>最新の投稿</strong></h4>
-      </div>
-
-      <div class="row book-list">
-        <table>
-          <thead>
-            <tr>
-              <th>
-                <th><strong>タイトル</strong></th>
-                <th><strong>著者</strong></th>
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% @books.each do |book| %>
-              <tr>
-                <td class="book-list-item book-list-picture"><%= link_to (image_tag(book.small_image_url)), book.item_url, target: :_blank, rel: "noopener noreferrer" %></td>
-                <td class="book-list-item"><%= link_to book.title, book_path(book.id) %></td>
-                <td class="book-list-item"><%= book.author %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+            　<%= f.label :is_valid, "退会", {value: :false, style: "display: inline-block;"} %>
+              <%= f.submit '更新' ,class: "btn btn-outline-secondary" %>
+            </td>
+        　<% end %>
+          </tr>
+          <tr>
+            <th class="admin-users-show__base-info-theme">プロフィール</th>
+            <td class="admin-users-show__base-info-data"><%= @user.profile %></td>
+          </tr>
+        </tbody>
+      </table>
       </div>
 
     </div>
+
+  <div class="admin-users-show__book-list">
+    <div class="admin-users-show__page-subtitle">
+      <h4><strong><%= @user.nick_name %>の投稿（全<%= @user.books.count %>件）</strong></h4>
+          <!--新規投稿ボタン-->
+    </div>
+
+
+    <div class="admin-users-show__books-info">
+
+      <div class="admin-users-show__books-info-data">
+      <% if @books.any? %>
+        <% @books.each do |book| %>
+          <div class="admin-users-show__book-list-items">
+
+            <div class="admin-users-show__book-list-picture text-center" >
+              <span>
+                <%= link_to (image_tag(book.small_image_url)), book.item_url, target: :_blank, rel: "noopener noreferrer" %>
+                <%= link_to book.title, admin_book_path(book.id) %>
+              </span><br>
+            </div>
+            <div class="admin-users-show__book-list-data text-right">
+              <span>
+                著者：<%= book.author %>
+              </span><br>
+
+              <span>
+                コメント数：<%= book.comments.all.count %>｜
+                投稿日：<%= book.created_at.to_s(:datetime) %>
+              </>
+            </div>
+
+          </div>
+        <% end %>
+        <% else %>
+          <h4 class="text-center">まだ投稿はありません。</h4>
+        <% end %>
+      </div>
+    </div>
+  </div>
 
   </div>
-</div>

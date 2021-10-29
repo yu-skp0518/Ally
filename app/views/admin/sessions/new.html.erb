@@ -1,50 +1,54 @@
-<div class="container justify-content-center">
-<% if flash.present? %>
-  <div class="alert alert-danger alert-dismissible fade in" role='alert'>
-    <button class="close" type='button' data-dismiss='alert'>
-      <span aria-hidden='true'>
-        | ×
-      </span>
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => 'flash_#{ name }' if msg.is_a?(String) %>
-
-      <p>
-        <a href='#' data-dismiss='alert'>
-          | 閉じる
-        </a>
-      </p>
+<div class="page-title">
+  <h2 class="col-12">管理者ログイン</h2>
+</div>
+  <% if @admin.errors.any? %>
+  <div class="error_messages">
+    <strong><font color="red"><%= @admin.errors.count %>件のエラーが発生しました。<br></font></strong>
+    <% @admin.errors.full_messages.each do |message| %>
+      <font color="black">・<%= message %>。<br></font>
     <% end %>
   </div>
-<% end %>
-
-  <div class="row">
-    <h2>管理者ログイン</h2>
-  </div>
-
-  <div class="row">
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="admin-sessions-new">
+      <div class="admin-sessions-new__form-group text-center">
+
+        <table class="admin-sessions-new__base-info">
+          <tbody>
+
+          <div class='login-flash-message'>
+            <h5><font color="green"><%= flash[:alert] %></font></h5>
+          </div>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+            <tr>
+              <th class="admin-sessions-new__base-info-theme"><strong><%= f.label :email,"メールアドレス" %></strong></th>
+              <td class="admin-sessions-new__base-info-data"><%= f.email_field :email, placeholder: "メールアドレス", autofocus: true, autocomplete: "email", style: "border: none" %></td>
+            </tr>
+
+            <tr>
+              <th class="admin-sessions-new__base-info-theme"><strong><%= f.label :password,"パスワード" %></strong></th>
+              <td class="admin-sessions-new__base-info-data"><%= f.password_field :password, placeholder: "パスワード", autofocus: true, autocomplete: "password", style: "border: none", class:"profile" %></td>
+            </tr>
+
+          </tbody>
+        </table>
+
+            <div class="admin-sessions-new__buttons">
+
+              <% if devise_mapping.rememberable? %>
+                <div class="field">
+                  <p><%= f.check_box :remember_me %>
+                  <%= f.label :remember_me,"ログイン状態を保持する" %>
+                </div>
+              <% end %>
+
+              <td><%= f.submit "ログイン", class: "btn btn-success admin-sessions-new__edit-button" %></td>
+
+            </div>
+
+          <% end %>
+
+      </div>
+    </div>
   </div>
-<% end %>
-
-
-</div>
-</div>

@@ -1,32 +1,42 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <h2><strong>ジャンル追加</strong></h2>
-  </div>
-  <div class="row justify-content-center">
+<div class="page-title">
+  <h2><strong>Add genre</strong></h2>
+</div>
+
+  <!--投稿フォーム-->
+  <div class="books-search__form">
     <%= form_with(model: @genre, :url => {:controller => "admin/genres"}) do |f| %>
+      <%= f.text_field :name, placeholder: "ジャンル名を入力", autofocus: true, autocomplete: "ジャンル名を入力" %>
+      <%= f.submit '新規作成', class: "btn btn-success", rows:"1", cols:"40" %>
+    <% end %>
+  </div>
 
-      <div class="row form-for-resistration">
-          <div class="col-6">
+<div class="page-title">
+  <h2><strong>Genres</strong></h2>
+  <h2>全<%= @genres.count %>件のジャンル</h2>
+</div>
 
-            <%= f.text_field :name, placeholder: "ジャンル名を入力", autofocus: true, autocomplete: "ジャンル名を入力" %>
+<div class="admin-genres-index">
+
+    <div class="admin-genres-index__result-wrapper">
+      <div class="admin-genres-index__result-wrapper-inner">
+
+        <% @genres.each do |genre| %>
+          <div class="admin-genres-index__result">
+
+            <table class="admin-genres-index__base-info">
+              <tbody>
+                <tr>
+                  <th class="admin-genres-index__base-info-theme"><%= link_to genre.name, admin_genre_path(genre.id), class:"link" %></th>
+                </tr>
+                <tr>
+                  <td class="admin-genres-index__base-info-data">該当の書籍<%= genre.books.count %>件</td>
+                </tr>
+              </tbody>
+            </table>
+
           </div>
+        <% end %>
       </div>
+    </div>
 
-      <div class="row form-for-resistration">
-        <div class="col-7"></div>
-        <div class="col-5">
-          <%= f.submit '新規登録', class:"btn btn-success" %>
-        </div>
-      </div>
-
-    <% end %>
-  </div>
-  <div class="row justify-content-center">
-    <h2><strong>ジャンル一覧</strong></h2>
-  </div>
-  <div class="row justify-content-center">
-    <% @genres.each do |genre| %>
-      <h4 class="col"><%=  link_to genre.name, admin_genre_path(genre.id) %></h4>
-    <% end %>
-  </div>
 </div>

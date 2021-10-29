@@ -1,32 +1,43 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <h2><strong>科目追加</strong></h2>
-  </div>
-  <div class="row justify-content-center">
-    <%= form_with(model: @subject, :url => {:controller => "admin/subjects"}) do |f| %>
-
-      <div class="row form-for-resistration">
-          <div class="col-6">
-
-            <%= f.text_field :name, placeholder: "科目名を入力", autofocus: true, autocomplete: "科目名を入力" %>
-          </div>
-      </div>
-
-      <div class="row form-for-resistration">
-        <div class="col-7"></div>
-        <div class="col-5">
-          <%= f.submit '新規登録', class:"btn btn-success" %>
-        </div>
-      </div>
-
-    <% end %>
-  </div>
-  <div class="row justify-content-center">
-    <h2><strong>科目一覧</strong></h2>
-  </div>
-  <div class="row justify-content-center">
-    <% @subjects.each do |subject| %>
-      <h4 class="col"><%=  link_to subject.name, admin_subject_path(subject.id) %></h4>
-    <% end %>
-  </div>
+<div class="page-title">
+  <h2><strong>Add subject</strong></h2>
 </div>
+
+  <!--投稿フォーム-->
+  <div class="books-search__form">
+    <%= form_with(model: @subject, :url => {:controller => "admin/subjects"}) do |f| %>
+      <%= f.text_field :name, placeholder: "科目名を入力", autofocus: true, autocomplete: "科目名を入力" %>
+      <%= f.submit '新規作成', class: "btn btn-success", rows:"1", cols:"40" %>
+    <% end %>
+  </div>
+
+<div class="page-title">
+  <h2><strong>Subjects</strong></h2>
+  <h2>全<%= @subjects.count %>件の科目</h2>
+</div>
+
+<div class="admin-subjects-index">
+
+    <div class="admin-subjects-index__result-wrapper">
+      <div class="admin-subjects-index__result-wrapper-inner">
+
+        <% @subjects.each do |subject| %>
+          <div class="admin-subjects-index__result">
+
+            <table class="admin-subjects-index__base-info">
+              <tbody>
+                <tr>
+                  <th class="admin-subjects-index__base-info-theme"><%= link_to subject.name, admin_subject_path(subject.id), class:"link" %></th>
+                </tr>
+                <tr>
+                  <td class="admin-subjects-index__base-info-data">該当の書籍<%= subject.books.count %>件</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+</div>
+

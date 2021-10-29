@@ -1,24 +1,61 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <h2><strong>All users</strong></h2>
-  </div>
-  <div class="row justify-content-center">
-    <div class="col-4 text-left">
-      <% @users.each do |user| %>
-        <p>
-          <%= link_to admin_user_path(user.id) do %>
-            <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no-image.jpeg", size: "40x40" %>
-          <% end %>
-          <%= user.id %>.
-          <%= link_to user.nick_name, admin_user_path(user) %>
-            ステータス：
-            <% if user.is_valid == false %>
-              <strong class="text-secondary">退会済み</strong>
-            <% else %>
-              <strong class="text-success">有効</strong>
-            <% end %>
-      </p>
-      <% end %>
+<div class="page-title">
+  <h2><strong>All users</strong></h2>
+  <h2>全<%= @users.count %>件</h2>
+</div>
+
+<div class="admin-users-index">
+
+
+  <% if @users.present? %>
+
+    <div class="admin-users-index__result-wrapper">
+      <div class="admin-users-index__result-wrapper-inner">
+
+        <% @users.each do |user| %>
+          <div class="admin-users-index__result">
+
+            <table class="admin-users-index__base-info">
+
+              <tbody>
+                <tr>
+                  <th class="admin-users-index__base-info-theme"></th>
+                  <th class="admin-users-index__base-info-theme">ユーザーID</th>
+                  <th class="admin-users-index__base-info-theme">ユーザー名</th>
+                  <th class="admin-users-index__base-info-theme">ステータス</th>
+                  <th class="admin-users-index__base-info-theme">登録日</th>
+                </tr>
+
+                  <td class="admin-users-index__base-info-data">
+                  <%= link_to admin_user_path(user.id) do %>
+                    <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no-image.jpeg", size: "40x40" %>
+                  <% end %>
+                  </td>
+                  <td class="admin-users-index__base-info-data"><%= user.id %></td>
+                  <td class="admin-users-index__base-info-data"><%= link_to user.nick_name, admin_user_path(user), class:"link" %></td>
+                  <td class="admin-users-index__base-info-data">
+                    <% if user.is_valid == false %>
+                      <strong class="text-secondary">退会済み</strong>
+                    <% else %>
+                      <strong class="text-success">有効</strong>
+                    <% end %>
+                  </td>
+                  <td class="admin-users-index__base-info-data"><%= user.created_at.to_s(:datetime) %></td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
+
+  <% else %>
+      <div class="admin-users-index__method-description">
+        <strong>
+          <h3 class="text-center"><strong>まだユーザーはいません。</strong></h3>
+          <p></p>
+        </strong>
+      </div>
+  <% end %>
+
 </div>

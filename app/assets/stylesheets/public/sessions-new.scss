@@ -1,0 +1,77 @@
+// Place all the styles related to the public/users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.page-title {
+  background-color: #005500;
+  display: block;
+  height: 80px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 30px;
+  color: white;
+}
+
+.profile {
+  resize: none;
+}
+
+.sessions-new {
+  width: auto;
+  height: auto;
+  margin: auto;
+  background-color: #005500;
+  justify-content: center;
+  display: flex;
+  margin-bottom: 30px;
+
+  &__form-group {
+    background-color: #FFFFEE;
+    border-radius: 40px;
+    table-layout: fixed;
+    height: auto;
+    width: 700px;
+    padding: 40px;
+  }
+
+  // テーブル
+  &__base-info {
+      overflow-wrap: break-word;
+      border-collapse: collapse;;
+  }
+
+  &__base-info-theme {
+    width: 200px;
+    border-bottom: #005500 2px solid;
+    text-align: left;
+    padding: 2px;
+  }
+
+  &__base-info-data {
+    width: 300px;
+    height: auto;
+    border-bottom: 1px solid #ccc;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    min-width: 0;
+    text-align: left;
+    padding: 10px;
+  }
+
+  &__buttons {
+    margin-top: 20px;
+  }
+
+  &__registration-button {
+    margin-right: 10px;
+  }
+
+  &__quit-button {
+    margin-left: 10px;
+  }
+
+  &__not-yet {
+    margin-top: 30px;
+  }
+}

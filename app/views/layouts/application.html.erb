@@ -43,29 +43,33 @@
                 <% end %>
               </nav-item>
 
-             <nav-item>
-                <%= link_to genres_path do %>
-                    <i class="fas fa-list-ul nav-link text-black">
-                      <strong class="menu-icon">Genres</strong>
-                    </i>
-                <% end %>
-              </nav-item>
+            <% if current_user.is_valid == true %>
 
-             <nav-item>
-                <%= link_to subjects_path do %>
-                    <i class="fas fa-pen-fancy nav-link text-black">
-                      <strong class="menu-icon">Subjects</strong>
-                    </i>
-                <% end %>
-              </nav-item>
+               <nav-item>
+                  <%= link_to genres_path do %>
+                      <i class="fas fa-list-ul nav-link text-black">
+                        <strong class="menu-icon">Genres</strong>
+                      </i>
+                  <% end %>
+                </nav-item>
 
-             <nav-item>
-                <%= link_to books_search_path do %>
-                    <i class="fas fa-book-medical nav-link text-black">
-                      <strong class="menu-icon">New post</strong>
-                    </i>
-                <% end %>
-              </nav-item>
+               <nav-item>
+                  <%= link_to subjects_path do %>
+                      <i class="fas fa-pen-fancy nav-link text-black">
+                        <strong class="menu-icon">Subjects</strong>
+                      </i>
+                  <% end %>
+                </nav-item>
+
+               <nav-item>
+                  <%= link_to books_search_path do %>
+                      <i class="fas fa-book-medical nav-link text-black">
+                        <strong class="menu-icon">New post</strong>
+                      </i>
+                  <% end %>
+                </nav-item>
+
+            <% end %>
 
              <nav-item>
                 <%= link_to destroy_user_session_path, method: :delete do %>
@@ -155,15 +159,15 @@
     </header>
 
     <%= yield %>
+
     <footer>
           <strong>© All rights reserved by Ally for leaners</strong>
           <div class="justify-content-center align-items-center social-items">
-            <i class="fab fa-facebook-square fa-2x text-black social-item"></i>
-            <i class="fab fa-twitter-square fa-2x text-black social-item"></i>
-            <i class="fab fa-instagram fa-2x text-black social-item"></i>
-          <%= link_to inquiries_new_path do %>
-            <i class="fas fa-question-circle fa-2x text-black social-item"></i>
-          <% end %>
+
+          <!--お問い合わせリンク-->
+          <%#= link_to inquiries_new_path do %>
+            <!--<i class="fas fa-question-circle fa-2x text-black social-item"></i>-->
+          <%# end %>
           <%= link_to new_admin_session_path do %>
             <i class="fas fa-lock fa-2x text-black social-item" size: "50x50"></i>
           <% end %>

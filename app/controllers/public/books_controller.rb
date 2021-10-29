@@ -1,5 +1,5 @@
 class Public::BooksController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :edit, :update]
+  before_action :authenticate_user!, only: [:show, :create, :edit, :update]
 
   def top
   end

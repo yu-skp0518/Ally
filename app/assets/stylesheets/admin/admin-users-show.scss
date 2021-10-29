@@ -1,0 +1,117 @@
+// Place all the styles related to the public/users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.page-title {
+  background-color: #005500;
+  display: block;
+  height: 80px;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 30px;
+  color: white;
+}
+
+.admin-users-show {
+  width: auto;
+  height: auto;
+  margin: auto;
+  display: flex;
+  background-color: #005500;
+  justify-content: center;
+  margin-bottom: 30px;
+
+
+  &__profile-group {
+    background-color: #FFFFEE;
+    padding: 20px;
+    display: flex;
+    border-radius: 40px;
+    height: 490px;
+    width: 520px;
+    padding-left: 20px;
+    margin-right: 15px;
+  }
+
+  &__info-wrapper {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 700px;
+  }
+
+  &__base-info {
+    height: 290px;
+    overflow-wrap: break-word;
+    width: auto;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  &__base-info-theme {
+    width: 200px;
+    border-bottom: #005500 2px solid;
+    text-align: left;
+    padding: 2px;
+  }
+
+  &__base-info-data {
+    width: 400px;
+    height: auto;
+    border-bottom: 1px solid #ccc;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    min-width: 0;
+    text-align: left;
+    padding: 10px;
+  }
+
+  &__profile {
+    height: 100px;
+    width: 500px;
+  }
+
+  &__book-list {
+      background-color: #FFFFEE;
+      border-radius: 40px;
+      padding: 20px;
+      width: 520px;
+      margin-left: 15px;
+  }
+
+  &__posting-button {
+    position: absolute;
+    right: 10px;
+    bottom: 25px;
+
+  }
+
+  &__page-subtitle {
+      display: block;
+      height: 80px;
+      text-align: center;
+      padding-top: 20px;
+      font-size: 30px;
+      color: #005500;
+      position: relative;
+  }
+
+  &__books-info {
+    	height: 330px;
+  }
+
+  &__books-info-data {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 330px;
+  }
+
+  &__book-list-items {
+    	height: auto;
+      background-color: white;
+      padding: 10px;
+      border-radius: 20px;
+      margin-bottom: 5px;
+    	border: solid 2px;
+  }
+}

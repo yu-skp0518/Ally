@@ -1,18 +1,59 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <h2 class="title"><strong>Follower一覧</strong></h2>
-  </div>
-  <div class="row justify-content-center">
+<div class="page-title">
+  <h2><strong><%= @user.nick_name %>'s Followers</strong></h2>
+  <h2>全<%= @users.count %>件</h2>
+</div>
 
-    <table>
-      <% @users.each do |follower| %>
-      <tr>
-        <td class="col-lg-4"><%= attachment_image_tag follower, :profile_image, :fill, 50, 50, fallback: "no-image.jpeg", size: "40x40" %></td>
-        <td class="col-lg-4"><%= follower.name %></td>
-        <td class="col-lg-4"><%= link_to follower.nick_name, user_path(follower.id) %></td>
-      </tr>
-      <% end %>
-    </table>
+<div class="admin-followers-index">
 
-  </div>
+
+  <% if @users.present? %>
+
+    <!--検索結果-->
+    <div class="admin-followers-index__result-wrapper">
+      <div class="admin-followers-index__result-wrapper-inner">
+
+        <% @users.each do |user| %>
+          <div class="admin-followers-index__result">
+
+            <table class="admin-followers-index__base-info">
+
+              <tbody>
+                <tr>
+                  <th class="admin-followers-index__base-info-theme"></th>
+                  <th class="admin-followers-index__base-info-theme">アカウント名</th>
+                  <th class="admin-followers-index__base-info-theme">ユーザー名</th>
+                </tr>
+                <tr>
+                  <td class="admin-followers-index__base-info-data"><%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no-image.jpeg", size: "40x40" %></td>
+                  <td class="admin-followers-index__base-info-data"><%= user.name %></td>
+                  <td class="admin-followers-index__base-info-data"><%= link_to user.nick_name, user_path(user.id) %></td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <th class="admin-followers-index__base-info-theme">プロフィール</th>
+                  <th class="admin-followers-index__base-info-theme"></th>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td class="admin-followers-index__base-info-data"><%= user.profile %></td>
+                  <td class="admin-followers-index__base-info-data"></td>
+                </tr>
+              </tbody>
+            </table>
+
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  <% else %>
+      <div class="admin-followers-index__method-description">
+        <strong>
+          <h3 class="text-center"><strong>現在<%= @user.nick_name %>のフォロワーはいません。</strong></h3>
+          <p></p>
+        </strong>
+      </div>
+  <% end %>
+
 </div>

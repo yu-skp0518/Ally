@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
       user_path(current_user)
     else
       flash[:notice_log_in] = "ログインに成功しました"
-      admin_genres_path
+      admin_users_path
     end
   end
 
