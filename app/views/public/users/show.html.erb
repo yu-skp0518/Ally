@@ -75,14 +75,15 @@
   <div class="users-show__book-list">
     <div class="users-show__page-subtitle">
       <h4><strong><%= @user.nick_name %>の投稿（全<%= @user.books.count %>件）</strong></h4>
-          <!--新規投稿ボタン-->
-    <% if current_user == @user %>
-      <%= link_to "新規投稿", books_search_path, class:"btn btn-success users-show__posting-button" %>
-    <% end %>
     </div>
 
 
     <div class="users-show__books-info">
+
+    <!--新規投稿ボタン-->
+    <% if current_user == @user %>
+      <%= link_to "新規投稿", books_search_path, class:"btn btn-success users-show__posting-button" %>
+    <% end %>
 
       <div class="users-show__books-info-data">
       <% if @books.any? %>

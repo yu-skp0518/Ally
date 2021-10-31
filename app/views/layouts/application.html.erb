@@ -7,7 +7,7 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application' %>
   </head>
 
   <body class="wrapper">
@@ -34,37 +34,41 @@
             <!--ユーザーがログインしている場合-->
             <% if user_signed_in? %>
             <div class="link-group">
-            <nav-item>
-              <%= link_to user_path(current_user) do %>
-                  <i class="fas fa-home nav-link text-black">
-                    <strong class="menu-icon">My page</strong>
-                  </i>
-              <% end %>
-            </nav-item>
-
-             <nav-item>
-                <%= link_to genres_path do %>
-                    <i class="fas fa-list-ul nav-link text-black">
-                      <strong class="menu-icon">Genres</strong>
+              <nav-item>
+                <%= link_to user_path(current_user) do %>
+                    <i class="fas fa-home nav-link text-black">
+                      <strong class="menu-icon">My page</strong>
                     </i>
                 <% end %>
               </nav-item>
 
-             <nav-item>
-                <%= link_to subjects_path do %>
-                    <i class="fas fa-pen-fancy nav-link text-black">
-                      <strong class="menu-icon">Subjects</strong>
-                    </i>
-                <% end %>
-              </nav-item>
+            <% unless current_user.is_valid == false %>
 
-             <nav-item>
-                <%= link_to books_search_path do %>
-                    <i class="fas fa-book-medical nav-link text-black">
-                      <strong class="menu-icon">New post</strong>
-                    </i>
-                <% end %>
-              </nav-item>
+               <nav-item>
+                  <%= link_to genres_path do %>
+                      <i class="fas fa-list-ul nav-link text-black">
+                        <strong class="menu-icon">Genres</strong>
+                      </i>
+                  <% end %>
+                </nav-item>
+
+               <nav-item>
+                  <%= link_to subjects_path do %>
+                      <i class="fas fa-pen-fancy nav-link text-black">
+                        <strong class="menu-icon">Subjects</strong>
+                      </i>
+                  <% end %>
+                </nav-item>
+
+               <nav-item>
+                  <%= link_to books_search_path do %>
+                      <i class="fas fa-book-medical nav-link text-black">
+                        <strong class="menu-icon">New post</strong>
+                      </i>
+                  <% end %>
+                </nav-item>
+
+            <% end %>
 
              <nav-item>
                 <%= link_to destroy_user_session_path, method: :delete do %>
