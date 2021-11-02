@@ -91,4 +91,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # 週毎
+  config.logger = Logger.new('log/development.log', 'weekly')
 end
