@@ -68,10 +68,10 @@
       <p>コメントを新しい順で<%= @amount %>件表示（全<%= @amounts %>件）</p>
       <!--コメント投稿フォーム-->
       <%= form_with model:[@book,@comment], local: true do |f| %>
-        <%= f.text_area :body, size:"60x3", rows:'3', placeholder: "コメントを入力" %>
+        <%= f.text_area :body, size:"60x3", rows:'3', placeholder: "コメントを入力", autofocus: true %>
         <p><%= f.submit "送信する" %></p>
       <% end %>
-
+      <%= flash[:notice] %>
       <div class="books-show__books-comments">
         <!--コメント一覧-->
         <% if @comments.any? %>
@@ -85,7 +85,11 @@
               </div>
               <div class="books-show__books-comments-body">
                 <%= comment.body %><br>
-
+                  <% if comment.score < 0 %>
+                    <i class="fas fa-exclamation-triangle"></i>
+                  <% else %>
+                    <i class="far fa-check-circle"></i>
+                  <% end %>
                   <%= comment.created_at.to_s(:datetime) %>
 
                   <!--いいねボタン-->

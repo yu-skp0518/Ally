@@ -6,8 +6,10 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.book_id = @book.id
+    @comment.score = Language.get_data(comment_params[:body])
     if @comment.save
       redirect_to book_path(@book.id)
+      flash[:notice] = "コメントが投稿されました。"
     else
       render 'public/books/show'
     end
