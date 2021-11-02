@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
 
   has_many :likes, dependent: :destroy
 
-  validates :body, presence: true
+  validates :body, presence: true, length: { in: 1..200 }
 
   def liked_by?(user)
 		likes.where(user_id: user.id).exists?
