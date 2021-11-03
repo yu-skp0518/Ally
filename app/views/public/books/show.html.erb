@@ -86,9 +86,7 @@
               <div class="books-show__books-comments-body">
                 <%= comment.body %><br>
 
-                  <% if comment.score < 0 %>
-                    <i class="fas fa-exclamation-triangle"></i>
-                  <% end %>
+                  <%= comment.score %>
 
                   <%= comment.created_at.to_s(:datetime) %>
 
