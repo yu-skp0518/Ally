@@ -23,7 +23,7 @@
 
     <div class="users-show__info-wrapper">
       <table class="users-show__base-info">
-        <td><%= attachment_image_tag @user, :profile_image, :size =>'80x80', fallback: "reading.jpeg", class:"profile-image" %></td>
+        <td><%= attachment_image_tag @user, :profile_image, size: '80x80', fallback: "reading.jpeg", class: "profile-image" %></td>
             <% if current_user == @user %>
               <td><%= link_to "編集", edit_user_path(@user.id), class:"btn btn-secondary" %></td>
             <% end %>
