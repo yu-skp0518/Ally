@@ -19,18 +19,23 @@
               <tbody>
                 <tr>
                   <th class="subjects-show__base-info-theme"></th>
+                  <th class="subjects-show__base-info-theme">ジャンル・科目</th>
                   <th class="subjects-show__base-info-theme">タイトル</th>
                   <th class="subjects-show__base-info-theme">投稿したユーザー</th>
+                  <th class="subjects-show__base-info-theme">コメント数</th>
                   <th class="subjects-show__base-info-theme">投稿日</th>
                 </tr>
 
                   <td class="subjects-show__base-info-data">
-                    <%= link_to (image_tag(book.small_image_url)), book.item_url, target: :_blank, rel: "noopener noreferrer" %>&nbsp;&nbsp;
+                    <%= link_to (image_tag(book.small_image_url)), book.item_url, target: :_blank, rel: "noopener noreferrer" %>
+                  </td>
+                  <td class="subjects-show__base-info-data">
                     <span class="badge bg-success"><%= link_to book.genre.name, genre_path(book.genre.id), class:"link" %></span>&nbsp;&nbsp;
                     <span class="badge bg-primary"><%= link_to book.subject.name, subject_path(book.subject.id), class:"link" %></span>
                   </td>
                   <td class="subjects-show__base-info-data"><%= link_to book.title, book_path(book.id), class:"link" %></td>
                   <td class="subjects-show__base-info-data"><%= link_to book.user.nick_name, user_path(book.user.id), class:"link" %></td>
+                  <td class="subjects-show__base-info-data"><%=  book.comments.count %></td>
                   <td class="subjects-show__base-info-data"><%=  book.created_at.to_s(:datetime) %></td>
                 </tr>
               </tbody>
