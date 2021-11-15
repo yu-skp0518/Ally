@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_11_02_141639) do
     t.string "item_url", null: false
     t.string "publisher_name", null: false
     t.integer "item_price", null: false
-    t.string "large_image_url", null: false
+    t.string "large_ima　　ge_url", null: false
     t.string "medium_image_url", null: false
     t.string "small_image_url", null: false
     t.text "story"

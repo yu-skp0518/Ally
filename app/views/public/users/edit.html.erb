@@ -1,17 +1,20 @@
 <div class="page-title">
   <h2 class="col-12">会員情報編集</h2>
 </div>
-  <% if @user.errors.any? %>
-  <div class="error_messages">
-    <strong><font color="red"><%= @user.errors.count %>件のエラーが発生しました。<br></font></strong>
-    <% @user.errors.full_messages.each do |message| %>
-      <font color="black">・<%= message %>。<br></font>
-    <% end %>
-  </div>
-  <% end %>
+
 
     <div class="users-edit">
+
       <div class="users-edit__form-group text-center">
+
+        <% if @user.errors.any? %>
+        <div class="error_messages">
+          <strong><font color="red"><%= @user.errors.count %>件のエラーが発生しました。<br></font></strong>
+          <% @user.errors.full_messages.each do |message| %>
+            <font color="black">・<%= message %>。<br></font>
+          <% end %>
+        </div>
+        <% end %>
 
         <table class="users-edit__base-info">
           <tbody>

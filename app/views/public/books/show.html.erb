@@ -20,6 +20,7 @@
           <% if current_user == @book.user %>
             <%= link_to "編集", edit_book_path(@book), class:"btn btn-secondary" %></td>
           <% end %>
+          <%= flash[:create_success] %>
 
         <tbody>
           <tr>

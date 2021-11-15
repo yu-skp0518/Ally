@@ -2,7 +2,7 @@
   <h2>
     <strong>
       新規書籍投稿<br>
-      書籍検索(楽天Books)
+      書籍検索(楽天Books)<br>
     </strong>
   </h2>
 </div>
@@ -47,7 +47,7 @@
             </tbody>
           </table>
 
-        <%= link_to "その他入力に進む", new_book_path(isbn: book.isbn ,keyword: book.title), class: "btn btn-secondary books-search__next-button" %>
+        <%= link_to "その他入力に進む", new_book_path(isbn: book.isbn ,keyword: params[:keyword]), class: "btn btn-secondary books-search__next-button" %>
 
         </div>
       <% end %>

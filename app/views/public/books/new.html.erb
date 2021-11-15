@@ -1,4 +1,3 @@
-
   <div class="page-title">
     <h2><strong>新規書籍投稿</strong></h2>
   </div>
@@ -70,7 +69,8 @@
               </tr>
             </tbody>
           </table>
-
+          <font color="red"><%= flash[:create_failure] %></font>
+          <%= f.hidden_field :keyword, value: params[:keyword] %>
           <%= f.submit "新規投稿", class: "btn btn-primary books-new__submit-button" %>
         <% end %>
     </div>

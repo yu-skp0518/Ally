@@ -6,7 +6,7 @@ class Public::BooksController < ApplicationController
 
   # 楽天ブックス検索
   def search
-    if params[:keyword]
+    if params[:keyword].present?
       @books = RakutenWebService::Books::Book.search(title: params[:keyword])
     else
       render :search
@@ -34,12 +34,27 @@ class Public::BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+
     if @book.save(book_params)
-      flash[:notice] = "新規投稿を作成しました！"
+      flash[:create_success] = "新規投稿を作成しました！"
       redirect_to book_path(@book.id)
     else
-      @book = RakutenWebService::Books::Book.search(isbn: @book.isbn).first
+      book = RakutenWebService::Books::Book.search(isbn: params[:book][:isbn]).first
+      @book = Book.new(
+        isbn: book.isbn,
+        small_image_url: book.small_image_url,
+        medium_image_url: book.medium_image_url,
+        large_image_url: book.large_image_url,
+        title: book.title,
+        author: book.author,
+        item_caption: book.item_caption,
+        publisher_name: book.publisher_name,
+        item_price: book.item_price,
+        item_url: book.item_url,
+      )
       render :new
+      # redirect_to books_search_path(keyword: params[:book][:keyword])
+      flash[:create_failure] = "この書籍は以前に投稿しています。"
     end
   end
 
