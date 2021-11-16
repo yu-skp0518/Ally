@@ -8,9 +8,9 @@ class Book < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
-  validates :isbn, uniqueness: { scope: :user_id, message: 'この書籍は以前に投稿しています。' }
-  # validates :genre_id, presence: true
-  # validates :subject_id, presence: true
+  # １ユーザーにつき同じ本は１度しか投稿できない
+  validates :story, length: { minimum: 0, maximum: 300 }, presence: true
+  validates :isbn, uniqueness: { scope: :user_id, message: 'この書籍は以前に投稿しています' }
 
   def bookmarked_by?(user)
 		bookmarks.where(user_id: user.id).exists?

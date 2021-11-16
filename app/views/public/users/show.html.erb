@@ -1,13 +1,29 @@
 <% if @user.is_valid == false %>
-<div class="page-title-baned">
-  <h2><strong><%= @user.name %>様は以前に退会されています。</strong></h2>
-  <h2><strong>アカウントを復帰させますか？</strong></h2>
+  <% if @user.id == current_user.id %>
+    <div class="page-title-baned">
+      <h2><strong><%= @user.nick_name %>様は以前に退会されています。</strong></h2>
+      <h2><strong>アカウントを復帰させますか？</strong></h2>
 
-  <p>
-    <%= link_to "アカウントを復帰させる", user_unban_path(@user), method: :patch, params: {is_valid: true}, class:"link" %>
-    ｜<%= link_to "新しくアカウントを作成する", user_path(@user), method: :delete, class:"link" %>
-  </p>
-</div>
+      <p>
+        <%= link_to "アカウントを復帰させる", user_unban_path(@user), method: :patch, params: {is_valid: true}, class:"link" %>
+        ｜<%= link_to "新しくアカウントを作成する", user_path(@user), method: :delete, class:"link" %>
+      </p>
+    </div>
+
+  <% else %>
+
+    <div class="page-title">
+      <% if current_user.id == @user.id %>
+        <span><strong>My page</strong></span>
+      <% else %>
+        <span><strong>User details</strong></span>
+      <% end %>
+    </div>
+
+    <div class="page-title-baned">
+      <h2><strong><%= @user.nick_name %>様は既に退会済み、<br>もしくは管理者によってアカウントが凍結されています。</strong></h2>
+    </div>
+  <% end %>
 <% else %>
 
   <div class="page-title">

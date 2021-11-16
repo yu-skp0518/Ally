@@ -8,7 +8,7 @@
       <h3 class="text-center">書籍情報</h3>
 
       <table class="books-new__base-info">
-        <td><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer", class:"book-image" %></td>
+        <td title="楽天ブックスに移動します"><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer", class:"book-image" %></td>
 
         <tbody>
           <tr>
@@ -65,19 +65,25 @@
               </tr>
               <tr>
                 <th class="books-new__base-info-theme"><%= f.label :"購入した背景" %></th>
-                <td class="books-new__base-info-data"><%= f.text_area :story, placeholder: "背景を記入", autofocus: true, rows:"4", cols:"40", class:"books-edit__background-story" %></td>
+                <td class="books-new__base-info-data"><%= f.text_area :story, placeholder: "300字以内で記入", autofocus: true, rows:"4", cols:"40", class:"books-edit__background-story" %></td>
               </tr>
+
+            <% if @book.errors.any? %>
+              <tr>
+                <th class="books-new__base-info-theme text-danger"><%= @book.errors.count %>件のエラー</th>
+                <td class="books-new__base-info-data">
+                  <ul class="list-unstyled">
+                    <% @book.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </td>
+              </tr>
+            <% end %>
+
             </tbody>
           </table>
-          <font color="red"><%= flash[:create_failure] %></font>
-          <% if @book.errors.any? %>
-            <h5 class="text-danger"><%= @book.errors.count %>件のエラー</h5>
-            <ul class="list-unstyled text-danger">
-              <% @book.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
-          <% end %>
+
           <%= f.hidden_field :keyword, value: params[:keyword] %>
           <%= f.submit "新規投稿", class: "btn btn-primary books-new__submit-button" %>
         <% end %>
