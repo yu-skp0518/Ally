@@ -70,6 +70,14 @@
             </tbody>
           </table>
           <font color="red"><%= flash[:create_failure] %></font>
+          <% if @book.errors.any? %>
+            <h5 class="text-danger"><%= @book.errors.count %>件のエラー</h5>
+            <ul class="list-unstyled text-danger">
+              <% @book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
           <%= f.hidden_field :keyword, value: params[:keyword] %>
           <%= f.submit "新規投稿", class: "btn btn-primary books-new__submit-button" %>
         <% end %>

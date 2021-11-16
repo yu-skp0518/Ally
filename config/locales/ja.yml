@@ -1,5 +1,47 @@
 ja:
   activerecord:
+    attributes:
+      admin:
+        email: メールアドレス
+        password: パスワード
+      user:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード(確認用)
+        name: アカウント名
+        nick_name: 表示名
+        profile: 自己紹介
+        profile_image_id: 自己紹介画像
+        is_valid: 有効フラグ
+      genre:
+        name: ジャンル名
+      subject:
+        name: 科目名
+      book:
+        genre: ジャンル
+        subject: 科目名
+        isbn: ''
+        title: 書籍タイトル
+        author: 著者
+        item_caption: 商品説明
+        item_url: 楽天ブックスURL
+        publisher_name: 出版社
+        item_price: 価格
+        large_image_url: 商品画像(大)
+        medium_image_url: 商品画像(中)
+        small_image_url: 商品画像(小)
+        story: 購入した背景
+        rate: 主観的評価
+        is_deleted: 削除フラグ
+      comment:
+        body: 本文
+      inquirie:
+        name: 名前
+        email: メールアドレス
+        status: 対応ステータス
+        category: カテゴリー
+        title: 標題
+        body: 本文
     models:
       admin: 管理者情報
       bookmark: お気に入り
@@ -215,43 +257,4 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-  attributes:
-    admin:
-      email: メールアドレス
-      password: パスワード
-    user:
-      email: メールアドレス
-      password: パスワード
-      password_confirmation: パスワード(確認用)
-      name: アカウント名
-      nick_name: 表示名
-      profile: 自己紹介
-      profile_image_id: 自己紹介画像
-      is_valid: 有効フラグ
-    genre:
-      name: ジャンル名
-    subject:
-      name: 科目名
-    book:
-      isbn: 書籍番号
-      title: 書籍タイトル
-      author: 著者
-      item_caption: 商品説明
-      item_url: 楽天ブックスURL
-      publisher_name: 出版社
-      item_price: 価格
-      large_image_url: 商品画像(大)
-      medium_image_url: 商品画像(中)
-      small_image_url: 商品画像(小)
-      story: 購入した背景
-      rate: 主観的評価
-      is_deleted: 削除フラグ
-    comment:
-      body: 本文
-    inquirie:
-      name: 名前
-      email: メールアドレス
-      status: 対応ステータス
-      category: カテゴリー
-      title: 標題
-      body: 本文
+
