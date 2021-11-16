@@ -27,7 +27,7 @@
 
                   <td class="admin-users-index__base-info-data">
                   <%= link_to admin_user_path(user.id) do %>
-                    <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no-image.jpeg", size: "40x40" %>
+                    <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "reading.jpg", size: "40x40" %>
                   <% end %>
                   </td>
                   <td class="admin-users-index__base-info-data"><%= user.id %></td>
