@@ -19,18 +19,23 @@
               <tbody>
                 <tr>
                   <th class="bookmarks-index__base-info-theme"></th>
+                  <th class="bookmarks-index__base-info-theme">ジャンル・科目</th>
                   <th class="bookmarks-index__base-info-theme">タイトル</th>
                   <th class="bookmarks-index__base-info-theme">投稿したユーザー</th>
+                  <th class="bookmarks-index__base-info-theme">コメント数</th>
                   <th class="bookmarks-index__base-info-theme">投稿日</th>
                 </tr>
 
                   <td class="bookmarks-index__base-info-data">
                     <%= link_to (image_tag(bookmark.book.small_image_url)), bookmark.book.item_url, target: :_blank, rel: "noopener noreferrer" %>&nbsp;&nbsp;
+                  </td>
+                  <td class="bookmarks-index__base-info-data">
                     <span class="badge bg-success"><%= link_to bookmark.book.genre.name, genre_path(bookmark.book.genre.id), class:"link" %></span>&nbsp;&nbsp;
                     <span class="badge bg-primary"><%= link_to bookmark.book.subject.name, subject_path(bookmark.book.subject.id), class:"link" %></span>
                   </td>
                   <td class="bookmarks-index__base-info-data"><%= link_to bookmark.book.title, book_path(bookmark.book.id), class:"link" %></td>
                   <td class="bookmarks-index__base-info-data"><%= link_to bookmark.book.user.nick_name, user_path(bookmark.book.user.id), class:"link" %></td>
+                  <td class="bookmarks-index__base-info-data"><%= bookmark.book.comments.count %></td>
                   <td class="bookmarks-index__base-info-data"><%= bookmark.book.created_at.to_s(:datetime) %></td>
                 </tr>
               </tbody>

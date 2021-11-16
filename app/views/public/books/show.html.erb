@@ -8,7 +8,7 @@
       <div class="books-show__books-info-items">
 
         <table class="books-show__base-info">
-        <td><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer" %></td>
+        <td title="楽天ブックスに移動します"><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer" %></td>
 
           <!--ブックマークボタン-->
           <% if @book.bookmarked_by?(current_user) %>
@@ -88,7 +88,7 @@
                 <%= comment.body %><br>
 
                   <% if comment.score.to_f < 0.0 %>
-                    <i class="fas fa-exclamation-triangle text-warning"></i>
+                    <i class="fas fa-exclamation-triangle text-warning", title="不適切な内容であると判断した場合、&#13;&#10;管理者によって削除される可能性があります。" ></i>
                   <% end %>
 
                   <%= comment.created_at.to_s(:datetime) %>
