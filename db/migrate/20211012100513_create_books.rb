@@ -14,7 +14,7 @@ class CreateBooks < ActiveRecord::Migration[5.2]
       t.string :large_image_url, null: false
       t.string :medium_image_url, null: false
       t.string :small_image_url, null: false
-      t.text :story
+      t.text :story, null: false
       t.float :rate
       t.boolean :is_deleted, null: false, default: false
 
