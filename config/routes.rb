@@ -54,10 +54,10 @@ Rails.application.routes.draw do
   # 管理側
   namespace :admin do
 
-    resources :genres, except: [:new]
+    resources :genres, only: [:index, :show, :create]
     resources :subjects, except: [:new]
 
-    resources :books, only: [:index, :show, :update] do
+    resources :books, only: [:show, :update] do
       resources :comments, only: [:index, :destroy]
     end
 
