@@ -7,8 +7,8 @@ class Public::GenresController < ApplicationController
 
   def show
     @genre = Genre.find(params[:id])
-    @books = @genre.books.all
-    @amount = @genre.books.count
+    @books = @genre.books.where(is_deleted: false)
+    @amount = @genre.books.where(is_deleted: false).count
   end
 
 end

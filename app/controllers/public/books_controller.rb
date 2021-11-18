@@ -69,6 +69,13 @@ class Public::BooksController < ApplicationController
     end
   end
 
+  def disenable
+    @book = Book.find(params[:book_id])
+    @book.update(is_deleted: true)
+    flash[:disenabled] = "投稿を削除しました!"
+    redirect_to user_path(current_user)
+  end
+
   private
   def book_params
     params.require(:book).permit(:isbn, :title, :author, :item_caption, :item_url, :publisher_name, :item_price, :large_image_url, :medium_image_url, :small_image_url, :story, :rate, :subject_id, :genre_id)

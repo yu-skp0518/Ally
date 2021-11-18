@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = Book.where(user_id: @user.id).order(created_at: :desc)
+    @books = Book.where(user_id: @user.id, is_deleted: false).order(created_at: :desc)
     @comments = Comment.joins(:likes).where(likes: {user_id: params[:id]})
   end
 

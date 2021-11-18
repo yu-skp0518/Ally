@@ -50,9 +50,24 @@
                   <th class="books-edit__base-info-theme"><%= f.label :"購入した背景" %></th>
                   <td class="books-edit__base-info-data"><%= f.text_area :story, placeholder: "背景を記入", autofocus: true, rows:"4", cols:"40", class:"books-edit__background-story" %></td>
                 </tr>
+
+            <% if @book.errors.any? %>
+              <tr>
+                <th class="books-new__base-info-theme text-danger"><%= @book.errors.count %>件のエラー</th>
+                <td class="books-new__base-info-data">
+                  <ul class="list-unstyled">
+                    <% @book.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </td>
+              </tr>
+            <% end %>
+
               </tbody>
             </table>
 
+          <%= link_to "投稿を削除する", book_disenable_path(@book), class: "btn btn-danger books-edit__disenable-button", method: :patch, data: {confirm: "本当に削除しますか？"} %>
           <%= f.submit "編集内容を保存する", class: "btn btn-primary books-edit__submit-button" %>
         <% end %>
     </div>

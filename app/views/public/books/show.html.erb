@@ -6,7 +6,9 @@
     <div class="books-show__books-info">
 
       <div class="books-show__books-info-items">
-
+        <% if @book.is_deleted == true %>
+          <font color="red"><p><strong>削除済みの投稿</strong></p></font>
+        <% end %>
         <table class="books-show__base-info">
         <td title="楽天ブックスに移動します"><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer" %></td>
 
@@ -66,12 +68,20 @@
 
     </div>
     <div class="books-show__books-comments-form">
-      <p>コメントを新しい順で<%= @amount %>件表示（全<%= @amounts %>件）</p>
-      <!--コメント投稿フォーム-->
-      <%= form_with model:[@book,@comment], local: true do |f| %>
-        <%= f.text_area :body, size:"60x3", rows:'3', placeholder: "コメントを入力", autofocus: true %>
-        <p><%= f.submit "送信する" %></p>
+
+
+      <% if @book.is_deleted == false %>
+        <!--コメント投稿フォーム-->
+        <%= form_with model:[@book,@comment], local: true do |f| %>
+          <%= f.text_area :body, size:"60x3", rows:'3', placeholder: "コメントを入力", autofocus: true %>
+          <p><%= f.submit "送信する" %></p>
+        <% end %>
+
+      <% else %>
+        <font color="red"><p><strong>削除済みの投稿のため新たにコメントをつけることはできません。</strong></p></font>
       <% end %>
+
+      <p>コメントを新しい順で<%= @amount %>件表示（全<%= @amounts %>件）</p>
       <%= flash[:notice] %>
       <div class="books-show__books-comments">
         <!--コメント一覧-->

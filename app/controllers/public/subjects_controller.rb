@@ -3,12 +3,11 @@ class Public::SubjectsController < ApplicationController
 
   def index
     @subjects = Subject.all
-    @subject = Subject.new
   end
 
   def show
     @subject = Subject.find(params[:id])
-    @books = @subject.books.all
-    @amount = @subject.books.count
+    @books = @subject.books.where(is_deleted: false)
+    @amount = @subject.books.where(is_deleted: false).count
   end
 end

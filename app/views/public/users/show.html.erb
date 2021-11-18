@@ -45,6 +45,7 @@
             <% end %>
             <%= flash[:re_enabled] %>
             <%= flash[:success] %>
+            <%= flash[:disenabled] %>
             <tr>
               <% if current_user != @user %>
                 <% if current_user.following?(@user) %>
@@ -92,7 +93,7 @@
 
   <div class="users-show__book-list">
     <div class="users-show__page-subtitle">
-      <h4><strong><%= @user.nick_name %>の投稿（全<%= @user.books.count %>件）</strong></h4>
+      <h4><strong><%= @user.nick_name %>の投稿（全<%= @books.count %>件）</strong></h4>
     </div>
 
 

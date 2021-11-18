@@ -17,7 +17,7 @@
                   <th class="subjects-index__base-info-theme"><%= link_to subject.name, subject_path(subject.id), class:"link" %></th>
                 </tr>
                 <tr>
-                  <td class="subjects-index__base-info-data">該当の書籍<%= subject.books.count %>件</td>
+                  <td class="subjects-index__base-info-data">該当の書籍<%= subject.books.where(is_deleted: false).count %>件</td>
                 </tr>
               </tbody>
             </table>

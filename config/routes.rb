@@ -26,7 +26,9 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :update, :show]
     resources :subjects, only: [:index, :update, :show]
 
-    resources :books do
+    resources :books, except: [:destroy] do
+      patch 'disenable'
+
       resources :bookmarks, only: [:create, :destroy]
       resources :comments, only: [:index, :create, :destroy] do
         resources :likes, only: [:create, :destroy]
