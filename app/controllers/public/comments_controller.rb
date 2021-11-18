@@ -11,6 +11,9 @@ class Public::CommentsController < ApplicationController
       redirect_to book_path(@book.id)
       flash[:notice] = "コメントが投稿されました。"
     else
+      @book = Book.find(params[:book_id])
+      @comments = @book.comments.all.order(created_at: :desc).page(params[:page])
+      @comment.score = Language.get_data(comment_params[:body])
       render 'public/books/show'
     end
   end
@@ -21,6 +24,9 @@ class Public::CommentsController < ApplicationController
     if @comment.destroy
       redirect_to request.referer
     else
+      @book = Book.find(params[:book_id])
+      @comments = @book.comments.all.order(created_at: :desc).page(params[:page])
+      @comment.score = Language.get_data(comment_params[:body])
       render 'public/book#show'
     end
   end

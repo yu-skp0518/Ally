@@ -72,13 +72,13 @@
 
       <% if @book.is_deleted == false %>
         <!--コメント投稿フォーム-->
-        <%= form_with model:[@book,@comment], local: true do |f| %>
-          <%= f.text_area :body, size:"60x3", rows:'3', placeholder: "コメントを入力", autofocus: true %>
+        <%= form_with model:[@book,@comment], method: :post, local: true do |f| %>
+          <%= f.text_area :body, size:"60x3", rows:'3', placeholder: "200字以内で入力", autofocus: true %>
           <p><%= f.submit "送信する" %></p>
         <% end %>
 
       <% else %>
-      
+
         <font color="red"><p><strong>削除済みの投稿のため新たにコメントをつけることはできません。</strong></p></font>
       <% end %>
 
@@ -126,8 +126,6 @@
 
       </div>
       <div class="justify-content-center">
-      <!--ページネーション-->
-        <%= paginate @comments %>
       </div>
     </div>
 </div>

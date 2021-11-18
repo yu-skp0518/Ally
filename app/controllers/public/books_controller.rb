@@ -39,7 +39,6 @@ class Public::BooksController < ApplicationController
       flash[:create_success] = "新規投稿を作成しました！"
       redirect_to book_path(@book.id)
     else
-      book = RakutenWebService::Books::Book.search(isbn: params[:book][:isbn]).first
       render :new
     end
   end

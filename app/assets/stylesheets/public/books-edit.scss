@@ -73,8 +73,12 @@
     }
 
     &__submit-button {
-      position: absolute;
-      bottom: 20px;
-      right: 145px;
+      margin-right: 20px;
+    }
+
+    &__buttons {
+      height: 100%;
+      margin-top: 40px;
+      margin-left: 90px;
     }
 }

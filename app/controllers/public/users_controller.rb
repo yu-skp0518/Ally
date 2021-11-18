@@ -10,6 +10,7 @@ class Public::UsersController < ApplicationController
   def quit
     @user = current_user
     @user.update(is_valid: false)
+    @user.books.update(is_deleted: true)
     reset_session
     redirect_to root_path
   end
@@ -31,6 +32,7 @@ class Public::UsersController < ApplicationController
   def unban
     @user = User.find(params[:user_id])
     @user.update(is_valid: true)
+    @user.books.update(is_deleted: false)
     flash[:re_enabled] = "アカウントを再度有効にしました!"
     redirect_to user_path(current_user)
   end
