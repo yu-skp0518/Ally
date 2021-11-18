@@ -18,7 +18,11 @@
 
               <tbody>
                 <tr>
-                  <th class="bookmarks-index__base-info-theme"></th>
+                  <th class="bookmarks-index__base-info-theme">
+                    <% if bookmark.book.is_deleted == true %>
+                      <font color="red"><p><strong>削除済みの投稿</strong></p></font>
+                    <% end %>
+                  </th>
                   <th class="bookmarks-index__base-info-theme">ジャンル・科目</th>
                   <th class="bookmarks-index__base-info-theme">タイトル</th>
                   <th class="bookmarks-index__base-info-theme">投稿したユーザー</th>
@@ -34,7 +38,12 @@
                     <span class="badge bg-primary"><%= link_to bookmark.book.subject.name, subject_path(bookmark.book.subject.id), class:"link" %></span>
                   </td>
                   <td class="bookmarks-index__base-info-data"><%= link_to bookmark.book.title, book_path(bookmark.book.id), class:"link" %></td>
-                  <td class="bookmarks-index__base-info-data"><%= link_to bookmark.book.user.nick_name, user_path(bookmark.book.user.id), class:"link" %></td>
+                  <td class="bookmarks-index__base-info-data">
+                    <%= link_to bookmark.book.user.nick_name, user_path(bookmark.book.user.id), class:"link" %>
+                    <% if bookmark.book.user.is_valid == false %>
+                      <font color="red", size="2.5px"><p><strong>(退会済み)</strong></p></font>
+                    <% end %>
+                  </td>
                   <td class="bookmarks-index__base-info-data"><%= bookmark.book.comments.count %></td>
                   <td class="bookmarks-index__base-info-data"><%= bookmark.book.created_at.to_s(:datetime) %></td>
                 </tr>

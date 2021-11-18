@@ -14,7 +14,7 @@ class User < ApplicationRecord
   # 中間テーブル
   has_many :comments, dependent: :destroy, through: :likes
   has_many :likes, dependent: :destroy, through: :comments
-  has_many :bookmarks, dependent: :destroy, through: :books
+  has_many :bookmarks, dependent: :destroy
 
   # フォロー機能
   has_many :relationships, class_name: "Relationship", foreign_key: "following_id", dependent: :destroy
