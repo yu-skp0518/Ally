@@ -4,6 +4,7 @@
 
   <!--投稿フォーム-->
   <div class="books-search__form">
+    <%= flash[:failure] %>
     <%= form_with(model: @genre, :url => {:controller => "admin/genres"}) do |f| %>
       <%= f.text_field :name, placeholder: "ジャンル名を入力", autofocus: true, autocomplete: "ジャンル名を入力" %>
       <%= f.submit '新規作成', class: "btn btn-success", rows:"1", cols:"40" %>
@@ -19,7 +20,6 @@
 
     <div class="admin-genres-index__result-wrapper">
       <div class="admin-genres-index__result-wrapper-inner">
-
         <% @genres.each do |genre| %>
           <div class="admin-genres-index__result">
 

@@ -8,6 +8,9 @@
       <div class="admin-books-show__books-info-items">
 
         <table class="admin-books-show__base-info">
+          <% if @book.is_deleted == true %>
+            <font color="red"><p><strong>削除済みの投稿</strong></p></font>
+          <% end %>
         <td><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer" %></td>
 
         <tbody>

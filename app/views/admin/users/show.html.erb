@@ -73,6 +73,9 @@
           <div class="admin-users-show__book-list-items">
 
             <div class="admin-users-show__book-list-picture text-center" >
+              <% if book.is_deleted == true %>
+                <font color="red"><p><strong>削除済みの投稿</strong></p></font>
+              <% end %>
               <span>
                 <%= link_to (image_tag(book.small_image_url)), book.item_url, target: :_blank, rel: "noopener noreferrer" %>
                 <%= link_to book.title, admin_book_path(book.id) %>
