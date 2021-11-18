@@ -14,6 +14,7 @@ class Admin::SubjectsController < ApplicationController
        redirect_to admin_subjects_path
     else
        @subjects = Subject.all
+       flash[:failure] = "投稿に失敗しました"
        render 'admin/subject#index'
     end
   end

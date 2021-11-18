@@ -18,7 +18,11 @@
 
               <tbody>
                 <tr>
-                  <th class="admin-subjects-show__base-info-theme"></th>
+                  <th class="admin-subjects-show__base-info-theme">
+                    <% if book.is_deleted == true %>
+                      <font color="red"><p><strong>削除済みの投稿</strong></p></font>
+                    <% end %>
+                  </th>
                   <th class="admin-subjects-show__base-info-theme">タイトル</th>
                   <th class="admin-subjects-show__base-info-theme">投稿したユーザー</th>
                   <th class="admin-subjects-show__base-info-theme">投稿日</th>

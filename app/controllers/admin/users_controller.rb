@@ -13,6 +13,12 @@ class Admin::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
+      # ステータス更新と共に紐づいた投稿も削除or有効にする
+      if @user.is_valid == true
+        @user.books.update(is_deleted: false)
+      else
+        @user.books.update(is_deleted: true)
+      end
       flash[:success] = "変更内容を保存しました!"
       redirect_to admin_user_path(@user)
     else
