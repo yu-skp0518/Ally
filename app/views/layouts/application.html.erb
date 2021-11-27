@@ -42,6 +42,7 @@
                 <% end %>
               </nav-item>
 
+            <!--ユーザーが退会済みの場合は表示させない-->
             <% unless current_user.is_valid == false %>
 
                <nav-item>
@@ -77,7 +78,18 @@
                     </i>
                 <% end %>
               </nav-item>
+
+            <!--キーワード検索バー-->
+            <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
+              <%= f.label :キーワードで検索 %>
+              <%= f.text_field :content %>
+              <%= f.select :model, options_for_select({ "ユーザー" => "user", "参考書" => "book" }) %>
+              <%= f.select :how, options_for_select({ "完全一致" => "match", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partical" }) %>
+              <%= f.submit "検索", class: "btn btn-primary" %>
+            <% end %>
+
             </div>
+
             <!--管理者がログインしている場合-->
             <% elsif admin_signed_in? %>
 
