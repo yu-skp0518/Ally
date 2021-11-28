@@ -52,6 +52,8 @@ Rails.application.routes.draw do
 
   # 管理側
   namespace :admin do
+    get 'searches/search'
+
     resources :genres, only: [:index, :show, :create]
     resources :subjects, except: [:new]
     resources :books, only: [:show, :update] do
