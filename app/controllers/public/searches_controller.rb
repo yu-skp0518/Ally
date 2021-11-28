@@ -1,56 +1,36 @@
 class Public::SearchesController < ApplicationController
 
-  # def search
-  #     @content = params[search][content]
-  #     @how = params[search][how]
-  #     @model = params[search][model]
-  #     @datas = search_for(@how, @model, @content)
-  # end
+  def search
+    @keyword = params[:keyword]
+    @how = params[:how]
+    @model = params[:model]
+    @datas = search_for(@how, @model, @keyword)
+  end
 
 private
 
-  def match(model, content)
+  def match(model, keyword)
     if model == 'user'
-      User.where(name: content)
+      User.where(name: keyword)
     elsif model == 'book'
-      Book.where(title: content)
+      Book.where(title: keyword)
     end
   end
 
-  def forward(model, content)
+  def partical(model, keyword)
     if model == 'user'
-      User.where('nick_name LIKE ?', "#{content}%")
+      User.where('nick_name LIKE ?', "%#{keyword}%")
     elsif model == 'book'
-      Book.where('title LIKE ?', "#{content}%")
+      Book.where('title LIKE ?', "%#{keyword}%")
     end
   end
 
-  def backward(model, content)
-    if model == 'user'
-      User.where('nick_name LIKE ?', "%#{content}")
-    elsif model == 'book'
-      Book.where('title LIKE ?', "%#{content}")
-    end
-  end
-
-  def partical(model, content)
-    if model == 'user'
-      User.where('nick_name LIKE ?', "%#{content}%")
-    elsif model == 'book'
-      Book.where('title LIKE ?', "%#{content}%")
-    end
-  end
-
-  def search_for(how, model, content)
+  def search_for(how, model, keyword)
     case how
     when 'match'
-      match(model, content)
-    when 'forward'
-      forward(model, content)
-    when 'backward'
-      backward(model, content)
+      match(model, keyword)
     when 'partical'
-      partical(model, content)
+      partical(model, keyword)
     end
   end
 
