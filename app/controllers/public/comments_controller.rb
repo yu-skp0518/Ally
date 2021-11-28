@@ -7,14 +7,19 @@ class Public::CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.book_id = @book.id
     @comment.score = Language.get_data(comment_params[:body])
+
     if @comment.save
       redirect_to book_path(@book.id)
       flash[:notice] = "コメントが投稿されました。"
+
     else
       @book = Book.find(params[:book_id])
       @comments = @book.comments.all.order(created_at: :desc).page(params[:page])
       @comment.score = Language.get_data(comment_params[:body])
+      @amount = @comments.count
+      @amounts = @book.comments.all.count
       render 'public/books/show'
+      flash[:alert] = "コメントの投稿に失敗しました。"
     end
   end
 

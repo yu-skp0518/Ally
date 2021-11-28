@@ -84,6 +84,7 @@
 
       <p>コメントを新しい順で<%= @amount %>件表示（全<%= @amounts %>件）</p>
       <%= flash[:notice] %>
+      <font color="red"><%= flash[:alert] %></font>
       <div class="books-show__books-comments">
         <!--コメント一覧-->
         <% if @comments.any? %>
