@@ -1,17 +1,24 @@
 class Public::SearchesController < ApplicationController
 
   def search
-    @keyword = params[:keyword]
-    @how = params[:how]
-    @model = params[:model]
-    @datas = search_for(@how, @model, @keyword)
+    if params[:keyword].present?
+      @keyword = params[:keyword]
+      @how = params[:how]
+      @model = params[:model]
+      @datas = search_for(@how, @model, @keyword)
+      if @model == 'user'
+        @book = Book.where(user_id: @datas.ids, is_deleted: false).last
+      end
+    else
+      redirect_to request.referer
+    end
   end
 
 private
 
   def match(model, keyword)
     if model == 'user'
-      User.where(name: keyword)
+      User.where(nick_name: keyword)
     elsif model == 'book'
       Book.where(title: keyword)
     end

@@ -1,26 +1,59 @@
 <% if @model == "user" %>
-  <div class="row  justify-content-center">
-    <h2>ユーザ一覧</h2>
-  </div>
 
-  <div class="row  justify-content-center">
-    <% @datas.each do |datas| %>
-    <table class="table table-striped table-bordered">
-      <thead>
-          <tr>
-              <th>ユーザー名</th>
-              </tr>
-         </thead>
-      <tbody>
-          <tr>
-              <td>
-                <%= link_to datas.nick_name, user_path(datas.id) %>
-              </td>
-          </tr>
-      </tbody>
-      </table>
-      <% end %>
-  </div>
+<div class="page-title">
+  <h2><strong>該当のユーザー</strong></h2>
+  <h2>全<%= @datas.count %>件</h2>
+</div>
+
+<div class="searches-search">
+
+
+  <% if @datas.present? %>
+
+    <div class="searches-search__result-wrapper">
+      <div class="searches-search__result-wrapper-inner">
+
+        <% @datas.each do |user| %>
+          <div class="searches-search__result">
+
+            <table class="searches-search__base-info">
+
+              <tbody>
+                <tr>
+                  <th class="searches-search__base-info-theme"></th>
+                  <th class="searches-search__base-info-theme">ユーザー名</th>
+                  <th class="searches-search__base-info-theme">投稿数</th>
+                  <th class="searches-search__base-info-theme">最新の投稿 (コメント数)</th>
+                </tr>
+
+                  <td class="searches-search__base-info-data">
+                  <%= link_to user_path(user.id) do %>
+                    <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "reading.jpg", size: "40x40" %>
+                  <% end %>
+                  </td>
+                  <td class="searches-search__base-info-data"><%= link_to user.nick_name, user_path(user), class:"link" %></td>
+                  <td class="searches-search__base-info-data"><%= user.books.count %></td>
+                  <td class="searches-search__base-info-data"><%= link_to @book.title, book_path(@book.id) %> (<%= @book.comments.count %>件)</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  <% else %>
+      <div class="searches-search__method-description">
+        <strong>
+          <h3 class="text-center"><strong>該当するユーザーはいません。</strong></h3>
+          <p></p>
+        </strong>
+      </div>
+  <% end %>
+
+</div>
+
 
 <% elsif @model == "book"%>
 

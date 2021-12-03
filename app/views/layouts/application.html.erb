@@ -31,8 +31,55 @@
 
             <ul class="list-group-horizontal navbar-nav ml-auto">
 
+            <!--管理者がログインしている場合-->
+            <% if admin_signed_in? %>
+
+            <div class="link-group">
+              <nav-item>
+                <%= link_to admin_users_path do %>
+                    <i class="far fa-address-book nav-link text-black">
+                      <strong class="menu-icon">Users</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to admin_genres_path do %>
+                    <i class="fas fa-list-ul nav-link text-black">
+                      <strong class="menu-icon">Genres</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to admin_subjects_path do %>
+                    <i class="fas fa-pen-fancy nav-link text-black">
+                      <strong class="menu-icon">Subjects</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+             <nav-item>
+                <%= link_to destroy_admin_session_path, method: :delete do %>
+                    <i class="fas fa-sign-out-alt nav-link text-black">
+                      <strong class="menu-icon">Log out</strong>
+                    </i>
+                <% end %>
+              </nav-item>
+
+            <!--キーワード検索バー-->
+            <%= form_with url: admin_searches_search_path, method: :get, local: true do |f| %>
+              <%= f.label :キーワードで検索 %>
+              <%= f.text_field :keyword %>
+              <%= f.select :model, options_for_select({ "ユーザー" => "user", "参考書" => "book" }) %>
+              <%= f.select :how, options_for_select({ "完全一致" => "match", "部分一致" => "partical" }) %>
+              <%= f.submit "検索" %>
+            <% end %>
+
+            </div>
+
             <!--ユーザーがログインしている場合-->
-            <% if user_signed_in? %>
+            <% elsif user_signed_in? %>
             <div class="link-group">
               <nav-item>
                 <%= link_to user_path(current_user) do %>
@@ -90,52 +137,7 @@
 
             </div>
 
-            <!--管理者がログインしている場合-->
-            <% elsif admin_signed_in? %>
 
-            <div class="link-group">
-              <nav-item>
-                <%= link_to admin_users_path do %>
-                    <i class="far fa-address-book nav-link text-black">
-                      <strong class="menu-icon">Users</strong>
-                    </i>
-                <% end %>
-              </nav-item>
-
-             <nav-item>
-                <%= link_to admin_genres_path do %>
-                    <i class="fas fa-list-ul nav-link text-black">
-                      <strong class="menu-icon">Genres</strong>
-                    </i>
-                <% end %>
-              </nav-item>
-
-             <nav-item>
-                <%= link_to admin_subjects_path do %>
-                    <i class="fas fa-pen-fancy nav-link text-black">
-                      <strong class="menu-icon">Subjects</strong>
-                    </i>
-                <% end %>
-              </nav-item>
-
-             <nav-item>
-                <%= link_to destroy_admin_session_path, method: :delete do %>
-                    <i class="fas fa-sign-out-alt nav-link text-black">
-                      <strong class="menu-icon">Log out</strong>
-                    </i>
-                <% end %>
-              </nav-item>
-
-            <!--キーワード検索バー-->
-            <%= form_with url: admin_searches_search_path, method: :get, local: true do |f| %>
-              <%= f.label :キーワードで検索 %>
-              <%= f.text_field :keyword %>
-              <%= f.select :model, options_for_select({ "ユーザー" => "user", "参考書" => "book" }) %>
-              <%= f.select :how, options_for_select({ "完全一致" => "match", "部分一致" => "partical" }) %>
-              <%= f.submit "検索" %>
-            <% end %>
-
-            </div>
 
             <!--いずれもログインしていない場合  -->
             <% else %>
@@ -176,7 +178,7 @@
             <!--キーワード検索バー-->
             <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
               <%= f.label :キーワードで検索 %>
-              <%= f.text_field :keyword %>
+              <%= f.text_field :keyword, placeholder: "キーワードを入力", autofocus: true %>
               <%= f.select :model, options_for_select({ "ユーザー" => "user", "参考書" => "book" }) %>
               <%= f.select :how, options_for_select({ "完全一致" => "match", "部分一致" => "partical" }) %>
               <%= f.submit "検索" %>

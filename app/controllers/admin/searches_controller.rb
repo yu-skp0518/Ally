@@ -1,10 +1,17 @@
 class Admin::SearchesController < ApplicationController
 
-def search
-    @keyword = params[:keyword]
-    @how = params[:how]
-    @model = params[:model]
-    @datas = search_for(@how, @model, @keyword)
+  def search
+    if params[:keyword].present?
+      @keyword = params[:keyword]
+      @how = params[:how]
+      @model = params[:model]
+      @datas = search_for(@how, @model, @keyword)
+      if @model == 'user'
+        @book = Book.where(user_id: @datas.ids, is_deleted: false).last
+      end
+    else
+      redirect_to request.referer
+    end
   end
 
 private
@@ -19,7 +26,7 @@ private
 
   def partical(model, keyword)
     if model == 'user'
-      User.where('nick_name LIKE ?', "%#{keyword}%")
+      User.where('name LIKE ?', "%#{keyword}%")
     elsif model == 'book'
       Book.where('title LIKE ?', "%#{keyword}%")
     end
