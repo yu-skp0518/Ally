@@ -18,7 +18,7 @@ private
 
   def match(model, keyword)
     if model == 'user'
-      User.where(nick_name: keyword)
+      User.where(nick_name: keyword).where.not(id: current_user.id)
     elsif model == 'book'
       Book.where(title: keyword)
     end
@@ -26,7 +26,7 @@ private
 
   def partical(model, keyword)
     if model == 'user'
-      User.where('nick_name LIKE ?', "%#{keyword}%")
+      User.where('nick_name LIKE ?', "%#{keyword}%").where.not(id: current_user.id)
     elsif model == 'book'
       Book.where('title LIKE ?', "%#{keyword}%")
     end

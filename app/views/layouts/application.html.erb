@@ -126,18 +126,18 @@
                 <% end %>
               </nav-item>
 
-            <!--キーワード検索バー-->
-            <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
-              <%= f.label :キーワードで検索 %>
-              <%= f.text_field :keyword %>
-              <%= f.select :model, options_for_select({ "ユーザー" => "user", "参考書" => "book" }) %>
-              <%= f.select :how, options_for_select({ "完全一致" => "match", "部分一致" => "partical" }) %>
-              <%= f.submit "検索" %>
+            <% if current_user.is_valid == true %>
+              <!--キーワード検索バー-->
+              <%= form_with url: searches_search_path, method: :get, local: true do |f| %>
+                <%= f.label :キーワードで検索 %>
+                <%= f.text_field :keyword %>
+                <%= f.select :model, options_for_select({ "ユーザー" => "user", "参考書" => "book" }) %>
+                <%= f.select :how, options_for_select({ "完全一致" => "match", "部分一致" => "partical" }) %>
+                <%= f.submit "検索" %>
+              <% end %>
             <% end %>
 
             </div>
-
-
 
             <!--いずれもログインしていない場合  -->
             <% else %>
