@@ -12,6 +12,9 @@
         <table class="books-show__base-info">
         <td title="楽天ブックスに移動します"><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer" %></td>
 
+        <p class="books-show__books-rate">投稿者の主観的評価：<strong><%= @book.rate %></strong><span class="books-show__books-rate-info">(0〜5.0)</span></p>
+
+
           <!--ブックマークボタン-->
           <% if @book.bookmarked_by?(current_user) %>
             <td><%= link_to "bookmarkから削除", book_bookmark_path(@book, [:id]), method: :delete, class:"btn btn-danger" %>
