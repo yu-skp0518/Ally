@@ -1,0 +1,127 @@
+<!--ユーザーを検索する場合-->
+<% if @model == "user" %>
+
+<div class="page-title">
+  <h2><strong>該当のユーザー</strong></h2>
+  <h2>全<%= @datas.count %>件</h2>
+</div>
+
+<div class="searches-search">
+
+
+  <% if @datas.present? %>
+
+    <div class="searches-search__result-wrapper">
+      <div class="searches-search__result-wrapper-inner">
+
+        <% @datas.each do |user| %>
+          <div class="searches-search__result">
+
+            <table class="searches-search__base-info">
+
+              <tbody>
+                <tr>
+                  <th class="searches-search__base-info-theme"></th>
+                  <th class="searches-search__base-info-theme">ユーザー名</th>
+                  <th class="searches-search__base-info-theme">投稿数</th>
+                  <th class="searches-search__base-info-theme">最新の投稿 (コメント数)</th>
+                </tr>
+
+                  <td class="searches-search__base-info-data">
+                  <%= link_to user_path(user.id) do %>
+                    <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "reading.jpg", size: "40x40" %>
+                  <% end %>
+                  </td>
+                  <td class="searches-search__base-info-data"><%= link_to user.nick_name, user_path(user), class:"link" %></td>
+                  <td class="searches-search__base-info-data"><%= user.books.count %></td>
+                  <td class="searches-search__base-info-data">
+                    <% if @book.present? %>
+                      <%= link_to @book.title, book_path(@book.id) %> (<%= @book.comments.count %>件)
+                    <% else %>
+                      　<p>まだ投稿はありません</p>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  <% else %>
+      <div class="searches-search__method-description">
+        <strong>
+          <h3 class="text-center"><strong>現在、該当するユーザーはいません</strong></h3>
+          <p></p>
+        </strong>
+      </div>
+  <% end %>
+
+</div>
+
+<!--投稿を検索する場合-->
+<% elsif @model == "book"%>
+
+<div class="page-title">
+  <h2><strong>該当の投稿</strong></h2>
+  <h2>全<%= @datas.count %>件</h2>
+</div>
+
+<div class="searches-search">
+
+
+  <% if @datas.present? %>
+
+    <div class="searches-search__result-wrapper">
+      <div class="searches-search__result-wrapper-inner">
+
+        <% @datas.each do |book| %>
+          <div class="searches-search__result">
+
+            <table class="searches-search__base-info">
+
+              <tbody>
+                <tr>
+                  <th class="searches-search__base-info-theme"></th>
+                  <th class="searches-search__base-info-theme">ジャンル・科目</th>
+                  <th class="searches-search__base-info-theme">タイトル</th>
+                  <th class="searches-search__base-info-theme">投稿したユーザー</th>
+                  <th class="searches-search__base-info-theme">コメント数</th>
+                  <th class="searches-search__base-info-theme">投稿日</th>
+                </tr>
+
+                  <td class="searches-search__base-info-data">
+                    <%= link_to (image_tag(book.small_image_url)), book.item_url, target: :_blank, rel: "noopener noreferrer" %>
+                  </td>
+                  <td class="searches-search__base-info-data">
+                    <span class="badge bg-success"><%= link_to book.genre.name, genre_path(book.genre.id), class:"link" %></span>&nbsp;&nbsp;
+                    <span class="badge bg-primary"><%= link_to book.subject.name, subject_path(book.subject.id), class:"link" %></span>
+                  </td>
+                  <td class="searches-search__base-info-data"><%= link_to book.title, book_path(book.id), class:"link" %></td>
+                  <td class="searches-search__base-info-data"><%= link_to book.user.nick_name, user_path(book.user.id), class:"link" %></td>
+                  <td class="searches-search__base-info-data"><%=  book.comments.count %></td>
+                  <td class="searches-search__base-info-data"><%=  book.created_at.to_s(:datetime) %></td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+  <% else %>
+      <div class="searches-search__method-description">
+        <strong>
+          <h3 class="text-center"><strong>現在、該当する投稿はありません</strong></h3>
+          <p></p>
+        </strong>
+      </div>
+  <% end %>
+
+</div>
+
+<% else %>
+<% end %>

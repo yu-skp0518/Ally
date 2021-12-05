@@ -20,6 +20,7 @@
                 <tr>
                   <th class="admin-users-index__base-info-theme"></th>
                   <th class="admin-users-index__base-info-theme">ユーザーID</th>
+                  <th class="admin-users-index__base-info-theme">アカウント名</th>
                   <th class="admin-users-index__base-info-theme">ユーザー名</th>
                   <th class="admin-users-index__base-info-theme">投稿数</th>
                   <th class="admin-users-index__base-info-theme">ステータス</th>
@@ -32,6 +33,7 @@
                   <% end %>
                   </td>
                   <td class="admin-users-index__base-info-data"><%= user.id %></td>
+                  <td class="admin-users-index__base-info-data"><%= link_to user.name, admin_user_path(user), class:"link" %></td>
                   <td class="admin-users-index__base-info-data"><%= link_to user.nick_name, admin_user_path(user), class:"link" %></td>
                   <td class="admin-users-index__base-info-data"><%= user.books.count %></td>
                   <td class="admin-users-index__base-info-data">

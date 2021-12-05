@@ -64,6 +64,10 @@
                 <td class="books-new__base-info-data"><%= f.collection_select :subject_id, Subject.all, :id, :name, :include_blank => "科目を選択" %></td>
               </tr>
               <tr>
+                <th class="books-new__base-info-theme">主観的評価</th>
+                <td class="books-new__base-info-data"><%= f.number_field :rate, step: "0.1", in: 0.0..5.0 %></td>
+              </tr>
+              <tr>
                 <th class="books-new__base-info-theme"><%= f.label :"購入した背景" %></th>
                 <td class="books-new__base-info-data"><%= f.text_area :story, placeholder: "300字以内で記入", autofocus: true, rows:"4", cols:"40", class:"books-edit__background-story" %></td>
               </tr>

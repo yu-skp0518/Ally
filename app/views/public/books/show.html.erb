@@ -12,9 +12,12 @@
         <table class="books-show__base-info">
         <td title="楽天ブックスに移動します"><%= link_to (image_tag(@book.large_image_url)), @book.item_url, target: :_blank, rel: "noopener noreferrer" %></td>
 
+        <p class="books-show__books-rate">投稿者の主観的評価：<strong><%= @book.rate %></strong><span class="books-show__books-rate-info">(0〜5.0)</span></p>
+
+
           <!--ブックマークボタン-->
           <% if @book.bookmarked_by?(current_user) %>
-            <td><%= link_to "bookmarkから削除", book_bookmark_path(@book), method: :delete, class:"btn btn-danger" %>
+            <td><%= link_to "bookmarkから削除", book_bookmark_path(@book, [:id]), method: :delete, class:"btn btn-danger" %>
           <% else %>
             <td><%= link_to "bookmarkに追加", book_bookmarks_path(@book), method: :post, class:"btn btn-info" %>
           <% end %>
@@ -55,7 +58,7 @@
           </tr>
           <tr>
             <th class="books-show__base-info-theme">投稿者</th>
-            <td class="books-show__base-info-data"><%= link_to @book.user.name, user_path(@book.user.id) %></td>
+            <td class="books-show__base-info-data"><%= link_to @book.user.nick_name, user_path(@book.user.id) %>さん</td>
           </tr>
           <tr>
             <th class="books-show__base-info-theme">購入した背景</th>
@@ -84,6 +87,7 @@
 
       <p>コメントを新しい順で<%= @amount %>件表示（全<%= @amounts %>件）</p>
       <%= flash[:notice] %>
+      <font color="red"><%= flash[:alert] %></font>
       <div class="books-show__books-comments">
         <!--コメント一覧-->
         <% if @comments.any? %>
@@ -106,7 +110,7 @@
 
                   <!--いいねボタン-->
                   <% if comment.liked_by?(current_user) %>
-                    <%= link_to comment.likes.count, book_comment_like_path(@book,comment), method: :delete, class: "fas fa-heart heart_red" %>
+                    <%= link_to comment.likes.count, book_comment_like_path(@book,comment,[:id]), method: :delete, class: "fas fa-heart heart_red" %>
                   <% else %>
                     <%= link_to comment.likes.count, book_comment_likes_path(@book,comment), method: :post, class: "fas fa-heart heart_blue" %>
                   <% end %>
