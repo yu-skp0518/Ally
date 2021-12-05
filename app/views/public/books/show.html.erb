@@ -58,7 +58,7 @@
           </tr>
           <tr>
             <th class="books-show__base-info-theme">投稿者</th>
-            <td class="books-show__base-info-data"><%= link_to @book.user.name, user_path(@book.user.id) %></td>
+            <td class="books-show__base-info-data"><%= link_to @book.user.nick_name, user_path(@book.user.id) %>さん</td>
           </tr>
           <tr>
             <th class="books-show__base-info-theme">購入した背景</th>
