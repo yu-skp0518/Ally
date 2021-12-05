@@ -49,7 +49,7 @@
             <tr>
               <% if current_user != @user %>
                 <% if current_user.following?(@user) %>
-                  <td class="users-show__base-info-data"><%= link_to "unfollow", user_relationship_path(@user.id), method: :delete, class: "btn btn-info" %></td>
+                  <td class="users-show__base-info-data"><%= link_to "unfollow", user_relationship_path(@user.id, ), method: :delete, class: "btn btn-info" %></td>
                 <% else %>
                   <td class="users-show__base-info-data"><%= link_to "follow", user_relationships_path(@user.id), method: :post, class: "btn btn-success" %></td>
                 <% end %>

@@ -30,10 +30,12 @@
                 </tr>
                 <tr>
                   <th>
-                    <% if current_user.following?(user) %>
-                      <%= link_to "unfollow", user_relationship_path(user, :id), method: :delete, class: "btn btn-info" %></td>
-                    <% else %>
-                      <%= link_to "follow", user_relationships_path(user.id), method: :post, class: "btn btn-success" %></td>
+                    <% if current_user != user %>
+                      <% if current_user.following?(user) %>
+                        <%= link_to "unfollow", user_relationship_path(user, :id), method: :delete, class: "btn btn-info" %></td>
+                      <% else %>
+                        <%= link_to "follow", user_relationships_path(user.id), method: :post, class: "btn btn-success" %></td>
+                      <% end %>
                     <% end %>
                 </th>
                   <th class="followers-index__base-info-theme">プロフィール</th>

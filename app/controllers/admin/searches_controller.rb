@@ -7,7 +7,7 @@ class Admin::SearchesController < ApplicationController
       @model = params[:model]
       @datas = search_for(@how, @model, @keyword)
       if @model == 'user'
-        @book = Book.where(user_id: @datas.ids, is_deleted: false).last
+        @book = Book.where(user_id: @datas.ids).last
       end
     else
       redirect_to request.referer
@@ -18,7 +18,7 @@ private
 
   def match(model, keyword)
     if model == 'user'
-      User.where(name: keyword)
+      User.where(nick_name: keyword).or(User.where(name: keyword))
     elsif model == 'book'
       Book.where(title: keyword)
     end
@@ -26,7 +26,7 @@ private
 
   def partical(model, keyword)
     if model == 'user'
-      User.where('name LIKE ?', "%#{keyword}%")
+      User.where('nick_name LIKE ?', "%#{keyword}%").or(User.where('name LIKE ?', "%#{keyword}%"))
     elsif model == 'book'
       Book.where('title LIKE ?', "%#{keyword}%")
     end

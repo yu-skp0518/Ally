@@ -22,9 +22,12 @@
               <tbody>
                 <tr>
                   <th class="admin-searches-search__base-info-theme"></th>
+                  <th class="admin-searches-search__base-info-theme">ユーザーID</th>
+                  <th class="admin-searches-search__base-info-theme">アカウント名</th>
                   <th class="admin-searches-search__base-info-theme">ユーザー名</th>
                   <th class="admin-searches-search__base-info-theme">投稿数</th>
-                  <th class="admin-searches-search__base-info-theme">最新の投稿 (コメント数)</th>
+                  <th class="admin-searches-search__base-info-theme">ステータス</th>
+                  <th class="admin-searches-search__base-info-theme">登録日</th>
                 </tr>
 
                   <td class="admin-searches-search__base-info-data">
@@ -32,15 +35,18 @@
                     <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "reading.jpg", size: "40x40" %>
                   <% end %>
                   </td>
+                  <td class="admin-searches-search__base-info-data"><%= user.id %></td>
+                  <td class="admin-searches-search__base-info-data"><%= link_to user.name, admin_user_path(user), class:"link" %></td>
                   <td class="admin-searches-search__base-info-data"><%= link_to user.nick_name, admin_user_path(user), class:"link" %></td>
                   <td class="admin-searches-search__base-info-data"><%= user.books.count %></td>
                   <td class="admin-searches-search__base-info-data">
-                    <% if @book.present? %>
-                      <%= link_to @book.title, admin_book_path(@book.id) %> (<%= @book.comments.count %>件)
+                    <% if user.is_valid == false %>
+                      <strong class="text-danger">退会済み</strong>
                     <% else %>
-                      　<p>まだ投稿はありません</p>
+                      <strong class="text-success">有効</strong>
                     <% end %>
                   </td>
+                  <td class="admin-searches-search__base-info-data"><%= user.created_at.to_s(:datetime) %></td>
                 </tr>
               </tbody>
             </table>
