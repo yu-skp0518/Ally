@@ -14,7 +14,7 @@
 
           <!--ブックマークボタン-->
           <% if @book.bookmarked_by?(current_user) %>
-            <td><%= link_to "bookmarkから削除", book_bookmark_path(@book), method: :delete, class:"btn btn-danger" %>
+            <td><%= link_to "bookmarkから削除", book_bookmark_path(@book, [:id]), method: :delete, class:"btn btn-danger" %>
           <% else %>
             <td><%= link_to "bookmarkに追加", book_bookmarks_path(@book), method: :post, class:"btn btn-info" %>
           <% end %>
@@ -107,7 +107,7 @@
 
                   <!--いいねボタン-->
                   <% if comment.liked_by?(current_user) %>
-                    <%= link_to comment.likes.count, book_comment_like_path(@book,comment), method: :delete, class: "fas fa-heart heart_red" %>
+                    <%= link_to comment.likes.count, book_comment_like_path(@book,comment,[:id]), method: :delete, class: "fas fa-heart heart_red" %>
                   <% else %>
                     <%= link_to comment.likes.count, book_comment_likes_path(@book,comment), method: :post, class: "fas fa-heart heart_blue" %>
                   <% end %>

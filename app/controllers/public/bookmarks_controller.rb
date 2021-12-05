@@ -10,7 +10,7 @@ class Public::BookmarksController < ApplicationController
   end
 
   def destroy
-    @book = Book.find(params[:id])
+    @book = Book.find(params[:book_id])
     @user = current_user
     @bookmark = @user.bookmarks.find_by(user_id: @user.id, book_id: @book.id)
     @bookmark.destroy
