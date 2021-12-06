@@ -22,9 +22,10 @@
               <tbody>
                 <tr>
                   <th class="searches-search__base-info-theme"></th>
+                  <th class="searches-search__base-info-theme">アカウントID</th>
                   <th class="searches-search__base-info-theme">ユーザー名</th>
                   <th class="searches-search__base-info-theme">投稿数</th>
-                  <th class="searches-search__base-info-theme">最新の投稿 (コメント数)</th>
+                  <th class="searches-search__base-info-theme">プロフィール</th>
                 </tr>
 
                   <td class="searches-search__base-info-data">
@@ -32,13 +33,14 @@
                     <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "reading.jpg", size: "40x40" %>
                   <% end %>
                   </td>
+                  <td class="searches-search__base-info-data"><%= link_to user.name, user_path(user), class:"link" %></td>
                   <td class="searches-search__base-info-data"><%= link_to user.nick_name, user_path(user), class:"link" %></td>
                   <td class="searches-search__base-info-data"><%= user.books.count %></td>
                   <td class="searches-search__base-info-data">
-                    <% if @book.present? %>
-                      <%= link_to @book.title, book_path(@book.id) %> (<%= @book.comments.count %>件)
+                    <% if user.profile.present? %>
+                      <%= user.profile %>
                     <% else %>
-                      　<p>まだ投稿はありません</p>
+                      <p>未設定</p>
                     <% end %>
                   </td>
                 </tr>

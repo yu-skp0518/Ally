@@ -6,9 +6,6 @@ class Public::SearchesController < ApplicationController
       @how = params[:how]
       @model = params[:model]
       @datas = search_for(@how, @model, @keyword)
-      if @model == 'user'
-        @book = Book.where(user_id: @datas.ids, is_deleted: false).last
-      end
     else
       redirect_to request.referer
     end
