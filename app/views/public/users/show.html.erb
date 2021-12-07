@@ -110,10 +110,8 @@
           <div class="users-show__book-list-items">
 
             <div class="users-show__book-list-picture text-center" >
-              <span>
                 <%= link_to (image_tag(book.small_image_url)), book.item_url, target: :_blank, rel: "noopener noreferrer" %>
                 <%= link_to book.title, book_path(book.id) %>
-              </span><br>
             </div>
             <div class="users-show__book-list-data text-right">
               <span>
