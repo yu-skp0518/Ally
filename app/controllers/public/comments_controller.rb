@@ -11,7 +11,7 @@ class Public::CommentsController < ApplicationController
       redirect_to book_path(@book.id)
       flash[:notice] = "コメントが投稿されました。"
     else
-      redirect_to request.referer
+      redirect_back fallback_location: book_path(@book)
       flash[:alert] = "コメントの投稿に失敗しました。"
     end
   end
@@ -20,12 +20,12 @@ class Public::CommentsController < ApplicationController
     @book = Book.find(params[:book_id])
     @comment = Comment.find_by(book_id: @book.id, id: params[:id])
     if @comment.destroy
-      redirect_to request.referer
+      redirect_back fallback_location: book_path(@book)
     else
       @book = Book.find(params[:book_id])
       @comments = @book.comments.all.order(created_at: :desc).page(params[:page])
       @comment.score = Language.get_data(comment_params[:body])
-      redirect_to request.referer
+      redirect_back fallback_location: book_path(@book)
     end
   end
 

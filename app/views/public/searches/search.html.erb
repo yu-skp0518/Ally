@@ -30,7 +30,7 @@
 
                   <td class="searches-search__base-info-data">
                   <%= link_to user_path(user.id) do %>
-                    <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "reading.jpg", size: "40x40" %>
+                    <%= profile_image_tag user, size: "40x40", fallback: "reading.jpg" %>
                   <% end %>
                   </td>
                   <td class="searches-search__base-info-data"><%= link_to user.name, user_path(user), class:"link" %></td>
@@ -103,8 +103,8 @@
                   </td>
                   <td class="searches-search__base-info-data"><%= link_to book.title, book_path(book.id), class:"link" %></td>
                   <td class="searches-search__base-info-data"><%= link_to book.user.nick_name, user_path(book.user.id), class:"link" %></td>
-                  <td class="searches-search__base-info-data"><%= book.comments.size %></td>
-                  <td class="searches-search__base-info-data"><%=  book.created_at.to_s(:datetime) %></td>
+                  <td class="searches-search__base-info-data"><%= book.comments.count %></td>
+                  <td class="searches-search__base-info-data"><%= book.created_at.to_fs(:datetime) %></td>
                 </tr>
               </tbody>
             </table>

@@ -10,7 +10,7 @@ class Admin::SearchesController < ApplicationController
       @datas = @datas.includes(:user, :genre, :subject, :comments) if @model == 'book'
       @book = Book.where(user_id: @datas.ids).last if @model == 'user'
     else
-      redirect_to request.referer
+      redirect_back fallback_location: root_path
     end
   end
 

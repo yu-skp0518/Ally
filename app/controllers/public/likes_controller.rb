@@ -6,14 +6,14 @@ class Public::LikesController < ApplicationController
     @comment = Comment.find(params[:comment_id])
     @like = @comment.likes.new(user_id: current_user.id, comment_id: params[:comment_id])
     @like.save
-    redirect_to request.referer
+    redirect_back fallback_location: root_path
   end
 
   def destroy
     @comment = Comment.find(params[:comment_id])
     @like = @comment.likes.find_by(user_id: current_user.id, comment_id: params[:comment_id])
     @like.destroy
-    redirect_to request.referer
+    redirect_back fallback_location: root_path
   end
 
   def index

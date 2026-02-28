@@ -9,7 +9,7 @@ class Public::SearchesController < ApplicationController
       @datas = @datas.includes(:books) if @model == 'user'
       @datas = @datas.includes(:user, :genre, :subject, :comments) if @model == 'book'
     else
-      redirect_to request.referer
+      redirect_back fallback_location: root_path
     end
   end
 
