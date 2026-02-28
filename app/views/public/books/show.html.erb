@@ -106,7 +106,7 @@
                     <i class="fas fa-exclamation-triangle text-warning", title="不適切な内容であると判断した場合、&#13;&#10;管理者によって削除される可能性があります。" ></i>
                   <% end %>
 
-                  <%= comment.created_at.to_s(:datetime) %>
+                  <%= comment.created_at.to_fs(:datetime) %>
 
                   <!--いいねボタン-->
                   <% if comment.liked_by?(current_user) %>

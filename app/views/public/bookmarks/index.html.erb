@@ -45,7 +45,7 @@
                     <% end %>
                   </td>
                   <td class="bookmarks-index__base-info-data"><%= bookmark.book.comments.count %></td>
-                  <td class="bookmarks-index__base-info-data"><%= bookmark.book.created_at.to_s(:datetime) %></td>
+                  <td class="bookmarks-index__base-info-data"><%= bookmark.book.created_at.to_fs(:datetime) %></td>
                 </tr>
               </tbody>
             </table>

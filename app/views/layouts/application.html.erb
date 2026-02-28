@@ -62,10 +62,10 @@
               </nav-item>
 
              <nav-item>
-                <%= link_to destroy_admin_session_path, method: :delete do %>
-                    <i class="fas fa-sign-out-alt nav-link text-black">
-                      <strong class="menu-icon">Log out</strong>
-                    </i>
+                <%= button_to destroy_admin_session_path, method: :delete, class: "btn btn-link p-0 border-0 text-decoration-none text-black", form: { class: "d-inline" } do %>
+                  <i class="fas fa-sign-out-alt nav-link text-black">
+                    <strong class="menu-icon">Log out</strong>
+                  </i>
                 <% end %>
               </nav-item>
 
@@ -121,10 +121,10 @@
             <% end %>
 
              <nav-item>
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                    <i class="fas fa-sign-out-alt nav-link text-black">
-                      <strong class="menu-icon">Log out</strong>
-                    </i>
+                <%= button_to destroy_user_session_path, method: :delete, class: "btn btn-link p-0 border-0 text-decoration-none text-black", form: { class: "d-inline" } do %>
+                  <i class="fas fa-sign-out-alt nav-link text-black">
+                    <strong class="menu-icon">Log out</strong>
+                  </i>
                 <% end %>
               </nav-item>
 

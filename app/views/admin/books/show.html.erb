@@ -77,7 +77,7 @@
                     <i class="fas fa-exclamation-triangle text-warning", title="スコアが0より小さいもの" ></i>
                   <% end %>
 
-                <%= comment.created_at.to_s(:datetime) %>
+                <%= comment.created_at.to_fs(:datetime) %>
 
                   <!--削除ボタン-->
                     <%= link_to "削除", admin_book_comment_path(comment.book, comment), method: :delete %>
