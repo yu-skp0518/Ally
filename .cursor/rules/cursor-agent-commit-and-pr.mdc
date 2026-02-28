@@ -1,0 +1,25 @@
+---
+description: Cursor Agent が commit/push/PR する際の表記ルール（絶対ルール）
+alwaysApply: true
+---
+
+# Cursor Agent による commit / push / PR の表記（絶対ルール）
+
+ユーザーから依頼されて **commit** または **push** を行う場合、以下を必ず守る。
+
+## コミットメッセージ
+
+- 先頭または末尾に **`[Cursor Agent]`** または **`（Cursor Agent による対応）`** を入れる。
+- 例:
+  - `[Cursor Agent] fix: 退会・unfollow を button_to に変更`
+  - `fix: 日付表示を to_fs に統一（Cursor Agent による対応）`
+
+## プルリクエストの説明
+
+- 本文のどこかで「本 PR の変更は Cursor Agent により実装しました」と分かるように書く。
+- 例: 「本 PR の変更は Cursor Agent により実装しました。」
+
+## 適用範囲
+
+- ユーザーが「コミットして」「プッシュして」「PR 作って」などと依頼した場合に適用する。
+- ユーザー自身が手でコミットする場合はこのルールの対象外。

@@ -5,8 +5,8 @@
       <h2><strong>アカウントを復帰させますか？</strong></h2>
 
       <p>
-        <%= link_to "アカウントを復帰させる", user_unban_path(@user), method: :patch, params: {is_valid: true}, class:"link" %>
-        ｜<%= link_to "新しくアカウントを作成する", user_path(@user), method: :delete, class:"link" %>
+        <%= button_to "アカウントを復帰させる", user_unban_path(@user), method: :patch, class: "btn btn-link p-0 link", form: { class: "d-inline" } %>
+        ｜<%= button_to "新しくアカウントを作成する", user_path(@user), method: :delete, class: "btn btn-link p-0 link", form: { class: "d-inline" } %>
       </p>
     </div>
 
@@ -50,9 +50,9 @@
               <% if current_user != @user %>
                 <% if current_user.following?(@user) %>
                   <% unfollow_rel = current_user.relationships.find_by(follower_id: @user.id) %>
-                  <td class="users-show__base-info-data"><%= link_to "unfollow", user_relationship_path(@user, unfollow_rel), method: :delete, class: "btn btn-info" %></td>
+                  <td class="users-show__base-info-data"><%= button_to "unfollow", user_relationship_path(@user, unfollow_rel), method: :delete, class: "btn btn-info", form: { class: "d-inline" } %></td>
                 <% else %>
-                  <td class="users-show__base-info-data"><%= link_to "follow", user_relationships_path(@user.id), method: :post, class: "btn btn-success" %></td>
+                  <td class="users-show__base-info-data"><%= button_to "follow", user_relationships_path(@user.id), method: :post, class: "btn btn-success", form: { class: "d-inline" } %></td>
                 <% end %>
               <% end %>
             </tr>

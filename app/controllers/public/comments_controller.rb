@@ -6,7 +6,7 @@ class Public::CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.user_id = current_user.id
     @comment.book_id = @book.id
-    @comment.score = Language.get_data(comment_params[:body])
+    @comment.score = fetch_sentiment_score(comment_params[:body])
     if @comment.save
       redirect_to book_path(@book.id)
       flash[:notice] = "コメントが投稿されました。"
@@ -24,12 +24,18 @@ class Public::CommentsController < ApplicationController
     else
       @book = Book.find(params[:book_id])
       @comments = @book.comments.all.order(created_at: :desc).page(params[:page])
-      @comment.score = Language.get_data(comment_params[:body])
       redirect_back fallback_location: book_path(@book)
     end
   end
 
   private
+  def fetch_sentiment_score(body)
+    return nil if body.blank? || ENV['GOOGLE_API_KEY'].blank?
+    Language.get_data(body)
+  rescue JSON::ParserError, StandardError
+    nil
+  end
+
   def comment_params
     params.require(:comment).permit(:body)
   end
