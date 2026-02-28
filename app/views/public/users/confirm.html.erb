@@ -16,7 +16,7 @@
 
   <div class="users-confirm__options">
     <%= link_to "戻る", :back, class:"btn btn-primary users-confirm__back-button" %>
-    <%= link_to "退会する", user_quit_path(current_user), class: "btn btn-danger users-confirm__quit-button", method: :patch, data: {confirm: "本当に退会しますか？"} %>
+    <%= button_to "退会する", user_quit_path(current_user), method: :patch, class: "btn btn-danger users-confirm__quit-button", form: { class: "users-confirm__quit-form" }, data: { turbo_confirm: "本当に退会しますか？" } %>
   </div>
 
 </div>

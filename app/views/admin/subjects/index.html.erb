@@ -4,7 +4,7 @@
 
   <!--投稿フォーム-->
   <div class="books-search__form">
-    <%= form_with(model: @subject, :url => {:controller => "admin/subjects"}) do |f| %>
+    <%= form_with model: @subject, url: admin_subjects_path, local: true do |f| %>
       <%= f.text_field :name, placeholder: "科目名を入力", autofocus: true, autocomplete: "科目名を入力" %>
       <%= f.submit '新規作成', class: "btn btn-success", rows:"1", cols:"40" %>
     <% end %>
@@ -29,7 +29,7 @@
                   <th class="admin-subjects-index__base-info-theme"><%= link_to subject.name, admin_subject_path(subject.id), class:"link" %></th>
                 </tr>
                 <tr>
-                  <td class="admin-subjects-index__base-info-data">該当の書籍<%= subject.books.count %>件</td>
+                  <td class="admin-subjects-index__base-info-data">該当の書籍<%= subject.books.size %>件</td>
                 </tr>
               </tbody>
             </table>

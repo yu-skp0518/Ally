@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  attachment :profile_image
+  has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :nick_name, length: { minimum: 2, maximum: 20 }
@@ -11,9 +11,10 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :inquiries, dependent: :destroy
 
-  # 中間テーブル
-  has_many :comments, dependent: :destroy, through: :likes
-  has_many :likes, dependent: :destroy, through: :comments
+  # コメント・いいね・ブックマーク
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_comments, through: :likes, source: :comment
   has_many :bookmarks, dependent: :destroy
 
   # フォロー機能

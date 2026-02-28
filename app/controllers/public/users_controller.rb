@@ -3,8 +3,8 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @books = Book.where(user_id: @user.id, is_deleted: false).order(created_at: :desc)
-    @comments = Comment.joins(:likes).where(likes: {user_id: params[:id]})
+    @books = Book.where(user_id: @user.id, is_deleted: false).includes(:comments).order(created_at: :desc)
+    @comments = @user.liked_comments.order(created_at: :desc)
   end
 
   def quit
@@ -16,10 +16,12 @@ class Public::UsersController < ApplicationController
   end
 
   def edit
+    return redirect_to root_path, alert: "権限がありません" unless params[:id].to_i == current_user.id
     @user = User.find(params[:id])
   end
 
   def update
+    return redirect_to root_path, alert: "権限がありません" unless params[:id].to_i == current_user.id
     @user = User.find(params[:id])
     if @user.update(user_params)
      flash[:success] = "変更内容を反映しました。"

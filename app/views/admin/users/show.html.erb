@@ -7,7 +7,7 @@
 
     <div class="admin-users-show__info-wrapper">
       <table class="admin-users-show__base-info">
-        <td><%= attachment_image_tag @user, :profile_image, :size =>'80x80', fallback: "reading.jpg", class:"profile-image" %></td>
+        <td><%= profile_image_tag @user, size: "80x80", fallback: "reading.jpg", class: "profile-image" %></td>
 
         <tbody>
           <tr>
@@ -60,7 +60,7 @@
 
   <div class="admin-users-show__book-list">
     <div class="admin-users-show__page-subtitle">
-      <h4><strong><%= @user.nick_name %>の投稿（全<%= @user.books.count %>件）</strong></h4>
+      <h4><strong><%= @user.nick_name %>の投稿（全<%= @books.size %>件）</strong></h4>
           <!--新規投稿ボタン-->
     </div>
 
@@ -87,8 +87,8 @@
               </span><br>
 
               <span>
-                コメント数：<%= book.comments.all.count %>｜
-                投稿日：<%= book.created_at.to_s(:datetime) %>
+                コメント数：<%= book.comments.size %>｜
+                投稿日：<%= book.created_at.to_fs(:datetime) %>
               </>
             </div>
 

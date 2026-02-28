@@ -7,16 +7,29 @@ class Public::BooksController < ApplicationController
   # 楽天ブックス検索
   def search
     if params[:keyword].present?
-      @books = RakutenWebService::Books::Book.search(title: params[:keyword])
+      if ENV['RAKUTEN_APP_ID'].blank?
+        @books = []
+        flash.now[:alert] = "楽天APIの設定がありません。.env に RAKUTEN_APP_ID を設定してください。"
+      else
+        @books = RakutenWebService::Books::Book.search(title: params[:keyword])
+      end
     else
+      flash.now[:notice] = "キーワードを入力してください。"
       render :search
-      flash[:notice] = "キーワードを入力してください。"
     end
   end
 
   # 検索後に結果選択の画面
   def new
+    if ENV['RAKUTEN_APP_ID'].blank?
+      redirect_to books_search_path, alert: "楽天APIの設定がありません。.env に RAKUTEN_APP_ID を設定してください。"
+      return
+    end
     book = RakutenWebService::Books::Book.search(isbn: params[:isbn]).first
+    unless book
+      redirect_to books_search_path, alert: "該当する書籍が見つかりませんでした。"
+      return
+    end
     @book = Book.new(
       isbn: book.isbn,
       small_image_url: book.small_image_url,
@@ -47,11 +60,11 @@ class Public::BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = Book.includes(:user, :genre, :subject).find(params[:id])
     @comment = Comment.new
-    @comments = @book.comments.all.order(created_at: :desc).page(params[:page])
-    @amount = @comments.count
-    @amounts = @book.comments.all.count
+    @comments = @book.comments.includes(:user, :likes).order(created_at: :desc).page(params[:page])
+    @amounts = @book.comments.count
+    @current_user_bookmark = current_user.bookmarks.find_by(book_id: @book.id)
   end
 
   def edit

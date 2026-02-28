@@ -32,7 +32,7 @@
                   </td>
                   <td class="liked-comments-index__base-info-data"><%= link_to comment.book.title, book_path(comment.book.id), class:"link" %></td>
                   <td class="liked-comments-index__base-info-data"><%= link_to comment.book.user.nick_name, user_path(comment.book.user.id), class:"link" %></td>
-                  <td class="liked-comments-index__base-info-data"><%= comment.book.created_at.to_s(:datetime) %></td>
+                  <td class="liked-comments-index__base-info-data"><%= comment.book.created_at.to_fs(:datetime) %></td>
                 </tr>
               </tbody>
             </table>

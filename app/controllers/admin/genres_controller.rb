@@ -2,18 +2,18 @@ class Admin::GenresController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @genres = Genre.all
+    @genres = Genre.includes(:books)
     @genre = Genre.new
   end
 
   def create
-    @genres = Genre.all
+    @genres = Genre.includes(:books)
     @genre = Genre.new(genre_params)
     if @genre.save
-       @genres = Genre.all
+       @genres = Genre.includes(:books)
        redirect_to admin_genres_path
     else
-      @genres = Genre.all
+      @genres = Genre.includes(:books)
       flash[:failure] = "投稿に失敗しました"
       render 'admin/genre#index'
     end
@@ -21,8 +21,8 @@ class Admin::GenresController < ApplicationController
 
   def show
     @genre = Genre.find(params[:id])
-    @books = @genre.books.all
-    @amount = @genre.books.count
+    @books = @genre.books.includes(:user, :genre, :subject, :comments)
+    @amount = @books.count
   end
 
   def edit

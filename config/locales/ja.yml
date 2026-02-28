@@ -35,7 +35,7 @@ ja:
         is_deleted: 削除フラグ
       comment:
         body: 本文
-      inquirie:
+      inquiry:
         name: 名前
         email: メールアドレス
         status: 対応ステータス
@@ -48,7 +48,7 @@ ja:
       book: 書籍情報
       comment: コメント
       genre: ジャンル
-      inquirie: お問い合わせ
+      inquiry: お問い合わせ
       like: いいね
       relationship: 交友関係
       subject: 科目

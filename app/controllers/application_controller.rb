@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     if resource == :admin
       flash[:notice_log_in] = "ログアウトに成功しました"
       new_admin_session_path
-    elsif
+    else
       flash[:notice_log_in] = "ログアウトに成功しました"
       root_path
     end
