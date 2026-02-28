@@ -33,9 +33,9 @@
                     <% if current_user != user %>
                       <% if current_user.following?(user) %>
                         <% unfollow_rel = current_user.relationships.find_by(follower_id: user.id) %>
-                        <%= link_to "unfollow", user_relationship_path(user, unfollow_rel), method: :delete, class: "btn btn-info" %></td>
+                        <%= button_to "unfollow", user_relationship_path(user, unfollow_rel), method: :delete, class: "btn btn-info", form: { class: "d-inline" } %></td>
                       <% else %>
-                        <%= link_to "follow", user_relationships_path(user.id), method: :post, class: "btn btn-success" %></td>
+                        <%= button_to "follow", user_relationships_path(user.id), method: :post, class: "btn btn-success", form: { class: "d-inline" } %></td>
                       <% end %>
                     <% end %>
                 </th>

@@ -40,14 +40,22 @@
   &__options {
     position: absolute;
     bottom: 60px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &__quit-form {
+    display: inline-block;
+    margin: 0;
   }
 
   &__back-button {
-    margin-right: 15px;
+    margin-right: 0;
   }
 
   &__quit-button {
-    margin-left: 15px;
+    margin-left: 0;
   }
 
   &__notice {

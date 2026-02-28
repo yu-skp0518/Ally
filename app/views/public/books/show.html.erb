@@ -17,9 +17,9 @@
 
           <!--ブックマークボタン-->
           <% if @current_user_bookmark %>
-            <td><%= link_to "bookmarkから削除", book_bookmark_path(@book, @current_user_bookmark), method: :delete, class:"btn btn-danger" %>
+            <td><%= button_to "bookmarkから削除", book_bookmark_path(@book, @current_user_bookmark), method: :delete, class: "btn btn-danger", form: { class: "d-inline" } %>
           <% else %>
-            <td><%= link_to "bookmarkに追加", book_bookmarks_path(@book), method: :post, class:"btn btn-info" %>
+            <td><%= button_to "bookmarkに追加", book_bookmarks_path(@book), method: :post, class: "btn btn-info", form: { class: "d-inline" } %>
           <% end %>
 
           <% if current_user == @book.user %>
@@ -111,14 +111,14 @@
                   <!--いいねボタン-->
                   <% current_user_like = comment.likes.find { |l| l.user_id == current_user.id } %>
                   <% if current_user_like %>
-                    <%= link_to comment.likes.size, book_comment_like_path(@book, comment, current_user_like), method: :delete, class: "fas fa-heart heart_red" %>
+                    <%= button_to book_comment_like_path(@book, comment, current_user_like), method: :delete, class: "btn btn-link p-0 border-0 fas fa-heart heart_red", form: { class: "d-inline" } do %><%= comment.likes.size %><% end %>
                   <% else %>
-                    <%= link_to comment.likes.size, book_comment_likes_path(@book, comment), method: :post, class: "fas fa-heart heart_blue" %>
+                    <%= button_to book_comment_likes_path(@book, comment), method: :post, class: "btn btn-link p-0 border-0 fas fa-heart heart_blue", form: { class: "d-inline" } do %><%= comment.likes.size %><% end %>
                   <% end %>
 
                   <!--削除ボタン-->
                   <% if current_user == comment.user %>
-                    <%= link_to "削除", book_comment_path(comment.book, comment), method: :delete %>
+                    <%= button_to "削除", book_comment_path(comment.book, comment), method: :delete, class: "btn btn-link p-0", form: { class: "d-inline" } %>
                   <% end %>
 
               </div>

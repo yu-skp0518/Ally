@@ -41,6 +41,7 @@ group :development do
 end
 
 group :test do
+  gem 'minitest', '~> 5.22'  # 6.x は Rails 7.2 の LineFiltering と引数不整合のため
   gem 'capybara', '>= 3.36'
   gem 'selenium-webdriver'
   gem 'webdrivers'

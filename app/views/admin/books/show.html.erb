@@ -80,7 +80,7 @@
                 <%= comment.created_at.to_fs(:datetime) %>
 
                   <!--削除ボタン-->
-                    <%= link_to "削除", admin_book_comment_path(comment.book, comment), method: :delete %>
+                    <%= button_to "削除", admin_book_comment_path(comment.book, comment), method: :delete, class: "btn btn-link p-0", form: { class: "d-inline" } %>
 
               </div>
             </div>
