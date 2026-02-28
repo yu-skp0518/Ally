@@ -24,7 +24,7 @@
                   <th class="followers-index__base-info-theme">ユーザー名</th>
                 </tr>
                 <tr>
-                  <td class="followers-index__base-info-data"><%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "reading.jpg", size: "40x40" %></td>
+                  <td class="followers-index__base-info-data"><%= profile_image_tag user, size: "40x40", fallback: "reading.jpg" %></td>
                   <td class="followers-index__base-info-data"><%= user.name %></td>
                   <td class="followers-index__base-info-data"><%= link_to user.nick_name, user_path(user.id) %></td>
                 </tr>

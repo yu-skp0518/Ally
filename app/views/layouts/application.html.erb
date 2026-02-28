@@ -5,9 +5,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
     <%= javascript_include_tag 'application' %>
+    <%# Rails 7: link_to method: :delete 等のために Turbo (UMD) を読み込み %>
+    <script src="https://unpkg.com/@hotwired/turbo@8/dist/turbo.umd.min.js" data-turbo-track="reload"></script>
   </head>
 
   <body class="wrapper">

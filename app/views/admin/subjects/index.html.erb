@@ -4,7 +4,7 @@
 
   <!--投稿フォーム-->
   <div class="books-search__form">
-    <%= form_with(model: @subject, :url => {:controller => "admin/subjects"}) do |f| %>
+    <%= form_with model: @subject, url: admin_subjects_path, local: true do |f| %>
       <%= f.text_field :name, placeholder: "科目名を入力", autofocus: true, autocomplete: "科目名を入力" %>
       <%= f.submit '新規作成', class: "btn btn-success", rows:"1", cols:"40" %>
     <% end %>

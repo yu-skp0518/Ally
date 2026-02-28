@@ -22,7 +22,7 @@
 
             <tr>
               <th class="users-edit__base-info-theme"><%= f.label :"プロフィール画像" %></th>
-              <td class="users-edit__base-info-data"><%= f.attachment_field :profile_image %></td>
+              <td class="users-edit__base-info-data"><%= f.file_field :profile_image, accept: "image/*" %></td>
             </tr>
 
             <tr>

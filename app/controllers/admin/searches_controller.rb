@@ -10,7 +10,7 @@ class Admin::SearchesController < ApplicationController
         @book = Book.where(user_id: @datas.ids).last
       end
     else
-      redirect_to request.referer
+      redirect_back fallback_location: root_path
     end
   end
 
