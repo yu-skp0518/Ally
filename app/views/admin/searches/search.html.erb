@@ -38,7 +38,7 @@
                   <td class="admin-searches-search__base-info-data"><%= user.id %></td>
                   <td class="admin-searches-search__base-info-data"><%= link_to user.name, admin_user_path(user), class:"link" %></td>
                   <td class="admin-searches-search__base-info-data"><%= link_to user.nick_name, admin_user_path(user), class:"link" %></td>
-                  <td class="admin-searches-search__base-info-data"><%= user.books.count %></td>
+                  <td class="admin-searches-search__base-info-data"><%= user.books.size %></td>
                   <td class="admin-searches-search__base-info-data">
                     <% if user.is_valid == false %>
                       <strong class="text-danger">退会済み</strong>
@@ -107,7 +107,7 @@
                   </td>
                   <td class="admin-searches-search__base-info-data"><%= link_to book.title, admin_book_path(book.id), class:"link" %></td>
                   <td class="admin-searches-search__base-info-data"><%= link_to book.user.nick_name, admin_user_path(book.user.id), class:"link" %></td>
-                  <td class="admin-searches-search__base-info-data"><%=  book.comments.count %></td>
+                  <td class="admin-searches-search__base-info-data"><%= book.comments.size %></td>
                   <td class="admin-searches-search__base-info-data"><%=  book.created_at.to_s(:datetime) %></td>
                 </tr>
               </tbody>

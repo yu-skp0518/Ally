@@ -35,7 +35,7 @@
                   </td>
                   <td class="genres-show__base-info-data"><%= link_to book.title, book_path(book.id), class:"link" %></td>
                   <td class="genres-show__base-info-data"><%= link_to book.user.nick_name, user_path(book.user.id), class:"link" %></td>
-                  <td class="genres-show__base-info-data"><%=  book.comments.count %></td>
+                  <td class="genres-show__base-info-data"><%= book.comments.size %></td>
                   <td class="genres-show__base-info-data"><%=  book.created_at.to_s(:datetime) %></td>
                 </tr>
               </tbody>

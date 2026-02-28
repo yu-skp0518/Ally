@@ -60,7 +60,7 @@
 
   <div class="admin-users-show__book-list">
     <div class="admin-users-show__page-subtitle">
-      <h4><strong><%= @user.nick_name %>の投稿（全<%= @user.books.count %>件）</strong></h4>
+      <h4><strong><%= @user.nick_name %>の投稿（全<%= @books.size %>件）</strong></h4>
           <!--新規投稿ボタン-->
     </div>
 
@@ -87,7 +87,7 @@
               </span><br>
 
               <span>
-                コメント数：<%= book.comments.all.count %>｜
+                コメント数：<%= book.comments.size %>｜
                 投稿日：<%= book.created_at.to_s(:datetime) %>
               </>
             </div>

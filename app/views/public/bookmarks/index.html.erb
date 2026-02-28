@@ -44,7 +44,7 @@
                       <font color="red", size="2.5px"><p><strong>(退会済み)</strong></p></font>
                     <% end %>
                   </td>
-                  <td class="bookmarks-index__base-info-data"><%= bookmark.book.comments.count %></td>
+                  <td class="bookmarks-index__base-info-data"><%= bookmark.book.comments.size %></td>
                   <td class="bookmarks-index__base-info-data"><%= bookmark.book.created_at.to_s(:datetime) %></td>
                 </tr>
               </tbody>

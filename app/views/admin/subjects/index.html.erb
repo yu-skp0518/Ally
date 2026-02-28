@@ -29,7 +29,7 @@
                   <th class="admin-subjects-index__base-info-theme"><%= link_to subject.name, admin_subject_path(subject.id), class:"link" %></th>
                 </tr>
                 <tr>
-                  <td class="admin-subjects-index__base-info-data">該当の書籍<%= subject.books.count %>件</td>
+                  <td class="admin-subjects-index__base-info-data">該当の書籍<%= subject.books.size %>件</td>
                 </tr>
               </tbody>
             </table>

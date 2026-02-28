@@ -17,6 +17,6 @@ class Public::LikesController < ApplicationController
   end
 
   def index
-    @comments = Comment.joins(:likes).where(likes: {user_id: params[:user_id]}).order(created_at: :desc)
+    @comments = Comment.joins(:likes).where(likes: { user_id: params[:user_id] }).includes(:user, :book, :likes).order(created_at: :desc)
   end
 end

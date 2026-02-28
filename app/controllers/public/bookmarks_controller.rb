@@ -18,8 +18,9 @@ class Public::BookmarksController < ApplicationController
   end
 
   def index
-    @user = User.find(params[:user_id])
-    @bookmarks = Bookmark.where(user_id: @user.id)
+    return redirect_to root_path, alert: "権限がありません" unless params[:user_id].to_i == current_user.id
+    @user = current_user
+    @bookmarks = Bookmark.where(user_id: @user.id).includes(book: [:genre, :subject, :user, :comments])
   end
 
 end

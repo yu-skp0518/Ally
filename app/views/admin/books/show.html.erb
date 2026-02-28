@@ -62,7 +62,7 @@
       <div class="admin-books-show__books-comments">
         <!--コメント一覧-->
         <% if @comments.any? %>
-          <% @book.comments.each do |comment| %>
+          <% @comments.each do |comment| %>
             <div class="admin-books-show__books-comments-items">
               <div class="admin-books-show__books-user-info">
                 <%= link_to admin_user_path(comment.user_id) do %>

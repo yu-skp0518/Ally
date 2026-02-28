@@ -2,18 +2,18 @@ class Admin::SubjectsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @subjects = Subject.all
+    @subjects = Subject.includes(:books)
     @subject = Subject.new
   end
 
   def create
-    @subjects = Subject.all
+    @subjects = Subject.includes(:books)
     @subject = Subject.new(subject_params)
     if @subject.save
-       @subjects = Subject.all
+       @subjects = Subject.includes(:books)
        redirect_to admin_subjects_path
     else
-       @subjects = Subject.all
+       @subjects = Subject.includes(:books)
        flash[:failure] = "投稿に失敗しました"
        render 'admin/subject#index'
     end
@@ -21,8 +21,8 @@ class Admin::SubjectsController < ApplicationController
 
   def show
     @subject = Subject.find(params[:id])
-    @books = @subject.books.all
-    @amount = @subject.books.count
+    @books = @subject.books.includes(:user, :genre, :subject, :comments)
+    @amount = @books.count
   end
 
 

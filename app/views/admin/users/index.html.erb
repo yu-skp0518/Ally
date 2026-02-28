@@ -35,7 +35,7 @@
                   <td class="admin-users-index__base-info-data"><%= user.id %></td>
                   <td class="admin-users-index__base-info-data"><%= link_to user.name, admin_user_path(user), class:"link" %></td>
                   <td class="admin-users-index__base-info-data"><%= link_to user.nick_name, admin_user_path(user), class:"link" %></td>
-                  <td class="admin-users-index__base-info-data"><%= user.books.count %></td>
+                  <td class="admin-users-index__base-info-data"><%= user.books.size %></td>
                   <td class="admin-users-index__base-info-data">
                     <% if user.is_valid == false %>
                       <strong class="text-danger">退会済み</strong>

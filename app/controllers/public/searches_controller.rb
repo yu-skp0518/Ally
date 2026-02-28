@@ -6,6 +6,8 @@ class Public::SearchesController < ApplicationController
       @how = params[:how]
       @model = params[:model]
       @datas = search_for(@how, @model, @keyword)
+      @datas = @datas.includes(:books) if @model == 'user'
+      @datas = @datas.includes(:user, :genre, :subject, :comments) if @model == 'book'
     else
       redirect_to request.referer
     end
@@ -21,7 +23,7 @@ private
     end
   end
 
-  def partical(model, keyword)
+  def partial(model, keyword)
     if model == 'user'
       User.where('nick_name LIKE ?', "%#{keyword}%").or(User.where('name LIKE ?', "%#{keyword}%")).where.not(id: current_user.id)
     elsif model == 'book'
@@ -33,8 +35,8 @@ private
     case how
     when 'match'
       match(model, keyword)
-    when 'partical'
-      partical(model, keyword)
+    when 'partical', 'partial'
+      partial(model, keyword)
     end
   end
 
