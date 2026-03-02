@@ -48,6 +48,5 @@ if Rails.env.production?
     File.join(rails_root, 'log', 'puma-error.log'),
     true
   )
-  # デーモン
-  daemonize
+  # Puma 6 では daemonize は削除済み。PaaS（Railway 等）ではフォアグラウンドで起動するため不要。
 end
