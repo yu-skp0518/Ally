@@ -200,6 +200,8 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     ostruct (0.6.3)
+    pg (1.6.3)
+    pg (1.6.3-x64-mingw-ucrt)
     popper_js (1.16.0)
     pp (0.6.3)
       prettyprint
@@ -356,6 +358,7 @@ DEPENDENCIES
   mutex_m
   mysql2 (>= 0.5)
   ostruct
+  pg (~> 1.5)
   puma (~> 6.4)
   rails (~> 7.2.0)
   rails-i18n
