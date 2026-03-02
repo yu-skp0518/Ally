@@ -36,17 +36,22 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
-# ここから追記（unix ソケットは Linux 本番のみ。Windows / 開発では上記 port が使われる）
+# Railway/Heroku 等の PaaS では PORT が設定される。その場合は TCP のみで待ち受ける。
+# 自前 VPS で nginx 経由するときは unix ソケットを使う（PORT 未設定のときのみ）。
 rails_root = Dir.pwd
-bind "unix://#{Rails.root}/tmp/sockets/puma.sock" if ENV['RAILS_ENV'] == 'production' && !Gem.win_platform?
-# 本番環境のみデーモン起動
+if ENV['RAILS_ENV'] == 'production' && !Gem.win_platform? && ENV['PORT'].to_s.strip.empty?
+  bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
+end
+# 本番環境のみ
 if Rails.env.production?
   pidfile File.join(rails_root, 'tmp', 'pids', 'puma.pid')
   state_path File.join(rails_root, 'tmp', 'pids', 'puma.state')
-  stdout_redirect(
-    File.join(rails_root, 'log', 'puma.log'),
-    File.join(rails_root, 'log', 'puma-error.log'),
-    true
-  )
-  # Puma 6 では daemonize は削除済み。PaaS（Railway 等）ではフォアグラウンドで起動するため不要。
+  # PaaS（PORT 設定あり）では stdout_redirect しない＝標準出力が Railway のデプロイログに出る
+  if ENV['PORT'].to_s.strip.empty?
+    stdout_redirect(
+      File.join(rails_root, 'log', 'puma.log'),
+      File.join(rails_root, 'log', 'puma-error.log'),
+      true
+    )
+  end
 end

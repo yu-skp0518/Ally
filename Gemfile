@@ -67,5 +67,6 @@ gem 'rakuten_web_service'
 gem 'dotenv-rails'
 
 group :production do
-  gem 'mysql2', '>= 0.5'
+  gem 'pg', '~> 1.5'  # Railway 等の DATABASE_URL (PostgreSQL) 用
+  gem 'mysql2', '>= 0.5'  # 従来の MySQL 本番環境用（任意）
 end
