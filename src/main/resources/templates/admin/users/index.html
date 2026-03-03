@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Admin - Users</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <h1>Users</h1>
+    <table class="table">
+        <tr th:each="u : ${users.content}">
+            <td th:text="${u.id}">1</td>
+            <td th:text="${u.email}">email</td>
+            <td th:text="${u.nickName}">nick</td>
+            <td><a th:href="@{/admin/users/{id}(id=${u.id})}">Show</a></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: ally
+  datasource:
+    # デフォルトは H2（PostgreSQL なしで起動可能）。本番は -Dspring.profiles.active=prod で PostgreSQL 使用
+    url: jdbc:h2:mem:ally;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    hikari:
+      maximum-pool-size: 10
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: public
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  port: ${PORT:8080}
+
+# Thymeleaf
+spring.thymeleaf:
+  prefix: classpath:/templates/
+  suffix: .html
+  mode: HTML
+  encoding: UTF-8
+  cache: false
+
+# i18n
+spring.messages:
+  basename: messages
+  encoding: UTF-8
+
+# Rakuten API (set RAKUTEN_APP_ID in env)
+app:
+  rakuten:
+    app-id: ${RAKUTEN_APP_ID:}
+  upload:
+    dir: ${UPLOAD_DIR:./uploads}
+
+logging:
+  level:
+    org.springframework.security: INFO
+    com.ally: DEBUG

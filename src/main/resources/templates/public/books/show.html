@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${book.title}">Book - Ally</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <img th:src="${book.mediumImageUrl}" alt="cover" class="img-fluid"/>
+        </div>
+        <div class="col-md-9">
+            <h1 th:text="${book.title}">Title</h1>
+            <p th:text="${book.author}">Author</p>
+            <p th:text="${book.story}">Story</p>
+            <p>Rate: <span th:text="${book.rate}">0</span></p>
+            <a th:href="@{/users/{id}(id=${book.user.id})}" th:text="${book.user.nickName}">User</a>
+            <span sec:authorize="isAuthenticated()" th:if="${book.user.id == #authentication.principal.user.id}">
+                | <a th:href="@{/books/edit/{id}(id=${book.id})}">Edit</a>
+                | <form th:action="@{/books/{id}/disenable(id=${book.id})}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-link p-0">Delete post</button>
+                </form>
+            </span>
+            <div sec:authorize="isAuthenticated()" th:if="${currentUserBookmark.isEmpty()}">
+                <form th:action="@{/users/{userId}/bookmarks(userId=${#authentication.principal.user.id})}" method="post" class="d-inline">
+                    <input type="hidden" name="bookId" th:value="${book.id}"/>
+                    <button type="submit" class="btn btn-sm btn-outline-primary">Bookmark</button>
+                </form>
+            </div>
+            <div sec:authorize="isAuthenticated()" th:if="${currentUserBookmark.isPresent()}">
+                <form th:action="@{/users/{userId}/bookmarks(userId=${#authentication.principal.user.id})}" method="post" class="d-inline">
+                    <input type="hidden" name="_method" value="delete"/>
+                    <input type="hidden" name="bookId" th:value="${book.id}"/>
+                    <button type="submit" class="btn btn-sm btn-primary">Unbookmark</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <h3>Comments (<span th:text="${amounts}">0</span>)</h3>
+    <div sec:authorize="isAuthenticated()">
+        <form th:action="@{/books/{bookId}/comments(bookId=${book.id})}" method="post">
+            <textarea name="body" class="form-control" required maxlength="200"></textarea>
+            <input type="number" name="score" step="0.001" min="0" max="5" placeholder="Score"/>
+            <button type="submit" class="btn btn-primary">Post comment</button>
+        </form>
+    </div>
+    <ul class="list-unstyled mt-3" th:each="c : ${comments.content}">
+        <li class="media border-bottom pb-2">
+            <div class="media-body">
+                <strong th:text="${c.user.nickName}">User</strong>
+                <p th:text="${c.body}">Comment body</p>
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

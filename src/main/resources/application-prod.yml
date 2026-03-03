@@ -1,0 +1,12 @@
+# 本番用: PostgreSQL（起動時に -Dspring.profiles.active=prod を指定）
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:ally}
+    username: ${DB_USER:ally}
+    password: ${DB_PASSWORD:ally}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+  h2:
+    console:
+      enabled: false

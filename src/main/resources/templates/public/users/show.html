@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${user.nickName}">User - Ally</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${user.nickName}">User</h1>
+    <p th:text="${user.name}">Name</p>
+    <p th:if="${user.profile}" th:text="${user.profile}">Profile</p>
+    <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.user.id != user.id}">
+        <form th:if="${!isFollowing}" th:action="@{/users/{userId}/relationships(userId=${user.id})}" method="post" class="d-inline">
+            <button type="submit" class="btn btn-primary">Follow</button>
+        </form>
+        <form th:if="${isFollowing}" th:action="@{/users/{userId}/relationships(userId=${user.id})}" method="post" class="d-inline">
+            <input type="hidden" name="_method" value="delete"/>
+            <button type="submit" class="btn btn-outline-secondary">Unfollow</button>
+        </form>
+    </div>
+    <div sec:authorize="isAuthenticated()" th:if="${#authentication.principal.user.id == user.id}">
+        <a th:href="@{/users/{id}/edit(id=${user.id})}">Edit profile</a> |
+        <a th:href="@{/users/{id}/confirm(id=${user.id})}">Quit</a>
+    </div>
+    <h3>Books</h3>
+    <div class="row" th:each="book : ${books.content}">
+        <div class="col-md-4">
+            <a th:href="@{/books/show/{id}(id=${book.id})}" th:text="${book.title}">Title</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

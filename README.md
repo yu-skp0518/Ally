@@ -1,53 +1,78 @@
-# Ally（ for learners ）
-![qktwKnEXOUuNS2h1633363594_1633364077](https://user-images.githubusercontent.com/86953982/135886991-cd55bd9b-716e-480c-871a-bf070b3fecee.png)
-## サイト概要
-* ### Allyとは？
+# Ally
 
-  allyとは「味方」の意。購入を迷っている参考書の口コミ・レビューを探したり、<br>
-  自分が使用した参考書の感想や難易度、使用した背景を投稿できるSNS。<br>
-  あらゆる学習者の味方になれればと思い、名付けました。
+Book review and learning community. Backend: **Java 21**, **Spring Boot**, **Thymeleaf**, **JPA**. Database: **PostgreSQL**. Frontend: **TypeScript**.
 
-* ### サイトテーマ
+## Requirements
 
-  『学習者の集合知』
+- Java 21+
+- PostgreSQL
+- Node.js 18+ (for frontend build)
 
-* ### テーマを選んだ理由
+Maven はプロジェクトに同梱の **Maven Wrapper** で自動利用します（別途 Maven のインストール不要）。  
+**JAVA_HOME** に Java 21 の JDK を指すように設定してください。初回実行時に Maven が自動ダウンロードされます。
 
-  製作者自身が高校卒業後に自宅浪人していた時期に<br>
-  どの参考書を買えばいいかわからず、口コミなどを参考に購入した結果、<br>
-  適切なものを選べず費用が無駄になってしまったことがあるという経験からこのテーマを選びました。
+## Setup
 
-* ### ターゲットユーザ
+### 1. PostgreSQL
 
-  あらゆる世代の資格試験や受験などに向けて勉強している学習者
+Create database and user:
 
-* ### 主な利用シーン
+```sql
+CREATE DATABASE ally;
+CREATE USER ally WITH PASSWORD 'ally';
+GRANT ALL PRIVILEGES ON DATABASE ally TO ally;
+```
 
-  購入を迷っている参考書に関する投稿がないか確認したり、<br>
-  その参考書が今の自分の理解度に適した難易度なのか過去の使用者のレベルと比較して判断するために用いる。
+### 2. Environment
 
-## 設計書
+Copy and edit env (optional; defaults in `application.yml`):
 
-* ### [ER図](https://drive.google.com/file/d/1-JQwXXG4zGj1NPtD6dcvCM5yKxzE0RDp/view?usp=sharing)
+- `DB_HOST`, `DB_PORT`, `DB_NAME`, `DB_USER`, `DB_PASSWORD` — PostgreSQL
+- `RAKUTEN_APP_ID` — [Rakuten API](https://webservice.rakuten.co.jp/) Application ID (for book search)
 
-* ### [テーブル定義書](https://docs.google.com/spreadsheets/d/1tkH_mm-Czp1CWytj-mV_B5Dz_8z0GRqupqVROP3jNpo/edit?usp=sharing)
+### 3. Run
 
-* ### [アプリケーション詳細設計](https://docs.google.com/spreadsheets/d/1iaDAS5NCPhuKMTVT356PCW1QgBw5reveC9rrVc5Wes8/edit?usp=sharing)
+**Windows (PowerShell / コマンドプロンプト):**
+```cmd
+.\mvnw.cmd spring-boot:run
+```
 
-* ### [ワイヤーフレーム（ユーザー側）](https://drive.google.com/file/d/1uSR6fVYDKDGtxsu3IEiIpyEjmwY00OJC/view?usp=sharing)
+**macOS / Linux:**
+```bash
+./mvnw spring-boot:run
+```
 
-* ### [ワイヤーフレーム（管理側）](https://drive.google.com/file/d/1-6s0mc0gQZSB13r1f0XC331_F9L5u6YG/view?usp=sharing)
+（`mvn` がインストール済みなら `mvn spring-boot:run` でも可。）
 
-## [チャレンジ要素一覧](https://docs.google.com/spreadsheets/d/1BcqmQg_izvXIq4fJAR6payEZeXPJNW-Z8Yu48-nPhHQ/edit?usp=sharing)
+Open: http://localhost:8080
 
-## 開発環境
+### 4. Admin
 
-- OS：macOS(Big Sur)
-- 言語：HTML,CSS,JavaScript,Ruby,SQL
-- フレームワーク：Ruby on Rails
-- JS ライブラリ：jQuery
-- IDE：Cloud9
+Create an admin user in the database (password must be BCrypt):
 
-## 使用素材
+```sql
+INSERT INTO admins (email, encrypted_password, created_at, updated_at)
+VALUES ('admin@example.com', '$2a$10$...', NOW(), NOW());
+```
 
-- 挿入する画像等をフリー素材のサイトから利用する予定
+Generate BCrypt hash with Spring or any BCrypt tool, then replace `$2a$10$...` above.
+
+### 5. Frontend (TypeScript)
+
+```bash
+npm install
+npm run build
+```
+
+Output goes to `src/main/resources/static/js/`. Use `npm run watch` during development.
+
+## Project structure
+
+- `src/main/java/com/ally/` — Application, config, controllers, entities, repositories, security, services
+- `src/main/resources/templates/` — Thymeleaf (public/, admin/)
+- `src/main/resources/static/` — CSS, JS, images
+- `frontend/ts/` — TypeScript source
+
+## License
+
+© All rights reserved by Ally for learners.
