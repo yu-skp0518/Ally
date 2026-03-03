@@ -2,13 +2,18 @@ spring:
   application:
     name: ally
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:ally}
-    username: ${DB_USER:ally}
-    password: ${DB_PASSWORD:ally}
-    driver-class-name: org.postgresql.Driver
+    # デフォルトは H2（PostgreSQL なしで起動可能）。本番は -Dspring.profiles.active=prod で PostgreSQL 使用
+    url: jdbc:h2:mem:ally;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
     hikari:
       maximum-pool-size: 10
+  h2:
+    console:
+      enabled: true
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
     show-sql: false
