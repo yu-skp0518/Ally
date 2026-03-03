@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Confirm quit - Ally</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <h1>Confirm quit</h1>
+    <p>Are you sure you want to quit?</p>
+    <form th:action="@{/users/{id}/quit(id=${user.id})}" method="post">
+        <button type="submit" class="btn btn-danger">Quit</button>
+        <a th:href="@{/users/{id}(id=${user.id})}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

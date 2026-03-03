@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Ally - Top</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <h1>Welcome to Ally</h1>
+    <p><a th:href="@{/books}">View all books</a> | <a th:href="@{/books/search}">Search Rakuten &amp; post</a></p>
+    <div class="row" th:if="${books != null and !books.empty}">
+        <div class="col-md-4" th:each="book : ${books.content}">
+            <div class="card mb-3">
+                <img th:src="${book.smallImageUrl}" class="card-img-top" alt="cover" style="height:120px;object-fit:contain;"/>
+                <div class="card-body">
+                    <h6 th:text="${book.title}">Title</h6>
+                    <p class="small" th:text="${book.author}">Author</p>
+                    <a th:href="@{/books/show/{id}(id=${book.id})}">View</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

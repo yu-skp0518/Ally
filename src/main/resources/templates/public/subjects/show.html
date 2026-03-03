@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title th:text="${subject.name}">Subject - Ally</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${subject.name}">Subject</h1>
+    <div class="row" th:each="book : ${books}">
+        <div class="col-md-4"><a th:href="@{/books/show/{id}(id=${book.id})}" th:text="${book.title}">Title</a></div>
+    </div>
+</div>
+</body>
+</html>

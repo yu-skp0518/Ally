@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Bookmarks - Ally</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <h1>My Bookmarks</h1>
+    <div th:each="bm : ${bookmarks.content}">
+        <a th:href="@{/books/show/{id}(id=${bm.book.id})}" th:text="${bm.book.title}">Title</a>
+    </div>
+</div>
+</body>
+</html>

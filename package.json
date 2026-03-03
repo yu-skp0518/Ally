@@ -1,5 +1,12 @@
 {
-  "name": "Ally",
+  "name": "ally",
+  "version": "1.0.0",
   "private": true,
-  "dependencies": {}
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "~5.3.0"
+  }
 }

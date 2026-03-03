@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit - Ally</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <h1>Edit post</h1>
+    <form th:action="@{/books/update/{id}(id=${book.id})}" method="post">
+        <div class="form-group">
+            <label>Story</label>
+            <textarea name="story" class="form-control" maxlength="300" th:text="${book.story}"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Rate</label>
+            <input type="number" name="rate" step="0.1" min="0" max="5" th:value="${book.rate}"/>
+        </div>
+        <div class="form-group">
+            <label>Genre</label>
+            <select name="genreId" class="form-control">
+                <option th:each="g : ${genres}" th:value="${g.id}" th:text="${g.name}" th:selected="${g.id == book.genre.id}">Genre</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Subject</label>
+            <select name="subjectId" class="form-control">
+                <option th:each="s : ${subjects}" th:value="${s.id}" th:text="${s.name}" th:selected="${s.id == book.subject.id}">Subject</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+</body>
+</html>

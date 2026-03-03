@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Admin - User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="${user.nickName}">User</h1>
+    <p th:text="${user.email}">email</p>
+    <p>Valid: <span th:text="${user.isValid}">true</span></p>
+    <form th:action="@{/admin/users/{id}(id=${user.id})}" method="post">
+        <label><input type="checkbox" name="isValid" value="true" th:checked="${user.isValid}"/> Valid</label>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+</body>
+</html>

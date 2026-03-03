@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: ally
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:ally}
+    username: ${DB_USER:ally}
+    password: ${DB_PASSWORD:ally}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+        default_schema: public
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+server:
+  port: ${PORT:8080}
+
+# Thymeleaf
+spring.thymeleaf:
+  prefix: classpath:/templates/
+  suffix: .html
+  mode: HTML
+  encoding: UTF-8
+  cache: false
+
+# i18n
+spring.messages:
+  basename: messages
+  encoding: UTF-8
+
+# Rakuten API (set RAKUTEN_APP_ID in env)
+app:
+  rakuten:
+    app-id: ${RAKUTEN_APP_ID:}
+  upload:
+    dir: ${UPLOAD_DIR:./uploads}
+
+logging:
+  level:
+    org.springframework.security: INFO
+    com.ally: DEBUG
